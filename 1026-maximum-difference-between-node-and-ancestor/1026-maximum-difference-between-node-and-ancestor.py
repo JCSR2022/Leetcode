@@ -6,15 +6,23 @@
 #         self.right = right
 class Solution:
     def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
-        self.ans = 0
         
+        # Se exploran todas las ramas y se va almacenando el minimo y el maximo 
+        # de la misma.
+        
+        self.ans = 0
+
         def buscador_min_max_rama(node,min_branch,max_branch):
+            print(f"node:{node.val if node else 'null'}, min_rama:{min_branch},max_rama:{max_branch}",end="/")
             if not node:
-                self.ans = max(self.ans, max_branch- min_branch)
+                self.ans = max(self.ans, max_branch - min_branch)
+                print(f"ans:{self.ans}")
                 return
             
             min_branch = min(min_branch,node.val)
             max_branch = max(max_branch,node.val)
+            
+            print(f"Post: min_rama:{min_branch},max_rama:{max_branch}")
             
             buscador_min_max_rama(node.left,min_branch, max_branch)
             buscador_min_max_rama(node.right,min_branch, max_branch)

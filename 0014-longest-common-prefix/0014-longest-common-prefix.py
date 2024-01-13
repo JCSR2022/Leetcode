@@ -10,10 +10,14 @@ class Solution:
                     break
             return comun
         
-        long_common_prefix = strs[0]
+        #long_common_prefix = strs[0]
+        #    
+        #for string_i in strs:
+        #    long_common_prefix = common_prefix(long_common_prefix,string_i)
+        #    if long_common_prefix == ""
+        #        break
+        #return long_common_prefix
             
-        for string_i in strs:
-            long_common_prefix = common_prefix(long_common_prefix,string_i)
-            
-        return long_common_prefix
-            
+        strs.sort()
+        
+        return common_prefix(strs[0],strs[-1])

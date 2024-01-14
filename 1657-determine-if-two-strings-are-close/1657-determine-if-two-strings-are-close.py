@@ -41,7 +41,9 @@ class Solution:
             return False
         
         #condicion 2
-        if Counter(dicc_letras_word1.values()) != Counter(dicc_letras_word2.values()):
+        frecuencias_word1 = Counter(dicc_letras_word1.values())
+        frecuencias_word2 = Counter(dicc_letras_word2.values())
+        if frecuencias_word1 != frecuencias_word2:
             return False   
             
         return True      

@@ -3,39 +3,32 @@ class Solution:
         
         if len(word1) != len(word2):
             return  False
-            
-        def contar_letras(string_input):
-            dicc_letras = {}
-            for letra in string_input:
-                if letra in dicc_letras:
-                    dicc_letras[letra] += 1
-                else:
-                    dicc_letras[letra] = 1
-            return dicc_letras
-
-        dicc_letras_word1 = contar_letras(word1)       
-        dicc_letras_word2 = contar_letras(word2)  
         
+        def contar(entrada):
+            dicc_cuenta = {}
+            for elem in entrada:
+                if elem in dicc_cuenta:
+                    dicc_cuenta[elem] += 1
+                else:
+                    dicc_cuenta[elem] = 1
+            return dicc_cuenta
+
+        dicc_letras_word1 = contar(word1)       
+        dicc_letras_word2 = contar(word2)  
+        
+        #condicion 1
         letras_word1 = set(dicc_letras_word1.keys())
         letras_word2 = set(dicc_letras_word2.keys())
+        if set(letras_word1) != set(letras_word2):
+            return False
         
-        cant_letras_word1 = list(dicc_letras_word1.values())
-        cant_letras_word1.sort()
-        
-        cant_letras_word2 = list(dicc_letras_word2.values())
-        cant_letras_word2.sort()
-        
-        cond1 = False
-        cond2 = False
-          
-        #condicion 1
-        if set(letras_word1) == set(letras_word2):
-            cond1 = True
-            
         #condicion 2
-        if cant_letras_word1 == cant_letras_word2:
-            cond2 = True
+        frecuencias_word1 = contar(list(dicc_letras_word1.values()))
+        frecuencias_word2 = contar(list(dicc_letras_word2.values()))
+        if frecuencias_word1 != frecuencias_word2:
+            return False   
             
-        return cond1 and cond2
-        
-        
+        return True   
+            
+            
+            

@@ -21,8 +21,8 @@ class RandomizedSet:
             return False
 
     def getRandom(self) -> int:
-        if len(self.set_input)>0:
-            return random.choice(list(self.set_input))
+        #if len(self.set_input)>0:
+        return random.choice(list(self.set_input))
 
 
 

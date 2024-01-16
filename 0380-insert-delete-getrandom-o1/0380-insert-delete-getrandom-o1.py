@@ -15,7 +15,7 @@ class RandomizedSet:
             
     def remove(self, val: int) -> bool:
         if val in self.set_input:
-            self.set_input.discard(val)
+            self.set_input.remove(val)
             return True
         else:
             return False

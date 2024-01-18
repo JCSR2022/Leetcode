@@ -9,6 +9,7 @@ class Solution:
         #    two,one = one, one+two   
         #return one
         
+        #Esto esta mal, esto no puede ser mas rapido que la solucion anterior
         dp = [1,1]
         for i in range(n-1):
             dp.append(dp[i]+dp[i+1])

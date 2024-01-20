@@ -1,13 +1,14 @@
 class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:
-        #sum_arr_min = 0
-        #size = len(arr)
-        #for i in range(size):
-        #    minimo = arr[i]
-        #    for j in range(i,size):
-        #        minimo = min(minimo,arr[j])
-        #        sum_arr_min += minimo       
-        #return sum_arr_min
+      #  sum_arr_min = 0
+      #  MOD = 10 ** 9 + 7
+      #  size = len(arr)
+      #  for i in range(size):
+      #      minimo = arr[i]
+      #      for j in range(i,size):
+      #          minimo = min(minimo,arr[j])
+      #          sum_arr_min += minimo       
+      #  return sum_arr_min % MOD
         
         class elem_stack():
             def __init__(self,index,num):
@@ -42,9 +43,6 @@ class Solution:
             res = (res + n * left * right ) % MOD
             
         return res
-            
-            
-            
                 
             
             

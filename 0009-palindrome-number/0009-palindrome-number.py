@@ -3,12 +3,12 @@ class Solution:
         if x < 0:
             return False
             
-        #str_x = str(x)
-        #return str_x[::-1] == str_x
-        
         str_x = str(x)
-        for i in range(len(str_x)//2):
-            if str_x[i] != str_x[-1-i]:
-                return False
-        return True
+        return str_x[::-1] == str_x
+        
+        #str_x = str(x)
+        #for i in range(len(str_x)//2):
+        #    if str_x[i] != str_x[-1-i]:
+        #        return False
+        #return True
 

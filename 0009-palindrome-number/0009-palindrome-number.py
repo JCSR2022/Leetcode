@@ -3,15 +3,12 @@ class Solution:
         if x < 0:
             return False
             
+        #str_x = str(x)
+        #return str_x[::-1] == str_x
+        
         str_x = str(x)
-        
-        return str_x[::-1] == str_x
-        
-        #size = len(str_x)
-        #mitad = size//2
-        #odd =  size%2
-        #if odd:
-        #    return  str_x[:mitad] == str_x[-1:mitad:-1]
-        #else:
-        #    return  str_x[:mitad] == str_x[-1:mitad-1:-1]
+        for i in range(len(str_x)//2):
+            if str_x[i] != str_x[-1-i]:
+                return False
+        return True
 

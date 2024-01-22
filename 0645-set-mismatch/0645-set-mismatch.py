@@ -1,3 +1,4 @@
+from collections import defaultdict
 class Solution:
     def findErrorNums(self, nums: List[int]) -> List[int]:
 
@@ -26,8 +27,7 @@ class Solution:
        # return [repetido,faltante]
         
         n = len(nums)
-        
-        numeros = { x: 0 for x in range(1,n+1)} 
+        numeros = defaultdict(int)
         for num in nums:
             numeros[num] +=1
             if numeros[num] == 2:

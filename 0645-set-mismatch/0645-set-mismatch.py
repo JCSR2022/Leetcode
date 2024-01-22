@@ -12,17 +12,32 @@ class Solution:
        # repetido = nums[0]
        # return [repetido,faltante]
         
-        numeros = { n: 0 for n in range(1,len(nums)+1)} 
-
+        
+        
+       # numeros = { n: 0 for n in range(1,len(nums)+1)} 
+       # for num in nums:
+       #     numeros[num] +=1
+       #     if numeros[num] == 2:
+       #         repetido = num
+       # for key, value in numeros.items():
+       #     if value == 0:
+       #         faltante = key
+       #         break
+       # return [repetido,faltante]
+        
+        n = len(nums)
+        
+        numeros = { x: 0 for x in range(1,n+1)} 
         for num in nums:
             numeros[num] +=1
             if numeros[num] == 2:
                 repetido = num
-
-        for key, value in numeros.items():
-            if value == 0:
-                faltante = key
                 break
+
+        suma_teorica = (n * (n + 1)) // 2
+        suma = sum(nums)
+        faltante = suma_teorica - suma + repetido
+
         return [repetido,faltante]
                 
         

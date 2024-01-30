@@ -6,7 +6,7 @@ class Solution:
             n = sum([ int(i)**2 for i in str(n)])
             if n == 1:
                 return True
-            if n in result:
+            elif n in result:
                 return False
             else:
                 result.append(n)

@@ -8,7 +8,7 @@ class Solution:
         
         count = {}
         for i, n in enumerate(nums):
-            if n in count.keys() and i - count[n] <= k:
+            if n in count and i - count[n] <= k:
                 return True
             else:
                 count[n] = i

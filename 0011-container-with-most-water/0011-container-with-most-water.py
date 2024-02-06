@@ -7,8 +7,7 @@ class Solution:
 
         while i < j:
             act_vol =  min(height[i],height[j])*(j-i)
-            if act_vol > max_vol:
-                max_vol = act_vol
+            max_vol = max(max_vol,act_vol)
             if height[i] <= height[j]:
                 i = i + 1
             else:

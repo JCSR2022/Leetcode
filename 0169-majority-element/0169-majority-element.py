@@ -18,15 +18,18 @@ class Solution:
 #             #    break
 #         return key_max_appears
         
+    
+        # space = O(1) , time (n)
         cont = 0 
         for num in nums:
             if cont == 0 :
                 value = num
             
-            if value == num:
-                cont += 1
-            else:
-                cont -= 1
+            # if value == num:
+            #     cont += 1
+            # else:
+            #     cont -= 1
+            cont += 1 if value == num else -1
         
         return value
       

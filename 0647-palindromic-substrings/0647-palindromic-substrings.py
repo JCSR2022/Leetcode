@@ -5,7 +5,7 @@ class Solution:
             for j in range(i):
                 if s[j:i+1] == s[j:i+1][::-1]:
                     ans.append(s[j:i+1])
-        ans = list(s) + ans
+        L_ans = len(list(s)) + len(ans)
         
-        return len(ans)
+        return L_ans
         

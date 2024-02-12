@@ -24,11 +24,6 @@ class Solution:
         for num in nums:
             if cont == 0 :
                 value = num
-            
-            # if value == num:
-            #     cont += 1
-            # else:
-            #     cont -= 1
             cont += 1 if value == num else -1
         
         return value

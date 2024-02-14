@@ -12,21 +12,34 @@ class Solution:
         
 #         return ans
 
-        limit = len(nums)-1
-        ans = []
 
-        p = 0  # positive pointer 
-        n = 0  # Negative pointer
-        while len(ans) < len(nums) :
-            # print((p,nums[p]),(n,nums[n]))
-            while nums[p] < 0:
-                p += 1
-            ans.append(nums[p])
-            p += 1
-            while nums[n] >= 0:
-                n += 1
-            ans.append(nums[n])
-            n += 1
-        return ans    
+
+
+#         limit = len(nums)-1
+#         ans = []
+
+#         p = 0  # positive pointer 
+#         n = 0  # Negative pointer
+#         while len(ans) < len(nums) :
+#             # print((p,nums[p]),(n,nums[n]))
+#             while nums[p] < 0:
+#                 p += 1
+#             ans.append(nums[p])
+#             p += 1
+#             while nums[n] >= 0:
+#                 n += 1
+#             ans.append(nums[n])
+#             n += 1
+#         return ans    
                 
-        
+        pos = []
+        neg = []
+        for num in nums:
+            if num >= 0:
+                pos.append(num)
+            else:
+                neg.append(num)
+        ans = []
+        for i in range(len(pos)):
+            ans += [pos[i],neg[i]]
+        return ans 

@@ -1,9 +1,21 @@
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
-        # if n <= 0:
-        #     return False
         
-        return bin(n).count('1') == 1 and bin(n).count('-') == 0
+        if bin(n)[0] == '-':
+            return False
+        
+        
+        # suma = 0
+        # for elem in bin(n):
+        #     if elem == '1':
+        #         suma +=1
+        #         if suma > 1:
+        #             return False
+        # return True
+        
+        
+        
+        return bin(n).count('1') == 1 
         
     
         

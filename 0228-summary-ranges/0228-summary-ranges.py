@@ -10,8 +10,7 @@ class Solution:
         incio = nums[0]
         ans = []
         for i in range(1,len(nums)):
-            print(nums[i-1],nums[i])
-
+            
             if nums[i-1] + 1 != nums[i]:
                 if incio == nums[i-1]:
                     ans.append(f"{incio}")
@@ -20,11 +19,10 @@ class Solution:
                     ans.append(f"{incio}->{nums[i-1]}")
                     incio = nums[i]
 
-            if i ==len(nums)-1:
+            if i == len(nums)-1:
                 if incio == nums[i]:
                     ans.append(f"{incio}")    
                 else:
-                    print("debe estar aqui:", incio,nums[i])
                     ans.append(f"{incio}->{nums[i]}")
 
         return ans

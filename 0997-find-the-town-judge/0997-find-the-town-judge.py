@@ -35,25 +35,46 @@ class Solution:
 #             return -1
 
 
-        incoming = {i:0 for i in range(1,n+1)}
-        outgoing = {i:0 for i in range(1,n+1)}
+        # secund option
+#         incoming = {i:0 for i in range(1,n+1)}
+#         outgoing = {i:0 for i in range(1,n+1)}
 
-        for person,trusted in trust:
-            incoming[trusted] += 1
-            outgoing[person] += 1
+#         for person,trusted in trust:
+#             incoming[trusted] += 1
+#             outgoing[person] += 1
 
-          # cond 1
-        trust_nobody = [key for key, value in outgoing.items() if value == 0]
+#           # cond 1
+#         trust_nobody = [key for key, value in outgoing.items() if value == 0]
         
 
-        #cond 2
-        trust_by_Everybody = [key for key, value in incoming.items() if value == n-1]
+#         #cond 2
+#         trust_by_Everybody = [key for key, value in incoming.items() if value == n-1]
         
-        if trust_nobody == trust_by_Everybody:
-            return trust_nobody[0]
-        else:
-            return -1
+#         if trust_nobody == trust_by_Everybody:
+#             return trust_nobody[0]
+#         else:
+#             return -1
 
+        if len(trust) == 0:
+            if n == 1:
+                return 1
+            else:
+                return -1
+
+        incoming = defaultdict(int)
+        outgoing = defaultdict(int)
+        
+        for source,destination in trust:
+            outgoing[source] += 1
+            incoming[destination] += 1
+            
+        for i in range(1+n+1):
+            if outgoing[i] == 0 and incoming[i] == n-1:
+                return i
+        return -1
+            
+        
+        
         
 
         

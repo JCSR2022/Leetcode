@@ -1,21 +1,19 @@
-class Solution:
-    def maximumOddBinaryNumber(self, s: str) -> str:
-        
-#         ceros = 0
-#         ones = 0
-        
-#         for c in s:
-#             if c == '1':
-#                 ones +=1
-#             else:
-#                 ceros +=1
-               
-#         if ones == 1:
-#             return "0"*ceros+"1"
-#         else:
-#             return "1"*(ones-1) +"0"*ceros+"1"
+class Solution {
+    public String maximumOddBinaryNumber(String s) {
+        int ones = 0;
 
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '1') {
+                ones++;
+            }
+        }
 
-        result = ''.join(sorted(s,reverse=True))
-        return result[1:]+ result[0]
-        
+        int zeros = s.length() - ones;
+
+        if (ones == 1) {
+            return "0".repeat(zeros) + "1";
+        } else {
+            return "1".repeat(ones - 1) + "0".repeat(zeros) + "1";
+        }
+    }
+}

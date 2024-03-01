@@ -6,35 +6,76 @@
 #         self.right = right
 class Solution:
     def isEvenOddTree(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            # An empty tree is considered an Even-Odd tree.
-            return True
-
-        # Use a deque for efficient queue operations.
-        queue = deque([root])
-        level = 0
-
-        while queue:
-            prev_val = None  # Previous value at the current level.
-
-            # Process all nodes at the current level.
-            for _ in range(len(queue)):
-                node = queue.popleft()
-
-                # Check if the values follow the Even-Odd conditions.
-                if (level % 2 == 0 and (node.val % 2 == 0 or (prev_val is not None and node.val <= prev_val))) or \
-                   (level % 2 == 1 and (node.val % 2 == 1 or (prev_val is not None and node.val >= prev_val))):
+        
+        if root.val%2 == 0:
+            return False
+        
+        
+        #DFS
+        # safe on dicc the positions and values of the nodes check condition according
+        
+        level = [0]
+        levelsValues = {}
+        #testToPrint = {}
+        
+        def CheckValLevel(val,level):
+            
+            if level in levelsValues:
+                
+                #testToPrint[level].append(val)
+            
+                if level%2 == 0:
+                    #odd-indexed level  even values
+                    if val%2 == 0: 
+                        return False
+                    else: 
+                        # even integer values in strictly decreasing order (from left to right).
+                        if val <= levelsValues[level][-1]: 
+                            return False
+                        else:
+                            levelsValues[level][-1] = val
+                            return True
+                
+                else:
+                    # even-indexed level all nodes odd
+                    if val%2 == 0:
+                        # odd integer values in strictly increasing order (from left to right).
+                        if val >= levelsValues[level][-1]: 
+                            return False
+                        else:
+                            levelsValues[level][-1] = val
+                            return True
+                    else: 
+                        return False
+            else:
+                if (level%2 == 0 and val%2 != 0) or (level%2 != 0 and val%2 == 0):
+                    levelsValues[level] = [val]
+                    #testToPrint[level]  = [val]
+                    return True
+                else:
                     return False
+                
+        
+        
+        checkifValLevel = [True]
+        def dfs(node):
+            if checkifValLevel[0]: checkifValLevel[0] = CheckValLevel(node.val,level[0])
+           # print(node.val,level[0],checkifValLevel[0],levelsValues,testToPrint)
+            if checkifValLevel[0]:
+            
+                level[0] +=1
 
-                prev_val = node.val
+                if node.left: dfs(node.left)
+                if node.right: dfs(node.right)
 
-                # Add children to the deque.
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-
-            level += 1
-
-        # All levels satisfy the conditions.
-        return True
+                level[0] -=1
+                
+        dfs(root)
+        
+        return    checkifValLevel[0]
+            
+            
+            
+        
+        
+       

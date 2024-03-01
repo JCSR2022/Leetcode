@@ -15,7 +15,7 @@ class Solution:
 #         else:
 #             return "1"*(ones-1) +"0"*ceros+"1"
 
-        result = ''.join(sorted(s, key=lambda x: x == '0'))
 
+        result = ''.join(sorted(s,reverse=True))
         return result[1:]+ result[0]
         

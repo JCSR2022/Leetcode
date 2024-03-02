@@ -1,25 +1,39 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         
-#         max_val = 0
-#         nums.sort(reverse = True)
-        
-#         print(nums)
-#         for i,n in enumerate(nums):
-#             max_val += n
-#             print(i,n,max_val)
-#             if max_val >= target:
-#                 return i+1
-            
-#         return 0
+        #  Muy buena explicacion en https://www.youtube.com/watch?v=aYqYMIqZx5s
 
-        # Calcula la suma total de la lista de números.
+
         summ = sum(nums)
-        
-        # Si la suma total es menor que el objetivo, no hay subarray que cumpla la condición.
         if summ < target:
             return 0
 
+        
+        r,l = 0,0
+        min_leght = float("inf")
+        sum_subarray = 0
+        
+#         while r < len(nums)-1:
+#             print(nums[l:r],sum_subarray,min_leght)
+#             if sum_subarray < target:
+#                 r +=1
+#                 sum_subarray += nums[r]
+#             else:
+#                 min_leght = min(min_leght,r-l)
+#                 sum_subarray -= nums[l]
+#                 l +=1
+        
+#         while sum_subarray- nums[l] > target:
+#             print(nums[l:r],sum_subarray,min_leght)
+#             sum_subarray -= nums[l]
+#             l +=1
+#             min_leght = min(min_leght,r-l)              
+#         return  min_leght
+            
+                
+
+        
+        
         # Inicializa los índices izquierdo (l) y derecho (r), 
         #   la suma actual y la longitud mínima.
         l, r = 0, 0
@@ -29,6 +43,7 @@ class Solution:
 
         # Realiza un bucle mientras el índice derecho sea menor que el tamaño de la lista.
         while r < n:
+            #print(l,r,nums[l:r],sum_val,mini)
             # Si la suma actual es menor que el objetivo, 
             #   agrega el elemento en el índice derecho.
             if sum_val < target:
@@ -46,9 +61,11 @@ class Solution:
         while sum_val - nums[l] >= target:
             sum_val -= nums[l]
             l += 1
+            #print("x  ",l,r,nums[l:r],sum_val,mini,sum_val - nums[l])
 
         # Actualiza la longitud mínima y devuelve el resultado.
         mini = min(mini, r - l)
+        #print(l,r,nums[l:r],sum_val,mini)
         return mini
         
         

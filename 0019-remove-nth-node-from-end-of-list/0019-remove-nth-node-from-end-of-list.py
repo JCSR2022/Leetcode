@@ -16,8 +16,6 @@ class Solution:
             
         create_node_next_list(head)
         
-        print(next_vector, len(next_vector),next_vector[-1].val)
-        
         if len(next_vector) == 1:
             head.val = ""
             

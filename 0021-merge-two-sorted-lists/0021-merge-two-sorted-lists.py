@@ -16,9 +16,7 @@ class Solution:
             
             head = ListNode("notToUse",None)
             origen = head
-            #print("iam here")
             while list1 and list2:
-                print(list1.val, list2.val, head.val )
                 if list1.val <= list2.val:
                     head.next = list1
                     head = head.next

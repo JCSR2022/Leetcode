@@ -11,43 +11,53 @@ class Solution:
         # and then buld the rigth branch
         
         
-        def divideTravelGenerator(arr):
-            if len(arr) > 1:
-                yield arr[len(arr)//2]
-                yield from divideTravelGenerator(arr[:len(arr)//2])
-                yield from divideTravelGenerator(arr[len(arr)//2+1:])
-            elif len(arr) == 1:
-                yield arr[0]
+#         def divideTravelGenerator(arr):
+#             if len(arr) > 1:
+#                 yield arr[len(arr)//2]
+#                 yield from divideTravelGenerator(arr[:len(arr)//2])
+#                 yield from divideTravelGenerator(arr[len(arr)//2+1:])
+#             elif len(arr) == 1:
+#                 yield arr[0]
 
 
 
-        def inputValInBST(node,val):
-            if val < node.val:
-                if node.left:
-                    inputValInBST(node.left,val)
-                else:
-                    newNode = TreeNode()
-                    newNode.val = val
-                    node.left = newNode
-            else:
-                if node.right:
-                    inputValInBST(node.right,val)
-                else:
-                    newNode = TreeNode()
-                    newNode.val = val
-                    node.right = newNode
+#         def inputValInBST(node,val):
+#             if val < node.val:
+#                 if node.left:
+#                     inputValInBST(node.left,val)
+#                 else:
+#                     newNode = TreeNode()
+#                     newNode.val = val
+#                     node.left = newNode
+#             else:
+#                 if node.right:
+#                     inputValInBST(node.right,val)
+#                 else:
+#                     newNode = TreeNode()
+#                     newNode.val = val
+#                     node.right = newNode
 
 
-        divTravel = divideTravelGenerator(nums)
-        for i,val in enumerate(divTravel):
-            if i == 0:
-                root =  TreeNode()
-                root.val = val 
-            else:
-                inputValInBST(root,val)
+#         divTravel = divideTravelGenerator(nums)
+#         for i,val in enumerate(divTravel):
+#             if i == 0:
+#                 root =  TreeNode()
+#                 root.val = val 
+#             else:
+#                 inputValInBST(root,val)
         
-        return root
+#         return root
         
-        
+        def helper(l,r):
+            if l > r:
+                return None
+            m = (l+r)//2
+            root = TreeNode(nums[m])
+            root.left = helper(l, m-1)
+            root.right =helper(m + 1,r)
+            return root
+
+
+        return helper(0,len(nums)-1) 
         
         

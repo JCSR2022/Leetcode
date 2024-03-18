@@ -18,7 +18,8 @@ class Solution:
         
         # Sol (Two passes)  O(n) going thru the linkedlist at least twice
         
-        hashCopyNodes = {None:None}
+        #hashCopyNodes = {None:None}
+        hashCopyNodes ={}
         
         current = head
         while current:
@@ -29,8 +30,8 @@ class Solution:
         current = head
         while current:
             copy = hashCopyNodes[current]
-            copy.next = hashCopyNodes[current.next] 
-            copy.random =  hashCopyNodes[current.random] 
+            copy.next = hashCopyNodes[current.next] if current.next else None
+            copy.random =  hashCopyNodes[current.random]  if current.random else None
             current = current.next
    
         return hashCopyNodes[head]

@@ -18,7 +18,7 @@ class Solution:
                 L = R
 
             elif R > points[i][0]:
-                L = points[i][0]
+                L = max(points[i][0],L)
 
         merge_points.append([L,R])  
         

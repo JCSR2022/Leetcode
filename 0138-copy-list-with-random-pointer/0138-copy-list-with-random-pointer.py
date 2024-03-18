@@ -16,9 +16,9 @@ class Solution:
             return head
         
         
-        # Sol (Two passes)  O(n) going trhu the linkedlist at least twice
+        # Sol (Two passes)  O(n) going thru the linkedlist at least twice
         
-        hashCopyNodes = {}
+        hashCopyNodes = {None:None}
         
         current = head
         while current:
@@ -29,12 +29,11 @@ class Solution:
         current = head
         while current:
             copy = hashCopyNodes[current]
-            copy.next = hashCopyNodes[current.next] if current.next else None
-            copy.random =  hashCopyNodes[current.random] if current.random else None
+            copy.next = hashCopyNodes[current.next] 
+            copy.random =  hashCopyNodes[current.random] 
             current = current.next
-            
-        current = head
-        return hashCopyNodes[current]
+   
+        return hashCopyNodes[head]
     
         
      

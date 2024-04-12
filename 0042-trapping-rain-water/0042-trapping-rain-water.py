@@ -24,37 +24,52 @@ class Solution:
 # -------------------------------------------------------------------
 
 
-        def max_left_height(i):
-            if i < 1:
-                return 0
-            return max(height[:i])
+#         def max_left_height(i):
+#             if i < 1:
+#                 return 0
+#             return max(height[:i])
 
-        def max_right_height(i):
-            if i > len(height)-2:
-                return 0
-            return max(height[i+1:])
+#         def max_right_height(i):
+#             if i > len(height)-2:
+#                 return 0
+#             return max(height[i+1:])
 
+#         max_left_vect = []
+#         for i in range(len(height)):
+#             max_left_vect.append(max_left_height(i))
+        
+#         max_right_vect = []
+#         for i in range(len(height)):
+#             max_right_vect.append(max_right_height(i))
+        
+#         water = 0
+#         for i,h in enumerate(height): 
+#             water += max(min(max_left_vect[i] ,max_right_vect[i])-h,0)
+        
+#         return water
+        
         max_left_vect = []
-        for i in range(len(height)):
-            max_left_vect.append(max_left_height(i))
+        act_max = 0
+        for h in height:
+            act_max = max(act_max,h)
+            max_left_vect.append(act_max)
+        max_left_vect = [0] + max_left_vect[:-1]     
+        
         
         max_right_vect = []
-        for i in range(len(height)):
-            max_right_vect.append(max_right_height(i))
+        act_max = 0
+        for h in height[::-1]:
+            act_max = max(act_max,h)
+            max_right_vect.append(act_max)
+        max_right_vect[:] = max_right_vect[::-1]        
+        max_right_vect[:] = max_right_vect[1:]+[0]
+        
         
         water = 0
         for i,h in enumerate(height): 
             water += max(min(max_left_vect[i] ,max_right_vect[i])-h,0)
         
-        return water
-        
-        
-        
-        
-        
-        
-        
-        
+        return water       
         
         
         

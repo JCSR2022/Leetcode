@@ -33,38 +33,54 @@ class Solution:
         
         
         
-        
-        #que es un rectangulo?
-        # es un conjunto de filas que se repite por columnas
-        #  un rectangulo de tamaño  (i_down-i_up) * ( j_right - j_left )
-        # for j in range(j_left, j_right)
-        #   for i in range(i_up,i_down):
-        #      all matrix[i][j] =1 
-        #
-        
+#       #OPCION PROGRAMACION DINAMICA
     
-        m,n = len(matrix),len(matrix[0])
-        ans = 0
-        dp = {}
+#         m,n = len(matrix),len(matrix[0])
+#         ans = 0
+#         dp = {}
 
-        for i in range(m):
-            for j in range(n):
-                if matrix[i][j]=='0':
-                    dp[(i,j)]=(0,0)
-                else:
-                    x = dp[(i,j-1)][0]+1 if j>0 else 1
-                    y = dp[(i-1,j)][1]+1 if i>0 else 1
-                    dp[(i,j)] = (x,y)
-                    ans = max(x,y,ans)
-                    minWidth = x
-                    # verical max possible
-                    for r in range(i-1,i-y,-1):
-                        minWidth = min(minWidth,dp[(r,j)][0])
-                        ans = max(ans,minWidth*(i-r+1))
+#         for i in range(m):
+#             for j in range(n):
+#                 if matrix[i][j]=='0':
+#                     dp[(i,j)]=(0,0)
+#                 else:
+#                     x = dp[(i,j-1)][0]+1 if j>0 else 1
+#                     y = dp[(i-1,j)][1]+1 if i>0 else 1
+#                     dp[(i,j)] = (x,y)
+#                     ans = max(x,y,ans)
+#                     minWidth = x
+#                     # verical max possible
+#                     for r in range(i-1,i-y,-1):
+#                         minWidth = min(minWidth,dp[(r,j)][0])
+#                         ans = max(ans,minWidth*(i-r+1))
 
 
-        return ans
+#         return ans
 
         
+
+        
+            if not matrix:
+                return 0
+
+            n = len(matrix[0])
+            heights = [0] * (n + 1)
+            max_area = 0
+
+            for row in matrix:
+                for i in range(n):
+                    heights[i] = heights [i] + 1 if row[i] == '1' else 0
+
+                stack = [-1]
+                for i in range(n + 1):
+                    while heights [i] < heights[stack[-1]]:
+                        h = heights[stack.pop()]
+                        w = i - stack[-1] - 1
+                        max_area = max(max_area, h * w)
+
+                    stack. append(i)
+
+            return max_area
+
         
         

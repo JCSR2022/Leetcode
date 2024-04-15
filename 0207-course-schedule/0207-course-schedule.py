@@ -31,7 +31,8 @@ class Solution:
 
 # have to use graph aproach, DFS:
 # [ [0,1],[0,2],[1,3],[1,4],[3,4]]
-# 
+# Good explaining in: 
+# https://www.youtube.com/watch?v=EgI5nU9etnU
 
 
         

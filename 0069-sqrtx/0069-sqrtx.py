@@ -1,33 +1,65 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
         
-        if x <= 1:
-            return x
+        l = 0
+        r =x
+        ans = 0
         
-        # aproach: Binary search
-
-        l = 0 
-        r = x
-        m = x
-        cont = 0
-        while cont < 1000:
-            # breaks 100 iterations
-            cont +=1
-
-            m = (r+l)//2
-
-            if m == l:
-                return m      
-
-            if m*m == x:
-                return m
-
-            elif m*m > x:
-                r = m
+        while l <=r:
+            m = l + ((r-l)//2)
+            
+            if m*m > x:
+                r = m -1
+            elif m*m < x:
+                l = m + 1
+                ans = m
             else:
-                l = m
+                return m
+        
+        return ans
+            
+             
+   
 
-        return m
+
+
+
+
+
+
+
+
+
+
+
+
+#         if x <= 1:
+#             return x
+        
+#         # aproach: Binary search
+
+#         l = 0 
+#         r = x
+#         m = x
+#         cont = 0
+#         while cont < 1000:
+#             # breaks 100 iterations
+#             cont +=1
+
+#             m = (r+l)//2
+
+#             if m == l:
+#                 return m      
+
+#             if m*m == x:
+#                 return m
+
+#             elif m*m > x:
+#                 r = m
+#             else:
+#                 l = m
+
+#         return m
                 
             
             

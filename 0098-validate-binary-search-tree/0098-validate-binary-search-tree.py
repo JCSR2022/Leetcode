@@ -102,31 +102,31 @@ class Solution:
 #         return new_tree == org_tree
 
 
-# 3rd aproach DFS but with boundries l and r
+# # 3rd aproach DFS but with boundries l and r
 
-
-        ans = True
-        
-        def dfs_boundries(node,l=-inf,r=inf):
+#         ans = True
+#         def dfs_boundries(node,l=-inf,r=inf):
+#             nonlocal ans
+#             if node:
+#                 # print(l,node.val,r)
+#                 if l < node.val < r:
+#                     dfs_boundries(node.left,l,node.val)
+#                     dfs_boundries(node.right,node.val,r)
+#                 else:
+#                     ans = False
+#         dfs_boundries(root)
+#         return ans     
+                
+        def valid_BST(node,l=-inf,r=inf):
             
-            nonlocal ans
+            if not node:
+                return True
             
-            if node:
-                # print(l,node.val,r)
-                if l < node.val < r:
-                
-                    dfs_boundries(node.left,l,node.val)
-                    dfs_boundries(node.right,node.val,r)
-  
-                else:
-                    ans = False
-        
-        dfs_boundries(root)
-        
-        return ans     
-                
-                
+            if not (l < node.val < r):
+                return False
+            
+            return  valid_BST(node.left,l,node.val) and valid_BST(node.right,node.val,r)
                 
         
-        
+        return valid_BST(root)
         

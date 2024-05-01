@@ -36,19 +36,26 @@ class Solution:
         #           30! = 265252859812191058636308480000000...                 7
         
         
-        count = 0
-        num = [ i for i in range(1,n+1) if i%5 == 0]
-        #print(num)
-        for elem in num:
-            count += 1
-            while (elem//5)%5 == 0:
-                count += 1
-                elem = elem//5
+#         first try:
+#         count = 0
+#         num = [ i for i in range(1,n+1) if i%5 == 0]
+#         #print(num)
+#         for elem in num:
+#             count += 1
+#             while (elem//5)%5 == 0:
+#                 count += 1
+#                 elem = elem//5
                 
+#         return count
+        
+        count = 0
+        
+        while n > 0:
+            #print(n,[ i for i in range(1,n+1) if i%5 == 0],n//5,count)
+            count += n//5
+            n //= 5
+            
         return count
-        
-        
-        
 
         
 

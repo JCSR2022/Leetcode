@@ -4,15 +4,17 @@ class Solution:
         # first binary search
         # second find window
         
+        
+        
         def binarySearch(nums,target):
             l = 0
             r = len(nums)-1
             
             while l <= r:
                 
-                m =  (l+r)//2
+                m =  l + (r-l)//2
                 
-                print((l,r,m),nums[l],nums[r],nums[m])
+                #print((l,r,m),nums[l],nums[r],nums[m])
                 
                 if nums[m] == target:
                     return m
@@ -27,7 +29,7 @@ class Solution:
             
           
         inicial_index =  binarySearch(nums,target)
-        print(inicial_index)  
+        #print(inicial_index)  
         
         
         # find window

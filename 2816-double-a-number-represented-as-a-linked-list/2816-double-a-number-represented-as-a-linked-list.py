@@ -10,12 +10,13 @@ class Solution:
             if not node: return 0
             
             carry = traverse(node.next)
+            #print('1:',node.val,carry,end=', ')
             
-            total = node.val *2 +carry
+            total = node.val * 2 + carry
             
             node.val , carry = total%10 , total //10 
             
-            #print(node.val,total,carry)
+            #print('2:',node.val,carry,total)
             
             return carry
         

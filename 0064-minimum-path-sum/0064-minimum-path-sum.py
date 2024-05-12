@@ -23,23 +23,31 @@ class Solution:
 
 
     
-        # sol bootom to top
+#         # sol bootom to top
         
-        rows = len(grid)
-        cols = len(grid[0])
+#         rows = len(grid)
+#         cols = len(grid[0])
         
-        res = [[float("inf")]*(cols+1) for r in range(rows+1)]
-        res[rows-1][cols] = 0 
+#         res = [[float("inf")]*(cols+1) for r in range(rows+1)]
+#         res[rows-1][cols] = 0 
         
         
-        for r in range(rows-1,-1,-1):
-            for c in range(cols-1,-1,-1):
-                res[r][c] = grid[r][c]+ min(res[r+1][c],res[r][c+1])
+#         for r in range(rows-1,-1,-1):
+#             for c in range(cols-1,-1,-1):
+#                 res[r][c] = grid[r][c]+ min(res[r+1][c],res[r][c+1])
                 
-        return res[0][0]
+#         return res[0][0]
         
         
-        
+        dp = [[float('inf')]*(len(grid[0])+1) for _ in range(len(grid)+1)]
+        dp[0][1] = 0
+
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                dp[i+1][j+1] = grid[i][j] + min(dp[i+1][j],dp[i][j+1])
+                
+        return dp[-1][-1]
+       
         
         
         

@@ -50,19 +50,19 @@ class Solution:
             
 
 
-        nRows, nCols = len(grid), len(grid[0])
+    
 
         def checkRow(nums):
             return int(''.join([str(num) for num in nums]), 2)
         
-        for row in range(nRows):
+        for row in range(len(grid)):
             if grid[row][0] == 0:
-                for col in range(nCols):
+                for col in range(len(grid[0])):
                     grid[row][col] = 1 - grid[row][col] 
                 
-        for col in range(1, nCols):
-            if sum(grid[r][col] for r in range(nRows)) * 2 < nRows:
-                for row in range(nRows):
+        for col in range(1, len(grid[0])):
+            if sum(grid[r][col] for r in range(len(grid))) * 2 < len(grid):
+                for row in range(len(grid)):
                     grid[row][col] = 1 - grid[row][col]
                 
         return sum(checkRow(row) for row in grid)

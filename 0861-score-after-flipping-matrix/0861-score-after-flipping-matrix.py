@@ -4,7 +4,13 @@ class Solution:
         # brute first aproach
         # for each row make the first bit 1 
         # for exah column check the numbers of 1 and if 0>1 then change
-        #print(grid)
+        
+#         Time complexity:
+#         O(N^2)
+
+#         Space complexity:
+#         O(1)
+
         
 #         for row in grid:
 #             if row[0] == 0:
@@ -42,31 +48,22 @@ class Solution:
 #         return sum_row
         
             
-#         Time complexity:
-#         O(N^2)
 
-#         Space complexity:
-#         O(1)
 
         nRows, nCols = len(grid), len(grid[0])
-
-        def flipRow(row):
-            for col in range(nCols):
-                grid[row][col] = 1 - grid[row][col] 
-
-        def flipCol(col):
-            for row in range(nRows):
-                grid[row][col] = 1 - grid[row][col]
 
         def checkRow(nums):
             return int(''.join([str(num) for num in nums]), 2)
         
         for row in range(nRows):
             if grid[row][0] == 0:
-                flipRow(row)
+                for col in range(nCols):
+                    grid[row][col] = 1 - grid[row][col] 
+                
         for col in range(1, nCols):
             if sum(grid[r][col] for r in range(nRows)) * 2 < nRows:
-                flipCol(col)
+                for row in range(nRows):
+                    grid[row][col] = 1 - grid[row][col]
                 
         return sum(checkRow(row) for row in grid)
     

@@ -52,8 +52,6 @@ class Solution:
 
     
 
-        def checkRow(nums):
-            return int(''.join([str(num) for num in nums]), 2)
         
         for row in range(len(grid)):
             if grid[row][0] == 0:
@@ -65,7 +63,7 @@ class Solution:
                 for row in range(len(grid)):
                     grid[row][col] = 1 - grid[row][col]
                 
-        return sum(checkRow(row) for row in grid)
+        return sum(int(''.join([str(num) for num in row ]), 2) for row in grid)
     
     
     

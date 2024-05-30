@@ -14,6 +14,12 @@ class Solution:
         # return cont
 
         
+        
+        
+        
+        
+        
+        
         # # O(n**3) sol
         # cont = 0 
         # for i in range(len(arr)-1):
@@ -29,17 +35,46 @@ class Solution:
         # return cont        
 
         
-        # usign xor propeties (two pointers) n**2
         
-        cont = 0
-        for x in range(len(arr)-1):
-            temp_xor = arr[x]
-            for y in range(x+1,len(arr)):
-                temp_xor ^= arr[y]
-                if temp_xor == 0:
-                    cont += y-x
+        
+        
+        
+#         # usign xor propeties n**2
+        
+#         cont = 0
+#         for x in range(len(arr)-1):
+#             temp_xor = arr[x]
+#             for y in range(x+1,len(arr)):
+#                 temp_xor ^= arr[y]
+#                 if temp_xor == 0:
+#                     cont += y-x
                     
-        return cont
+#         return cont
+
+
+# ni en pedo entiendo esta solucion!!!!! O(n) !!!!
+    
+        N = len(arr)
+        res = 0
+        prefix = 0
+        prev_xor_count = defaultdict(int)
+        prev_xor_count[0] = 1
+        prev_xor_index_sum = defaultdict(int)
+        
+        for i in range(N):
+            prefix ^= arr[i]
+            
+            if prev_xor_count[prefix]:
+                res += i * prev_xor_count[prefix] - prev_xor_index_sum[prefix] 
+            
+            
+            prev_xor_count[prefix] += 1
+            prev_xor_index_sum[prefix] += i + 1
+        
+        
+        return res
+        
+        
                     
                     
                 

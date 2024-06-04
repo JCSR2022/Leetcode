@@ -13,7 +13,7 @@ class Solution:
 
         even_count = 0
         count = 0
-        for x in hashMap.values():
+        for k,x in hashMap.items():
             count += x 
             if x%2 != 0:
                 even_count += 1

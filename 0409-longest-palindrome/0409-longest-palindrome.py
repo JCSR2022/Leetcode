@@ -10,7 +10,6 @@ class Solution:
                 hashMap[l] +=1
             else:
                 hashMap[l] = 1
-        
 
         even_count = 0
         count = 0
@@ -20,7 +19,7 @@ class Solution:
             if x%2 != 0:
                 even_count += 1
             #print(even_count)
-        return count - ( even_count -1  if even_count > 0 else even_count )  
+        return count - ( even_count - 1  if even_count > 0 else 0 )  
     
     
     

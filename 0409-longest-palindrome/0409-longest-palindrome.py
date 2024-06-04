@@ -13,12 +13,10 @@ class Solution:
 
         even_count = 0
         count = 0
-        for k,x in hashMap.items():
-            #print(k,x,x%2 != 0,even_count)
+        for x in hashMap.values():
             count += x 
             if x%2 != 0:
                 even_count += 1
-            #print(even_count)
         return count - ( even_count - 1  if even_count > 0 else 0 )  
     
     

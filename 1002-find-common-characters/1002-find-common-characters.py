@@ -33,19 +33,18 @@ class Solution:
 #         return ans
 
         
-        letters ={ l:ord(l)-97 for l in 'abcdefghijklmnopqrstuvwxyz' } 
+       # letters ={ l:ord(l)-97 for l in 'abcdefghijklmnopqrstuvwxyz' } 
 
         def findHasword(word): 
             hashWord = [0]*26
             for l in word:
-                hashWord[letters[l]] += 1
+                hashWord[ord(l)-97] += 1
             return hashWord
 
         hashW = [float(inf)]*26
         
         for word in words:
             newhashW = findHasword(word)
-            
             hashW = [min(x,y) for x,y in zip(hashW,newhashW) ]
             
         ans = []

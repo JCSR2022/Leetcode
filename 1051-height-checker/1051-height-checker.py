@@ -16,15 +16,21 @@ class Solution:
 # 1 <= heights[i] <= 100
         # using an sort method fast for small arr
     
-        count = [0 for n in range(101)]
+        count = [0]*101
 
         for h in heights:
             count[h] += 1
-        
+       
+    
         expected = []
-        for i,n in enumerate(count):
-            if n > 0:
-                expected += [i]*n
+        for h in range(101):
+            c =count[h]
+            for _ in range(c): expected.append(h)
+        
+#         expected = []
+#         for i,n in enumerate(count):
+#             if n > 0:
+#                 expected += [i]*n
                 
         #print(expected)
         

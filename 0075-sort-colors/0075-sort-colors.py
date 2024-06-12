@@ -3,20 +3,34 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # Dutch national flag problem (red, white, blue)
-        red, white, blue = 0, 1, 2
-        l, m, r = 0, 0, len(nums) - 1  # pointers to partition
         
-        while m <= r:
-            if nums[m] == red:
-                nums[l], nums[m] = nums[m], nums[l]
-                l += 1
-                m += 1
-            elif nums[m] == white:
-                m += 1
-            else:  # nums[m] == blue
-                nums[m], nums[r] = nums[r], nums[m]
-                r -= 1
+        
+        
+        # counting sort 
+        freq=[0]*3
+        for x in nums: freq[x]+=1
+        count=0
+        for x in range(3):
+            nums[count:count+freq[x]] = [x]*freq[x]
+            count+= freq[x]
+            
+            
+        
+        # Dutch national flag problem (red, white, blue)
+#         red, white, blue = 0, 1, 2
+#         l, m, r = 0, 0, len(nums) - 1  # pointers to partition
+        
+#         while m <= r:
+#             print(l,m,r,nums)
+#             if nums[m] == red:
+#                 nums[l], nums[m] = nums[m], nums[l]
+#                 l += 1
+#                 m += 1
+#             elif nums[m] == white:
+#                 m += 1
+#             else:  # nums[m] == blue
+#                 nums[m], nums[r] = nums[r], nums[m]
+#                 r -= 1
         
         
         

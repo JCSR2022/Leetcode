@@ -3,22 +3,41 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        # Dutch national flag problem (red, white, blue)
+        red, white, blue = 0, 1, 2
+        l, m, r = 0, 0, len(nums) - 1  # pointers to partition
+        
+        while m <= r:
+            if nums[m] == red:
+                nums[l], nums[m] = nums[m], nums[l]
+                l += 1
+                m += 1
+            elif nums[m] == white:
+                m += 1
+            else:  # nums[m] == blue
+                nums[m], nums[r] = nums[r], nums[m]
+                r -= 1
+        
+        
+        
+        
+        
         # bruteforce hasmap O(n):
         
-        hasMap = {}
-        for n in nums:
-            if n in hasMap:
-                hasMap[n] += 1
-            else:
-                hasMap[n] = 1
+#         hasMap = {}
+#         for n in nums:
+#             if n in hasMap:
+#                 hasMap[n] += 1
+#             else:
+#                 hasMap[n] = 1
         
         
-        i = 0        
-        for color in [0,1,2]:
-            if color in hasMap:
-                for j in range(i,i+hasMap[color]):
-                    nums[j] = color
-                i += hasMap[color] 
+#         i = 0        
+#         for color in [0,1,2]:
+#             if color in hasMap:
+#                 for j in range(i,i+hasMap[color]):
+#                     nums[j] = color
+#                 i += hasMap[color] 
         
         
             

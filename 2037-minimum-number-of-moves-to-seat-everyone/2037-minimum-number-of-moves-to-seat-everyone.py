@@ -5,8 +5,10 @@ class Solution:
         seats.sort()
         students.sort()
         
-        moves = 0
-        for se,st in zip(seats,students):
-            moves += abs(se-st)
+        return sum( [abs(se-st) for se,st in zip(seats,students) ] )
         
-        return moves
+#         moves = 0
+#         for se,st in zip(seats,students):
+#             moves += abs(se-st)
+        
+#         return moves

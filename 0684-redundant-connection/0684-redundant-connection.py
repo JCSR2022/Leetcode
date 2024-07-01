@@ -6,6 +6,8 @@ class Solution:
         # i make my version
         # base on unionFind exmaple: https://www.youtube.com/watch?v=PGZ64ob440I
         
+        
+        
         def findRoot_Size(x,UnionFind):
             if UnionFind[x] < 0 :
                 return x,UnionFind[x]
@@ -23,11 +25,11 @@ class Solution:
                 UnionFind[x] = y
                 UnionFind[y] = size_x+size_y
         
-        def isRemoveEdge(x,y):
+        def isRemoveEdge(x,y,UnionFind):
             x,size_x = findRoot_Size(x,UnionFind)
             y,size_y = findRoot_Size(y,UnionFind)
             
-            if x == y and x != -1:
+            if x != -1 and x == y:
                 return True
             
             return False
@@ -39,7 +41,7 @@ class Solution:
         UnionFind = [-1]*nodes
         
         for x,y in edges:
-            if isRemoveEdge(x,y):
+            if isRemoveEdge(x,y,UnionFind):
                 return [x,y]
             union(x,y,UnionFind)
         

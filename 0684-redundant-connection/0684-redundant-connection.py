@@ -17,20 +17,16 @@ class Solution:
         def union(x,y,UnionFind):
             x,size_x = findRoot_Size(x,UnionFind)
             y,size_y = findRoot_Size(y,UnionFind)
-
+            
+            if x != -1 and x == y:
+                return True
+            
             if size_x <= size_y:
                 UnionFind[y] = x
                 UnionFind[x] = size_x+size_y
             else:
                 UnionFind[x] = y
                 UnionFind[y] = size_x+size_y
-        
-        def isRemoveEdge(x,y,UnionFind):
-            x,size_x = findRoot_Size(x,UnionFind)
-            y,size_y = findRoot_Size(y,UnionFind)
-            
-            if x != -1 and x == y:
-                return True
             
             return False
 
@@ -41,9 +37,9 @@ class Solution:
         UnionFind = [-1]*nodes
         
         for x,y in edges:
-            if isRemoveEdge(x,y,UnionFind):
+            if union(x,y,UnionFind):
                 return [x,y]
-            union(x,y,UnionFind)
+            
         
         
         

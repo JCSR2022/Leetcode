@@ -8,7 +8,7 @@ class Solution:
         
         def findRoot_Size(x,UnionFind):
             if UnionFind[x] < 0 :
-                return x,abs(UnionFind[x])
+                return x,UnionFind[x]
             else:
                 return findRoot_Size(UnionFind[x],UnionFind)
 
@@ -16,12 +16,12 @@ class Solution:
             x,size_x = findRoot_Size(x,UnionFind)
             y,size_y = findRoot_Size(y,UnionFind)
 
-            if size_x >= size_y:
+            if size_x <= size_y:
                 UnionFind[y] = x
-                UnionFind[x] = -1*(size_x+size_y)
+                UnionFind[x] = size_x+size_y
             else:
                 UnionFind[x] = y
-                UnionFind[y] = -1*(size_x+size_y)
+                UnionFind[y] = size_x+size_y
         
         def isRemoveEdge(x,y):
             x,size_x = findRoot_Size(x,UnionFind)

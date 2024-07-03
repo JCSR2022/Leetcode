@@ -4,11 +4,44 @@ class Solution:
     
         if len(nums) <= 4:
             return 0
-        nums.sort()
-        ans = nums[-1] - nums[0]
+        
+        if len(nums) <= 8:
+            nums.sort()
+            ans = nums[-1] - nums[0]
+            for i in range(4):
+                ans = min(ans, nums[-(4 - i)] - nums[i])
+            return ans
+        
+        
+        
+        temp = []
+        for _ in range(4):
+            min_value = min(nums)
+            temp.append(min_value)
+            nums.remove(min_value)
+
+        for _ in range(4):
+            max_value = max(nums)
+            temp.append(max_value )
+            nums.remove(max_value)   
+            
+        temp.sort()
+        print(temp)
+        
+        ans = temp[-1] - temp[0]
         for i in range(4):
-            ans = min(ans, nums[-(4 - i)] - nums[i])
+            ans = min(ans, temp[-(4 - i)] - temp[i])
         return ans
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
 #         if len(nums) <= 4:
 #             return 0 

@@ -43,9 +43,9 @@ class Solution:
             node = node.next
             cont +=1
         
+        max_dist = actual-first
         
-        if min_dist <float('inf'):
-            max_dist = actual-first
+        if max_dist > 0:
             return [min_dist,max_dist]
         else:
             return [-1,-1]

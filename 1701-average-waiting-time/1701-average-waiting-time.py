@@ -7,20 +7,34 @@ class Solution:
         # calculae mean
         # solve O(n)
         
-        t = 0 
-        times = []
         
-        for cx_arr,cx_time in customers:
+        
+        #quitando el if:
+        
+        available_at = 0
+        total_wait = 0
+        for arrival, t in customers:
+            available_at = max(available_at, arrival) + t
+            total_wait += available_at - arrival
+        
+        return total_wait / len(customers)
+        
+        
+        
+#         t = 0 
+#         times = []
+        
+#         for cx_arr,cx_time in customers:
             
-            if cx_arr > t:
-                t = cx_arr      
+#             if cx_arr > t:
+#                 t = cx_arr      
             
-            times.append(t-cx_arr+cx_time)
+#             times.append(t-cx_arr+cx_time)
             
-            t += cx_time
+#             t += cx_time
             
-        print(times)
-        return mean(times)
+#         print(times)
+#         return mean(times)
         
             
       
@@ -31,7 +45,7 @@ class Solution:
         
 #         t = 0
 #         total = 0
-#         #times = []
+
         
 #         for arrival,order_time in customers:
             
@@ -39,14 +53,10 @@ class Solution:
 #                 total += t - arrival
 #             else:
 #                 t = arrival
-                
-#             #times.append(t - arrival+order_time)
-            
+
 #             total += order_time
             
 #             t += order_time
-        
-#         #print(times)
         
 #         return total / len(customers)
 

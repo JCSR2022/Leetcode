@@ -6,7 +6,8 @@ class Solution:
         ans = 0
         
         for move in logs:
-            m = move.strip('/')
+            #m = move.strip('/')
+            m = move[:-1]
             #print(move,m)
             if m == "..":
                 ans = max(0,ans-1)

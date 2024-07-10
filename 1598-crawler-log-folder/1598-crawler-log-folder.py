@@ -7,11 +7,11 @@ class Solution:
         
         for move in logs:
             #m = move.strip('/')
-            m = move[:-1]
             #print(move,m)
-            if m == "..":
+            
+            if move[:-1] == "..":
                 ans = max(0,ans-1)
-            elif m == '.':
+            elif move[:-1] == '.':
                 pass
             else:
                 ans += 1

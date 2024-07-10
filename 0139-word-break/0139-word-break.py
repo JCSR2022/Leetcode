@@ -3,16 +3,6 @@ class Solution:
         
 #         #dinamic programin aproach, botom up aproach
 
-
-
-
-        def isWordsInDict(i,s,wordDict):
-            for word in wordDict:
-                if s[i] == word[0]:
-                    if s[i:i+len(word)] == word:
-                        return True ,word     
-            return False , -1
-        
         
         dp = [False]*len(s)
         dp.append(True)

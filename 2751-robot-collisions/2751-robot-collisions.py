@@ -1,6 +1,7 @@
 class Solution:
     def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
         
+        # https://www.youtube.com/watch?v=FMV5Pp0tdXY
         
         index_map = {p:i for i,p in enumerate(positions)}
 
@@ -12,7 +13,10 @@ class Solution:
             if directions[i] == "R":
                 stack.append(i)
             else:
-                while stack and directions[stack[-1]] == "R" and healths[i]:
+            
+                #while stack and directions[stack[-1]] == "R" and healths[i]:
+                
+                while stack and healths[i]:
                     i2 = stack.pop()
                     
                     if healths[i] > healths[i2]:
@@ -25,8 +29,8 @@ class Solution:
                     else:
                         healths[i] = healths[i2] = 0
             
-                if healths[i]:
-                    stack.append(i)
+                # if healths[i]:
+                #     stack.append(i)
             
             
         

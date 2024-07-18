@@ -27,7 +27,10 @@ class Solution:
                     if l+r <= distance:
                         ans += 1
             
-            return [ 1+l for l in leafs_left ] + [1+r for r in leafs_rigth]
+            return [ 1+dist for dist in leafs_left+leafs_rigth ] 
+            
+            #return [ 1+l for l in leafs_left ] + [1+r for r in leafs_rigth]
+            
             
                 
         dfs_postOrder(root)

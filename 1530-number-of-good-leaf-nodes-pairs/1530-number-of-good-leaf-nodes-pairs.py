@@ -22,8 +22,8 @@ class Solution:
                      
             if not node.left and not node.right: return [1]
             
-            for l in leafs_left:
-                for r in leafs_rigth:
+            for l in [ l for l in leafs_left if l < distance] :
+                for r in [ r for r in  leafs_rigth if r < distance]:
                     if l+r <= distance:
                         ans += 1
             

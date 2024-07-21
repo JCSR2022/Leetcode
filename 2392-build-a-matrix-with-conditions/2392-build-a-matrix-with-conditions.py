@@ -2,74 +2,7 @@ import queue
 
 class Solution:
     def buildMatrix(self, k: int, rowConditions: List[List[int]], colConditions: List[List[int]]) -> List[List[int]]:
-        rowGraph = defaultdict(list)
-        for u, v in rowConditions:
-            rowGraph[u].append(v)
-            
-        colGraph = defaultdict(list)
-        for u, v in colConditions:
-            colGraph[u].append(v)
-        
-        def topoSort(graph):
-            inDegree = {i: 0 for i in range(1, k + 1)}
-            for u in graph:
-                for v in graph[u]:
-                    inDegree[v] += 1
-            queue = deque([i for i in inDegree if inDegree[i] == 0])
-            order = []
-            while queue:
-                node = queue.popleft()
-                order.append(node)
-                for v in graph[node]:
-                    inDegree[v] -= 1
-                    if inDegree[v] == 0:
-                        queue.append(v)
-            return order if len(order) == k else []
-        
-        rowOrder = topoSort(rowGraph)
-        colOrder = topoSort(colGraph)
-        
-        if not rowOrder or not colOrder:
-            return []
-        
-        rowMap = {num: i for i, num in enumerate(rowOrder)}
-        colMap = {num: i for i, num in enumerate(colOrder)}
-        
-        result = [[0] * k for _ in range(k)]
-        for i in range(1, k + 1):
-            result[rowMap[i]][colMap[i]] = i
-        
-        return result
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+          
         
         #graph, topological sort // Kahn’s Algorithm
         #https://www.youtube.com/watch?v=LDNMlgBi5vg
@@ -82,14 +15,17 @@ class Solution:
         
         
         def create_Adjacency_List(conditions):
-            Adjacency_List = {}
+            Adjacency_List = {n:[] for n in range(1,k+1) }
             for cond1,cond2 in conditions:
                 if cond1 in Adjacency_List:
                     Adjacency_List[cond1].append(cond2)
-                else:
-                    Adjacency_List[cond1] = [cond2]
+                # else:
+                #     Adjacency_List[cond1] = [cond2]
                     
             return Adjacency_List
+        
+        
+        
         
         
         def Kahn_topological_sort(Adjacency_List):
@@ -133,14 +69,14 @@ class Solution:
         
         row_Adjacency_List = create_Adjacency_List(rowConditions)
         col_Adjacency_List = create_Adjacency_List(colConditions)
-        print(row_Adjacency_List)
-        print(col_Adjacency_List)
+        #print(row_Adjacency_List)
+        #print(col_Adjacency_List)
         
         
         topological_row = Kahn_topological_sort(row_Adjacency_List)
         topological_col = Kahn_topological_sort(col_Adjacency_List)
-        print(topological_row)
-        print(topological_col)
+        #print(topological_row)
+        #print(topological_col)
     
     
         if len(topological_row) == 0 or len(topological_col) == 0:

@@ -1,6 +1,14 @@
 class Solution:
     def frequencySort(self, nums: List[int]) -> List[int]:
         
+        
+        # i guess this the most eficient:        
+        freq = Counter(nums)
+        nums.sort(key=lambda x: (freq[x], -x))
+        return nums
+        
+    
+        
 #         ctr = Counter(nums).items()                         # <-- 1)
 
 #         arr = sorted(ctr, key = lambda x: (x[1], -x[0]))    # <-- 2)
@@ -8,11 +16,7 @@ class Solution:
 #         return chain(*[[n]* cnt for n,cnt in arr])          # <-- 3)        
         
         
-        
-#         freq = Counter(nums)
-#         nums.sort(key=lambda x: (freq[x], -x))
-#         return nums
-        
+
 # This line sorts the nums array in place using a custom key. The key parameter of the sort method is a function that extracts a comparison key from each list element.
 # The lambda function lambda x: (freq[x], -x) returns a tuple for each element x in nums. This tuple contains two values:
 
@@ -37,23 +41,23 @@ class Solution:
 # My solution:
 #         #hashmap
 
-        hasnums = defaultdict(int)
-        for n in nums: hasnums[n] += 1
+#         hasnums = defaultdict(int)
+#         for n in nums: hasnums[n] += 1
         
-        num_vect = [ [n,cant] for n,cant in hasnums.items()]
-        print(num_vect)
+#         num_vect = [ [n,cant] for n,cant in hasnums.items()]
+#         print(num_vect)
         
-        num_vect.sort(reverse = True)
-        print(num_vect)
+#         num_vect.sort(reverse = True)
+#         print(num_vect)
         
-        num_vect = sorted(num_vect, key=lambda x: x[1])
-        print(num_vect)
+#         num_vect = sorted(num_vect, key=lambda x: x[1])
+#         print(num_vect)
         
-        ans = []
-        for n,cant in num_vect:
-            ans += [n]*cant
+#         ans = []
+#         for n,cant in num_vect:
+#             ans += [n]*cant
             
-        return ans
+#         return ans
         
         
         

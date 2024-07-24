@@ -11,11 +11,10 @@ class Solution:
         #     ans = [ str(mapping[int(n)]) for n in str(num) ]
         #     return int("".join(ans))
         
-        def mapingFunc(num,mapping):
-            map_num = [ mapping[int(n)]*(10**i) for i,n in enumerate(str(num)[::-1]) ]
-            return  sum(map_num)
+        def mapingFunc(num):
+            return  sum([ mapping[int(n)]*(10**i) for i,n in enumerate(str(num)[::-1]) ])
         
-        return sorted(nums,key = lambda x: mapingFunc(x,mapping))
+        return sorted(nums,key = lambda x: mapingFunc(x))
 
     
             

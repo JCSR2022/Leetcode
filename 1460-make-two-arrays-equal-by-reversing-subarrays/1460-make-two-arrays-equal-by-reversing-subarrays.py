@@ -4,7 +4,7 @@ class Solution:
         if len(target) != len(arr):
             return False
 
-        elementCounts = [0] * 1001
+        elementCounts = [0] * (max(max(target),max(arr))+1)
 
         for targetNum, currentNum in zip(target, arr):
             elementCounts[targetNum] += 1

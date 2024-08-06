@@ -4,27 +4,32 @@ class Solution:
         
         r = len(nums)-1
         l = 0
+        v_l = nums[l]**2
+        v_r = nums[r]**2
         
         ans = [0]*len(nums)
         i=0
         while l <= r:
-            v_l = nums[l]**2
-            v_r = nums[r]**2
+           
     
             if v_r > v_l:
                 ans[i] = v_r
                 i+=1
                 if r > 0:
                     r -= 1
+                    v_r = nums[r]**2
                 else:
                     l += 1
+                    v_l = nums[l]**2
             else:
                 ans[i] = v_l
                 i += 1
                 if l < len(nums)-1:
                     l +=1
+                    v_l = nums[l]**2
                 else:
                     r -=1
+                    v_r = nums[r]**2
                     
         return ans[::-1]
 

@@ -5,19 +5,22 @@ class Solution:
         r = len(nums)-1
         l = 0
         
-        ans = []
+        ans = [0]*len(nums)
+        i=0
         while l <= r:
             v_l = nums[l]**2
             v_r = nums[r]**2
     
             if v_r > v_l:
-                ans.append(v_r)
+                ans[i] = v_r
+                i+=1
                 if r > 0:
                     r -= 1
                 else:
                     l += 1
             else:
-                ans.append(v_l)
+                ans[i] = v_l
+                i += 1
                 if l < len(nums)-1:
                     l +=1
                 else:
@@ -28,28 +31,6 @@ class Solution:
                 
                 
             
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 #         left = 0
 #         right =len(nums)-1
 #         ans = []

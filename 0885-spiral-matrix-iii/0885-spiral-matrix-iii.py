@@ -4,43 +4,43 @@ class Solution:
         
         
     
-        visited_count = 1
-        visited = [[rStart, cStart]]
+#         visited_count = 1
+#         visited = [[rStart, cStart]]
         
-        def is_valid(r, c):
-            """Checks if the cell (r, c) is within the matrix bounds and, if so, adds it to the visited list."""
-            if 0 <= r < rows and 0 <= c < cols:
-                nonlocal visited_count
-                visited_count += 1
-                visited.append([r, c])
+#         def is_valid(r, c):
+#             """Checks if the cell (r, c) is within the matrix bounds and, if so, adds it to the visited list."""
+#             if 0 <= r < rows and 0 <= c < cols:
+#                 nonlocal visited_count
+#                 visited_count += 1
+#                 visited.append([r, c])
         
-        total_cells = rows * cols
-        steps = 0
-        r, c = rStart, cStart
+#         total_cells = rows * cols
+#         steps = 0
+#         r, c = rStart, cStart
         
-        # Spiral movement logic
-        while visited_count < total_cells:
-            steps += 1
-            # Move right
-            for _ in range(steps):
-                c += 1
-                is_valid(r, c)
-            # Move down
-            for _ in range(steps):
-                r += 1
-                is_valid(r, c)
+#         # Spiral movement logic
+#         while visited_count < total_cells:
+#             steps += 1
+#             # Move right
+#             for _ in range(steps):
+#                 c += 1
+#                 is_valid(r, c)
+#             # Move down
+#             for _ in range(steps):
+#                 r += 1
+#                 is_valid(r, c)
             
-            steps += 1
-            # Move left
-            for _ in range(steps):
-                c -= 1
-                is_valid(r, c)
-            # Move up
-            for _ in range(steps):
-                r -= 1
-                is_valid(r, c)
+#             steps += 1
+#             # Move left
+#             for _ in range(steps):
+#                 c -= 1
+#                 is_valid(r, c)
+#             # Move up
+#             for _ in range(steps):
+#                 r -= 1
+#                 is_valid(r, c)
             
-        return visited
+#         return visited
         
         
         # directions = [0, 1, 0, -1, 0]

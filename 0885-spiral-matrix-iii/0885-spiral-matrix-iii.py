@@ -1,65 +1,25 @@
 class Solution:
     def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:
         
+        """Approach:
+        1. We simulate a spiral movement starting from the given (rStart, cStart) coordinate.
+        2. The movement pattern is as follows:
+           - Move right, down, left, and up in a cyclic order.
+           - After every two directions (right/down and left/up), increase the steps taken in each direction by one.
+        3. As we move, we check if the current cell is within the matrix bounds.
+           If it is, we add it to the visited list and continue until we've visited all cells.
         
-        
-    
-#         visited_count = 1
-#         visited = [[rStart, cStart]]
-        
-#         def is_valid(r, c):
-#             """Checks if the cell (r, c) is within the matrix bounds and, if so, adds it to the visited list."""
-#             if 0 <= r < rows and 0 <= c < cols:
-#                 nonlocal visited_count
-#                 visited_count += 1
-#                 visited.append([r, c])
-        
-#         total_cells = rows * cols
-#         steps = 0
-#         r, c = rStart, cStart
-        
-#         # Spiral movement logic
-#         while visited_count < total_cells:
-#             steps += 1
-#             # Move right
-#             for _ in range(steps):
-#                 c += 1
-#                 is_valid(r, c)
-#             # Move down
-#             for _ in range(steps):
-#                 r += 1
-#                 is_valid(r, c)
-            
-#             steps += 1
-#             # Move left
-#             for _ in range(steps):
-#                 c -= 1
-#                 is_valid(r, c)
-#             # Move up
-#             for _ in range(steps):
-#                 r -= 1
-#                 is_valid(r, c)
-            
-#         return visited
-        
-        
-        # directions = [0, 1, 0, -1, 0]
-        # res = [[rStart, cStart]]
-        # j = n = 0
-        # while len(res) < rows * cols:
-        #     for i in range(n // 2 + 1):
-        #         rStart += directions[j]
-        #         cStart += directions[j + 1]
-        #         if 0 <= rStart < rows and 0 <= cStart < cols:
-        #             res.append([rStart, cStart])
-        #     n += 1
-        #     j = (j + 1) % 4
-        # return res
-        
-        # aproach, brute force?:  
-        # time complex  O(n), max  rStart = rows-1, cStart = cols-1, (2*rows)*(2*cols)
-        # move in espiral untill count of visited , every 2 move add 1 to the steps
-        # check if valid cell, if valid add to visited, increment count of visited
+        Time Complexity Analysis:
+        - The total number of cells we need to visit is `rows * cols`.
+        - The movement pattern ensures that each cell is visited once.
+        - The loop continues until we've visited all cells, which results in O(N) time complexity,
+          where the max N is (2*rows * 2*cols).
+
+        Space Complexity Analysis:
+        - The space complexity is primarily driven by the output list `visited`, which stores the coordinates.
+        - Since we store each of the N coordinates exactly once, the space complexity is O(N), in this case
+        N = rows * cols.
+        """
         
         
         self.cont_visited = 1

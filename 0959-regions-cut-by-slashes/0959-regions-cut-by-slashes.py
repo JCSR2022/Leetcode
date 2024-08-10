@@ -81,6 +81,10 @@ class Solution:
                   # -----------------
                 if j > 0:
                     union((i,j-1,'R'),(i,j,'L'))
+                    
+                # for r in roots: 
+                #     print(i,j,grid[i][j],r,find(r))
+                # print()
         
         return len(set(map(find,roots)))
         

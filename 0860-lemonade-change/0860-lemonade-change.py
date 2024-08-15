@@ -22,7 +22,7 @@ class Solution:
         
         cont_5  = 0
         cont_10 = 0
-        for i,cx in enumerate(bills):
+        for cx in bills:
             
             if cx == 5:
                 cont_5 +=1
@@ -35,7 +35,7 @@ class Solution:
                     cont_5  -= 1
                 else:
                     cont_5  -= 3
-            #print(i,cx,cont_5,cont_10,cont_5 <0 ,cont_10 <0 ,cont_5 < 0 or cont_10 < 0)
+    
             if cont_5 < 0 or cont_10 < 0:
                 return False
             

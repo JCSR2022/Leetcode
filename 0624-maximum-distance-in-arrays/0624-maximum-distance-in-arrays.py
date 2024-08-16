@@ -8,7 +8,7 @@ class Solution:
         ans = float("-inf")
         
         for arr in arrays[1:]:
-            ans = max(ans, max(arr[-1]-cur_min,cur_max-arr[0]))            
+            ans = max(ans,arr[-1]-cur_min,cur_max-arr[0])            
             cur_min = min(cur_min,arr[0])
             cur_max = max(cur_max,arr[-1])
             

@@ -27,15 +27,13 @@ class Solution:
         
         for i in range(n):
             x = heapq.heappop(nums)
-            if i == n - 1:
-                return x
             
             for i in [2,3,5]:
                 if x*i not in visit:
                     visit.add(x*i)
                     heapq.heappush(nums, x*i)
             
-            
+        return x  
             
             
             

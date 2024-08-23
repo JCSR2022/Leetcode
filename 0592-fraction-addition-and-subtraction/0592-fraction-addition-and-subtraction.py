@@ -4,7 +4,7 @@ class Solution:
         #divide:
         #  1.create a function to read all num, save it as [[num1,den1],[num2,den2]..]
         #  2 crete a function that add all num and return [ans_num,ans_den]
-        #  3. creat func to present result
+        #  3. present result
         
         import re
         def readExp(exp:str):
@@ -19,8 +19,7 @@ class Solution:
             return result
         
         
-        
-        from math import gcd
+        #from math import gcd
         from functools import reduce
         def suma_fracciones(fracciones):
             # Función para sumar dos fracciones (num1/den1) + (num2/den2)
@@ -30,13 +29,24 @@ class Solution:
                 num = num1 * den2 + num2 * den1
                 den = den1 * den2
                 return (num, den)
+            
+            # Implementación del algoritmo de Euclides para encontrar el MCD
+            def mcd(a, b):
+                while b:
+                    a, b = b, a % b
+                return a
 
             # Suma todas las fracciones en la lista
             suma = reduce(suma_dos_fracciones, fracciones)
 
-            # Simplificar la fracción resultante
+            # # Simplificar la fracción resultante
+            # num, den = suma
+            # divisor_comun = gcd(num, den)
+            # return (num // divisor_comun, den // divisor_comun)
+            
+            # Simplificar la fracción resultante usando nuestro propio MCD
             num, den = suma
-            divisor_comun = gcd(num, den)
+            divisor_comun = mcd(abs(num), abs(den))
             return (num // divisor_comun, den // divisor_comun)
         
         

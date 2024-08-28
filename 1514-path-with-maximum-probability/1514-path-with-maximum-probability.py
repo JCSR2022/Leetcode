@@ -39,7 +39,7 @@ class Solution:
                         proba[adj_node] = total_pro
                         prev_node[adj_node] = node
                     
-                    heapq.heappush(heap,(-1*total_pro,adj_node))
+                        heapq.heappush(heap,(-1*total_pro,adj_node))
                     
                 
         Dijkstras(Adjacency_List,start_node)

@@ -19,12 +19,15 @@ class Solution:
         
         visited = set()
         groups = 0
+        list_groups = []
         
         for i,j in stones:
             if (i,j) not in visited:
                 groups += 1
                 stack = [(i,j)]
                 visited.add((i,j))
+                cur_visited = set()
+                cur_visited.add((i,j))
                 
                 while stack:
                     cur_i,cur_j = stack.pop()
@@ -33,11 +36,17 @@ class Solution:
                         if (new_i,new_j) not in visited:
                             stack.append((new_i,new_j))
                             visited.add((new_i,new_j))
+                            cur_visited.add((new_i,new_j))
                             
                     for new_i,new_j in graph[~cur_j]:
                         if (new_i,new_j) not in visited:
                             stack.append((new_i,new_j))
                             visited.add((new_i,new_j))       
+                            cur_visited.add((new_i,new_j))
                             
+                list_groups.append(cur_visited)
+        
+        #print(list_groups)
+        
         return len(stones) - groups
         

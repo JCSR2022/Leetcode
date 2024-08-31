@@ -12,7 +12,7 @@ class Solution:
         
         #print(Adjacency_List)
         
-        def dijkstra(Adjacency_List,start):
+        def dijkstra(Adjacency_List,start,end):
             visited = set()
             proba = [0]*n
             proba[start] = 1
@@ -27,6 +27,9 @@ class Solution:
                 if node in visited: continue
                 visited.add(node)
                 
+                if node == end:
+                    return prob
+                
                 #print(visited,heap,proba,prob,node)
                 
                 for neig_prob,neig_node in Adjacency_List[node]:
@@ -38,11 +41,9 @@ class Solution:
                         heapq.heappush(heap, (-new_prob,neig_node))
                     
             
-            return proba
-            
-        probabilites = dijkstra(Adjacency_List,start_node)
+            return proba[end_node]
         
-        return probabilites[end_node]
+        return dijkstra(Adjacency_List,start_node,end_node)
         
         
         

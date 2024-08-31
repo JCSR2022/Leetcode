@@ -12,41 +12,77 @@ class Solution:
         
         #print(Adjacency_List)
         
+        
+        #improve usig the fact that p1*p2 is always < p1 or  p2!!!!!
         def dijkstra(Adjacency_List,start,end):
             visited = set()
-            proba = [0]*n
-            proba[start] = 1
-            
+  
             heap = [(-1,start)]
             heapq.heapify(heap)
             
             while heap:
                 prob,node = heapq.heappop(heap)
-                
-                prob = -prob
-                if node in visited: continue
                 visited.add(node)
                 
                 if node == end:
-                    return prob
-                
-                #print(visited,heap,proba,prob,node)
+                    return -prob
                 
                 for neig_prob,neig_node in Adjacency_List[node]:
-                    #print("neig_prob,neig_node:",neig_prob,neig_node)
-                    new_prob = neig_prob*prob 
-                    
-                    if new_prob > proba[neig_node]:
-                        proba[neig_node] = new_prob
-                        heapq.heappush(heap, (-new_prob,neig_node))
+                    if neig_node not in visited:
+                        heapq.heappush(heap, (neig_prob*prob ,neig_node))
                     
             
-            return proba[end_node]
+            return 0
         
         return dijkstra(Adjacency_List,start_node,end_node)
         
         
+ 
+
+
+
+#         #make  Adjacency_List
+#         Adjacency_List = collections.defaultdict(list)
+#         for (edg_or,edg_dest),prob in zip(edges,succProb):
+#             Adjacency_List[edg_or].append((prob,edg_dest))
+#             Adjacency_List[edg_dest].append((prob,edg_or))
         
+#         #print(Adjacency_List)
+        
+#         def dijkstra(Adjacency_List,start,end):
+#             visited = set()
+#             proba = [0]*n
+#             proba[start] = 1
+            
+#             heap = [(-1,start)]
+#             heapq.heapify(heap)
+            
+#             while heap:
+#                 prob,node = heapq.heappop(heap)
+                
+#                 prob = -prob
+#                 if node in visited: continue
+#                 visited.add(node)
+                
+#                 if node == end:
+#                     return prob
+                
+#                 #print(visited,heap,proba,prob,node)
+                
+#                 for neig_prob,neig_node in Adjacency_List[node]:
+#                     #print("neig_prob,neig_node:",neig_prob,neig_node)
+#                     new_prob = neig_prob*prob 
+                    
+#                     if new_prob > proba[neig_node]:
+#                         proba[neig_node] = new_prob
+#                         heapq.heappush(heap, (-new_prob,neig_node))
+                    
+            
+#             return proba[end_node]
+        
+#         return dijkstra(Adjacency_List,start_node,end_node)
+        
+
         
         
         

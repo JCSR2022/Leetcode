@@ -1,54 +1,104 @@
+import collections
+import heapq
+
 class Solution:
     def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
         
- 
         #make  Adjacency_List
-        Adjacency_List = {x:[] for x in range(n)}
-        for  (org,end),prob in zip(edges,succProb):
-            Adjacency_List[org].append( (prob,end))
-            Adjacency_List[end].append( (prob,org))
+        Adjacency_List = collections.defaultdict(list)
+        for (edg_or,edg_dest),prob in zip(edges,succProb):
+            Adjacency_List[edg_or].append((prob,edg_dest))
+            Adjacency_List[edg_dest].append((prob,edg_or))
         
         #print(Adjacency_List)
         
-        
-        
-        proba = [ 0 ] * n
-        prev_node = [-1] * n 
-        import heapq
-        def Dijkstras(Adjacency_List,start):
+        def dijkstra(Adjacency_List,start):
+            visited = set()
+            proba = [0]*n
             proba[start] = 1
-            visited = []
-            
             
             heap = [(-1,start)]
             heapq.heapify(heap)
             
-            
             while heap:
-                pro,node =  heapq.heappop(heap)
+                prob,node = heapq.heappop(heap)
                 
-                pro = -1*pro
+                prob = -prob
                 if node in visited: continue
-                visited.append(node)
+                visited.add(node)
                 
+                #print(visited,heap,proba,prob,node)
                 
-                for (new_pro,adj_node) in Adjacency_List[node]:
+                for neig_prob,neig_node in Adjacency_List[node]:
+                    #print("neig_prob,neig_node:",neig_prob,neig_node)
+                    new_prob = neig_prob*prob 
                     
-                    total_pro = new_pro * pro
-                    if total_pro > proba[adj_node]:
-                        proba[adj_node] = total_pro
-                        prev_node[adj_node] = node
+                    if new_prob > proba[neig_node]:
+                        proba[neig_node] = new_prob
+                        heapq.heappush(heap, (-new_prob,neig_node))
                     
-                        heapq.heappush(heap,(-1*total_pro,adj_node))
-                    
-                
-        Dijkstras(Adjacency_List,start_node)
-       # print(proba)
-       # print(prev_node) 
+            
+            return proba
+            
+        probabilites = dijkstra(Adjacency_List,start_node)
+        
+        return probabilites[end_node]
         
         
         
-        return proba[end_node]
+        
+        
+        
+        
+        
+ 
+#         #make  Adjacency_List
+#         Adjacency_List = {x:[] for x in range(n)}
+#         for  (org,end),prob in zip(edges,succProb):
+#             Adjacency_List[org].append( (prob,end))
+#             Adjacency_List[end].append( (prob,org))
+        
+#         #print(Adjacency_List)
+        
+        
+        
+#         proba = [ 0 ] * n
+#         prev_node = [-1] * n 
+#         import heapq
+#         def Dijkstras(Adjacency_List,start):
+#             proba[start] = 1
+#             visited = []
+            
+            
+#             heap = [(-1,start)]
+#             heapq.heapify(heap)
+            
+            
+#             while heap:
+#                 pro,node =  heapq.heappop(heap)
+                
+#                 pro = -1*pro
+#                 if node in visited: continue
+#                 visited.append(node)
+                
+                
+#                 for (new_pro,adj_node) in Adjacency_List[node]:
+                    
+#                     total_pro = new_pro * pro
+#                     if total_pro > proba[adj_node]:
+#                         proba[adj_node] = total_pro
+#                         prev_node[adj_node] = node
+                    
+#                         heapq.heappush(heap,(-1*total_pro,adj_node))
+                    
+                
+#         Dijkstras(Adjacency_List,start_node)
+#        # print(proba)
+#        # print(prev_node) 
+        
+        
+        
+#         return proba[end_node]
         
         
         

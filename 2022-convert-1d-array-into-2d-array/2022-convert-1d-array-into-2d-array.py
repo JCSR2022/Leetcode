@@ -5,17 +5,19 @@ class Solution:
         if len(original) != m*n:
             return []
         
-        
-        arr_2d = [ [0] *n for _ in range(m) ]
+#         arr_2d = [ [0] *n for _ in range(m) ]
 
-        
-        for i,num in enumerate(original):
+#         for i,num in enumerate(original):
            
-            arr_2d[i//n][i%n]=num        
+#             arr_2d[i//n][i%n] = num        
             
-            
-        return arr_2d
+#         return arr_2d
     
+    
+        matrix=[]
+        for i in range(0,len(original),n):
+            matrix.append(original[i:i+n])
+        return matrix
     
     
     

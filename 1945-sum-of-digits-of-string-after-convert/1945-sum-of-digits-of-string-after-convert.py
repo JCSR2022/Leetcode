@@ -1,10 +1,12 @@
 class Solution:
     def getLucky(self, s: str, k: int) -> int:
         
-        import string
+        #import string
 
         # Obtener las letras del alfabeto inglés en minúsculas
-        letters = string.ascii_lowercase
+        #letters = string.ascii_lowercase
+        letters = "abcdefghijklmnopqrstuvwxyz"
+        
         
         # string num
         num = int("".join([str(letters.index(x)+1) for x in s]))

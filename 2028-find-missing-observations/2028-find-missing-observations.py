@@ -7,30 +7,40 @@ class Solution:
         # create arr full 1, add each cell unitill get to 6 and untill reach suma_n
         
         
-        suma_n = mean*(len(rolls)+n) - sum(rolls)
+#         suma_n = mean*(len(rolls)+n) - sum(rolls)
         
-        if suma_n < n or suma_n > n*6:
-            return []
+#         if suma_n < n or suma_n > n*6:
+#             return []
         
         
-        n_arr = [suma_n//n]*n
-        suma_n -= (suma_n//n)*n
-        i = 0
-        #print(n_arr,suma_n)
-        
-        while suma_n != 0:
-            n_arr[i] += 1
-            suma_n -= 1
-            if n_arr[i] == 6:
-                i += 1    
-        
-#         n_arr = [1]*n
-#         suma_n -= n
+#         n_arr = [suma_n//n]*n
+#         suma_n -= (suma_n//n)*n
 #         i = 0
+#         #print(n_arr,suma_n)
+        
 #         while suma_n != 0:
 #             n_arr[i] += 1
 #             suma_n -= 1
 #             if n_arr[i] == 6:
-#                 i += 1
+#                 i += 1    
+        
+# #         n_arr = [1]*n
+# #         suma_n -= n
+# #         i = 0
+# #         while suma_n != 0:
+# #             n_arr[i] += 1
+# #             suma_n -= 1
+# #             if n_arr[i] == 6:
+# #                 i += 1
                 
-        return n_arr 
+#         return n_arr 
+
+
+
+        m=len(rolls)
+        sum_rolles=sum(rolls)
+        total=(n+m)*mean
+        miss=total-sum_rolles
+        if miss>6*n or miss<n: return []
+        q,r=divmod(miss, n)
+        return [q+1]*r+[q]*(n-r)

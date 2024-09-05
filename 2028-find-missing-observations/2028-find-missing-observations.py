@@ -12,13 +12,25 @@ class Solution:
         if suma_n < n or suma_n > n*6:
             return []
         
-        n_arr = [1]*n
-        suma_n -= n
+        
+        n_arr = [suma_n//n]*n
+        suma_n -= (suma_n//n)*n
         i = 0
+        #print(n_arr,suma_n)
+        
         while suma_n != 0:
             n_arr[i] += 1
             suma_n -= 1
             if n_arr[i] == 6:
-                i += 1
+                i += 1    
+        
+#         n_arr = [1]*n
+#         suma_n -= n
+#         i = 0
+#         while suma_n != 0:
+#             n_arr[i] += 1
+#             suma_n -= 1
+#             if n_arr[i] == 6:
+#                 i += 1
                 
         return n_arr 

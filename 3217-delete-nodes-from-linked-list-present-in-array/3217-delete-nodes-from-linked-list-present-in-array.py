@@ -7,7 +7,7 @@ class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
         
         #create dummyhead use as head
-        #dfs remove nodes if is list
+        #dfs remove nodes if  in list
         
         nums = set(nums)
     
@@ -17,10 +17,10 @@ class Solution:
             
             if node.val in nums:
                 prev_node.next = node.next
-                dfs(prev_node,node.next)
             else:
                 prev_node = node
-                dfs(prev_node,node.next)
+    
+            dfs(prev_node,node.next)
     
     
         dummy = ListNode(None,head)

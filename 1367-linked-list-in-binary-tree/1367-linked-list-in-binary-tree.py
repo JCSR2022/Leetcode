@@ -10,10 +10,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        
-        
-        def dual_dfs(list_node, tree_node):
+    
+    def dual_dfs(self,list_node, tree_node):
             
             if not list_node:
                 return True
@@ -21,10 +19,14 @@ class Solution:
             if not tree_node or list_node.val != tree_node.val:
                 return False
 
-            return dual_dfs(list_node.next, tree_node.left) or dual_dfs(list_node.next, tree_node.right) 
-
-                    
-        if dual_dfs(head,root):
+            return self.dual_dfs(list_node.next, tree_node.left) or self.dual_dfs(list_node.next, tree_node.right) 
+    
+    
+    
+    def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
+        
+        
+        if self.dual_dfs(head,root):
             return True
 
         if not root: 
@@ -33,6 +35,9 @@ class Solution:
         return self.isSubPath(head, root.left) or self.isSubPath(head, root.right) 
 
 
+        
+        
+        
         
         
         # me dfs moving with head also, save list of nodes visited and check if new node match

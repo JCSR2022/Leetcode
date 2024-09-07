@@ -22,15 +22,12 @@ class Solution:
             return self.dual_dfs(list_node.next, tree_node.left) or self.dual_dfs(list_node.next, tree_node.right) 
     
     
-    
     def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
-        
+        if not root: 
+            return False
         
         if self.dual_dfs(head,root):
             return True
-
-        if not root: 
-            return False
 
         return self.isSubPath(head, root.left) or self.isSubPath(head, root.right) 
 

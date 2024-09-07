@@ -13,7 +13,7 @@ class Solution:
     def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
         
         
-        def helper(list_node, tree_node):
+        def dual_dfs(list_node, tree_node):
             
             if not list_node:
                 return True
@@ -21,18 +21,16 @@ class Solution:
             if not tree_node or list_node.val != tree_node.val:
                 return False
 
-            return ( helper(list_node.next, tree_node.left) or
-                    helper(list_node.next, tree_node.right) )
+            return dual_dfs(list_node.next, tree_node.left) or dual_dfs(list_node.next, tree_node.right) 
 
                     
-        if helper(head,root):
+        if dual_dfs(head,root):
             return True
 
         if not root: 
             return False
 
-        return ( self.isSubPath(head, root.left) or
-                self.isSubPath(head, root.right) )
+        return self.isSubPath(head, root.left) or self.isSubPath(head, root.right) 
 
 
         

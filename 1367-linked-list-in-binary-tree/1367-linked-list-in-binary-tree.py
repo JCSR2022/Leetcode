@@ -10,9 +10,77 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+
+    #$^#$^#$^#^#$^no funciona
+    
+    # def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:
+            
+#         def check(tree_node,list_node):
+            
+#             if list_node is None:
+#                 #print("found")
+#                 return True
+            
+#             #print(tree_node.val,list_node.val)
+
+#             left = False
+#             right = False
+            
+#             if tree_node.val == list_node.val:
+                
+#                 if tree_node.left:
+#                     left = check(tree_node.left,list_node.next)
+
+#                 if tree_node.right:
+#                     right = check(tree_node.right,list_node.next)
+
+            
+#             return  left or right 
+                
+     
+            
+            
+#         def dfs(tree_node):
+#             #print("## :",tree_node.val)
+            
+#             left =False
+#             right = False
+#             actual = False
+            
+#             if tree_node:
+#                 actual = check(tree_node,head)
+                
+#             if tree_node.left:
+#                 left = check(tree_node.left,head)
+    
+#             if tree_node.right:
+#                 right = check(tree_node.right,head)
+        
+#             return actual or right or left
+            
+        
+#         return dfs(root)
+            
+            
+            
+            
+            
+            
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     def dual_dfs(self,list_node, tree_node):
-            
+    
             if not list_node:
                 return True
             

@@ -9,4 +9,9 @@ class Solution:
                 
 #         return ans
 
-        return sum(set(allowed) >= set(i) for i in words)
+        count = 0
+        for i in range(len(words)):
+            if sorted(set(list(words[i] + allowed))) == list(sorted(allowed)):             count += 1
+        return count
+
+ 

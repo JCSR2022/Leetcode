@@ -14,7 +14,7 @@ class Solution:
 
         prefix_xor = [0]
         pre_xor = 0
-        for i,elem in enumerate(arr):
+        for elem in arr:
             pre_xor ^= elem
             prefix_xor.append(pre_xor)
 

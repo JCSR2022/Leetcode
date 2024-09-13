@@ -13,9 +13,7 @@ class Solution:
 # time complex O(n)*O(q) = O(n*q) Liniar
 
         prefix_xor = [0]
-        pre_xor = 0
         for elem in arr:
-            pre_xor ^= elem
-            prefix_xor.append(pre_xor)
+            prefix_xor.append(prefix_xor[-1]^elem)
 
         return  [prefix_xor[i]  ^ prefix_xor[j+1]  for i,j in  queries]

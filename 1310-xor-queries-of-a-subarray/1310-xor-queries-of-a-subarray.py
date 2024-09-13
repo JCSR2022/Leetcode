@@ -10,19 +10,12 @@ class Solution:
 
 
 
+# time complex O(n)*O(q) = O(n*q) Liniar
 
         prefix_xor = [0]
         pre_xor = 0
         for i,elem in enumerate(arr):
             pre_xor ^= elem
-            #print(arr[0:i+1],functools.reduce(lambda x, y: x ^ y, arr[0:i+1]) , pre_xor )
             prefix_xor.append(pre_xor)
-        #print(prefix_xor)
-        
-        ans = []
-        for i,j in  queries:
-            #print((i,j+1),prefix_xor[i],prefix_xor[j+1],prefix_xor[i]^prefix_xor[j+1] )
-    
-            ans.append(prefix_xor[i]  ^ prefix_xor[j+1]) 
-            
-        return ans
+
+        return  [prefix_xor[i]  ^ prefix_xor[j+1]  for i,j in  queries]

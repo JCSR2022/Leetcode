@@ -16,7 +16,33 @@ class Solution:
 #         return ans1+ans2
 
 
-        hash_s1= Counter(s1.split())
-        hash_s2= Counter(s2.split())
+        #reduce sol
+#         hash_s1= Counter(s1.split())
+#         hash_s2= Counter(s2.split())
     
-        return [  k1 for  k1,v1 in hash_s1.items() if v1 == 1 and k1 not in  hash_s2 ] + [  k2 for  k2,v2 in hash_s2.items() if v2 == 1 and k2 not in  hash_s1 ] 
+#         return [  k1 for  k1,v1 in hash_s1.items() if v1 == 1 and k1 not in hash_s2 ] + [  k2 for  k2,v2 in hash_s2.items() if v2 == 1 and k2 not in hash_s1 ] 
+
+
+        return self.uncommonFromSentences(s1, s2)
+
+    
+    def appendUnCommon(self, l, mul, uc) :
+        for s in l :
+            if l.count(s) > 1 :
+                continue
+            if s in mul :
+                continue
+            uc.append(s)
+            
+            
+    def uncommonFromSentences(self, s1, s2):
+        ls1, ls2 = s1.split(" "), s2.split(" ")
+        mul = list(set(ls1) & set(ls2))
+        uc = []
+        
+        self.appendUnCommon(ls1, mul, uc)
+        self.appendUnCommon(ls2, mul, uc)
+        
+        return uc 
+    
+    

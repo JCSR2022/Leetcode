@@ -17,11 +17,11 @@ class Solution:
 
 
         # reduce sol
-#         hash_s1= Counter(s1.split())
-#         hash_s2= Counter(s2.split())
+        hash_s1= Counter(s1.split())
+        hash_s2= Counter(s2.split())
     
-#         return [  k1 for  k1,v1 in hash_s1.items() if v1 == 1 and k1 not in hash_s2 ] + [  k2 for  k2,v2 in hash_s2.items() if v2 == 1 and k2 not in hash_s1 ] 
+        return [  k1 for  k1,v1 in hash_s1.items() if v1 == 1 and k1 not in hash_s2 ] + [  k2 for  k2,v2 in hash_s2.items() if v2 == 1 and k2 not in hash_s1 ] 
 
 
-        c1, c2 = Counter(s1.split()), Counter(s2.split())
-        return [k for k in (c1 | c2).keys() if {c1[k], c2[k]} == {0, 1}]
+        # c1, c2 = Counter(s1.split()), Counter(s2.split())
+        # return [k for k in (c1 | c2).keys() if {c1[k], c2[k]} == {0, 1}]

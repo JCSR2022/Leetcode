@@ -1,3 +1,5 @@
+#ni siquiera vo pertender que entiendo lo que hivieron, No mamen
+
 class Solution:
     def findKthNumber(self, n, k):
         current_prefix = 1

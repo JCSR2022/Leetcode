@@ -4,12 +4,12 @@ class Solution:
         #brute force:
         dictionary = set(dictionary)
         
-        dp ={}
+        dp ={len(s):0}
         
         def dfs(i):
             
-            if i == len(s):
-                return 0
+            #if i == len(s):
+            #    return 0
             
             if i in dp:
                 return dp[i]

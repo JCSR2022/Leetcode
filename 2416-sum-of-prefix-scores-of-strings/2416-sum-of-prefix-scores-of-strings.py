@@ -18,26 +18,25 @@ class Trie:
             node.count +=1
             
             
+#     def word_count(self, word):
+#         node = self.trie
+#         total_count = 0
+#         for char in word:
+#             if char not in node.children:
+#                 return total_count
+            
+#             node = node.children[char]
+#             total_count += node.count
+#         return total_count
+        
+        
     def word_count(self, word):
         node = self.trie
         total_count = 0
         for char in word:
-            if char not in node.children:
-                return total_count
-            
+            total_count += node.children[char].count
             node = node.children[char]
-            total_count += node.count
         return total_count
-        
-        
-    #     def word_count(self, word):
-    #         node = self.trie
-    #         total_count = 0
-    #         for char in word:
-    #             total_count += node.children[char].count
-    #             node = node.children[char]
-
-    #         return total_count
 
 
 class Solution:
@@ -46,11 +45,7 @@ class Solution:
         
         for word in words:
             trie.insert(word)
-            
-            
-        
-        
-        
+
         return [trie.word_count(word) for word in words ]
         
         

@@ -1,25 +1,44 @@
 class MyCalendar:
+
     def __init__(self):
-        # Define the slots in the calendar
-        self.slots = []
+        self.events = []
+
+    def start_bin_search(self, start):
+        if start <= self.events[0][0]:
+            return True, -1
+        l = 0
+        r = len(self.events)-1
+
+        while l <= r:
+            mid = (l+r)//2
+            # print(l,r)
+
+            if (mid+1 < len(self.events) and self.events[mid+1][0] == start):
+                return False, -1
+            if self.events[mid][1] <= start and (mid+1 >= len(self.events) or self.events[mid+1][0] > start):
+                return True, mid
+            elif self.events[mid][1] > start:
+                r = mid-1
+            else:
+                l = mid+1
+        
+        return False, -1
 
     def book(self, start: int, end: int) -> bool:
-        # The index of this time slots if it is booked
-        index = bisect.bisect_left(self.slots, (start, end))
-        res = True
+        if not self.events:
+            self.events.append([start, end])
+            # print(self.events, True, start, end)
+            return True
+        start_possible, index = self.start_bin_search(start)
 
-        # Check the next time slot 
-        # which will be the current index if it is existed
-        if index < len(self.slots): res &= end <= self.slots[index][0]
-        
-        # Check the previous time slot 
-        # which will be the index - 1 if it is existed  
-        if index - 1 >= 0: res &= start >= self.slots[index-1][1]
+        if start_possible:
+            if index+1 >= len(self.events) or self.events[index+1][0] >= end:
+                self.events.insert(index+1, [start,end])
+                # print(self.events, True, start, end)
+                return True
+        # print(self.events, False, start, end)
+        return False
 
-        # Only insert if it satisfied previous and next time slot
-        if res: bisect.insort_left(self.slots, (start, end))
-        return res
-        
         
 
 # Your MyCalendar object will be instantiated and called as such:

@@ -23,14 +23,7 @@ class MyCalendarTwo:
             R = self.time.index(end)
             self.count_act[R] -=1
         
-        
-#         print(start,end)
-#         print(self.time)
-#         print(self.count_act)
-#         print( [ self.time[i] for i in range(L,R+1)])
-#         print( [ self.count_act[i] for i in range(L,R+1)])
-        
-        
+    
         #check valid insertion, correct is not valid
         cont = 0
         for act in [self.count_act[i] for i in range(R+1)]:
@@ -38,10 +31,8 @@ class MyCalendarTwo:
             if cont > 2:
                 self.count_act[L] -=1
                 self.count_act[R] +=1
-                #print("not valid")
                 return False
             
-        #print()
         return True
         
             

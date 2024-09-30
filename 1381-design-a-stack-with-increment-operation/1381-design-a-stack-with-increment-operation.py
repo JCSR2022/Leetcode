@@ -15,22 +15,21 @@ class CustomStack:
             return None
         self.nod_cont +=1
         
-        root = self.root
         node = MyNode(x)
-        node.next = root.next
-        root.next = node
-        
+        node.next = self.root.next
+        self.root.next = node
         
 
     def pop(self) -> int:
-        root = self.root
-        if root.next == None:
+  
+        if self.root.next == None:
             return -1
         self.nod_cont -= 1
         
-        val = root.next.val
-        root.next = root.next.next
+        val = self.root.next.val
+        self.root.next = self.root.next.next
         return val
+        
         
 
     def increment(self, k: int, val: int) -> None:

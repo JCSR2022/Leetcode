@@ -54,8 +54,10 @@ class Solution:
             if dicc[i] != dicc[k-i]:
                 return False
         
-        return True
+        #return True
         
+#         if len(arr)<=2:
+#             return True
         
         #------ finding pairs
         new_dicc = {}
@@ -69,15 +71,17 @@ class Solution:
         
         ans = []
         for i in range(1,k//2+1):
-            for elm1,elm2 in zip(new_dicc[i], new_dicc[k-i]):
-                ans.append((elm1,elm2)) 
+            if i in new_dicc.keys():
+                #print(i,k-i,new_dicc[i], new_dicc[k-i])
+                for elm1,elm2 in zip(new_dicc[i], new_dicc[k-i]):
+                    ans.append((elm1,elm2)) 
                 
         if 0 in new_dicc.keys():
      
             for i in range(0,len(new_dicc[0]),2):
                 ans.append((new_dicc[0][i],new_dicc[0][i+1])) 
         
-        print(ans)
+        #print(ans)
     
         return True
         

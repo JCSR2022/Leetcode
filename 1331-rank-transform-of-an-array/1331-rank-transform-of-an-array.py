@@ -6,19 +6,19 @@ class Solution:
         #return [hash_arr[n] for n in arr]
         
         
+        #-------------------------------------------------------
+        
         if not arr: return []
-            
+
         new_arr = list(set(arr))
         heapq.heapify(new_arr)
         
-        cont = 1
-        val = heapq.heappop(new_arr)
-        hash_arr = {val:cont}
+        cont = 0
+        hash_arr = {}
         while new_arr:
             cont += 1
             hash_arr[heapq.heappop(new_arr)] = cont
               
-            
         return [hash_arr[n] for n in arr]
     
     

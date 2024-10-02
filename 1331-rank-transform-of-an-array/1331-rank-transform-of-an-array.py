@@ -8,7 +8,7 @@ class Solution:
         
         if not arr: return []
             
-        new_arr = arr.copy()
+        new_arr = list(set(arr))
         heapq.heapify(new_arr)
         
         cont = 1

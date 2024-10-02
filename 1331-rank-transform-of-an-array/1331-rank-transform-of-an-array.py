@@ -15,11 +15,9 @@ class Solution:
         val = heapq.heappop(new_arr)
         hash_arr = {val:cont}
         while new_arr:
-            new_val = heapq.heappop(new_arr)
-            if new_val != val:
-                cont +=1
-                hash_arr[new_val] = cont
-                val = new_val
+            cont += 1
+            hash_arr[heapq.heappop(new_arr)] = cont
+              
             
         return [hash_arr[n] for n in arr]
     

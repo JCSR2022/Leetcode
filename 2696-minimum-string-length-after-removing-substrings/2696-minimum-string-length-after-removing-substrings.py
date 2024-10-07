@@ -2,9 +2,6 @@ class Solution:
     def minLength(self, s: str) -> int:
         # O(n) using a queue
         
-        if len(s) == 1:
-            return 1
-        
         ans = ""
         for ch in s:
             ans += ch
@@ -12,7 +9,6 @@ class Solution:
                 ans = ans[:-2]
             if ans[-2:] == 'CD':
                 ans = ans[:-2]
-                
         return len(ans)
             
             

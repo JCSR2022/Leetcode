@@ -32,35 +32,56 @@ class Solution:
         
     
 #-------------------------------------------------------------
-        # sorting??
+        # sorting two pointers??
         
-        start, end = [], []
+#         start, end = [], []
+        
+#         for s,e in intervals:
+#             start.append(s)
+#             end.append(e)
+            
+#         start.sort()
+#         end.sort()
+        
+#         i,j = 0,0
+#         ans = 0
+#         groups = 0
+        
+#         while i < len(intervals):
+#             if start[i] <= end[j]:
+#                 groups += 1
+#                 ans = max(ans,groups)
+#                 i += 1                
+#             else:
+#                 groups -= 1
+#                 j += 1
+
+#         return ans
+    
+#-----------------------------------------------------------
+        
+        new_int = [  ]  
         
         for s,e in intervals:
-            start.append(s)
-            end.append(e)
-            
-        start.sort()
-        end.sort()
+            new_int.append((s,0))
+            new_int.append((e,1))
+    
+    
+        #new_int.sort(key=lambda x:x[1])
+        #new_int.sort(key=lambda x:x[0])
+        new_int.sort(key=lambda x: (x[0], x[1]))
         
-        i,j = 0,0
+        cont_groups = 0
         ans = 0
-        groups = 0
-        
-        while i < len(intervals):
-            if start[i] <= end[j]:
-                groups += 1
-                ans = max(ans,groups)
-                i += 1                
+        for _,start_end in new_int:
+            if start_end == 0:
+                cont_groups +=1
+                ans = max(ans,cont_groups)
             else:
-                groups -= 1
-                j += 1
+                cont_groups -=1
 
         return ans
-
-        
-                    
-        
-        
-        
+            
+            
+            
         

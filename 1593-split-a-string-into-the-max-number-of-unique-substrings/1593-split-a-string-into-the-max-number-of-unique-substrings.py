@@ -1,25 +1,22 @@
 class Solution:
     def maxUniqueSplit(self, s: str) -> int:
         
-         # Helper function for backtracking
-        def backtrack(start, seen):
-            # If we've processed the whole string, return 0 since no more splits can be made
-            if start == len(s):
+        def dfs(i,cur_set):
+            if i == len(s):
                 return 0
             
-            max_split = 0
+            res = 0
+            for j in range(i,len(s)):
+                substr = s[i:j+1]
+                if substr in cur_set:
+                    continue
+                    
+                cur_set.add(substr)
+                res = max(res, 1+ dfs(j+1,cur_set))
+                cur_set.remove(substr)
             
-            # Try every possible substring starting from index `start`
-            for end in range(start + 1, len(s) + 1):
-                substring = s[start:end]
-                if substring not in seen:
-                    seen.add(substring)  # Add to the set
-                    # Recursively call for the next part of the string
-                    max_split = max(max_split, 1 + backtrack(end, seen))
-                    seen.remove(substring)  # Backtrack: remove the substring after exploring this path
+            return res
+
             
-            return max_split
-        
-        # We will use a set to store seen substrings
-        return backtrack(0, set())
+        return dfs(0,set())
         

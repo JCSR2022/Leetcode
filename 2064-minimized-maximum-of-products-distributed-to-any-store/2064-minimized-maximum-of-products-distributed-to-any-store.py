@@ -12,23 +12,34 @@ class Solution:
 #             if q//expected> 0 and q%expected>expected:
 #                 min_max = max(min_max,q%expected+expected)  
 #         return min_max
-        
-    
-        def canDistribute(max_products: int) -> bool:
-            # Calculate the number of stores needed for each product type
-            stores_needed = sum((quantity + max_products - 1) // max_products for quantity in quantities)
-            # Check if we can manage with `n` stores
-            return stores_needed <= n
+#NO        
+#-----------------------------------------------------------------------
 
-        # Binary search range
-        left, right = 1, max(quantities)
-        
-        # Perform binary search
-        while left < right:
-            mid = (left + right) // 2
-            if canDistribute(mid):
-                right = mid  # Try for a smaller max
+        def isditributed(prod_per_store):
+            if prod_per_store == 0:
+                return sum(quantities) <= n
+            
             else:
-                left = mid + 1  # Increase max products per store
+                distribution = [math.ceil(p/prod_per_store) for p in  quantities]
+            #print(prod_per_store, distribution,sum(distribution),  sum(distribution) <= n)
+                return sum(distribution) <= n
         
-        return left
+        
+        #binary search
+        l = 0
+        r = max(quantities)+1
+        ans = r
+        
+        while l<=r and r>0:
+            m =  r - (r-l)//2    #(l+r)//2
+            print(l,r,m,ans)
+            
+            if isditributed(m):
+                r = m-1
+                ans = min(ans,m)
+            else:
+                l = m+1
+                    
+        return ans
+
+        

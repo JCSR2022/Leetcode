@@ -36,37 +36,55 @@ class Solution:
 #                 ans = max(ans,sum(hashMap.keys()))
         
 #         return ans
-            
+
+#----------------------------------------
+#         res = 0
+#         count = defaultdict(int)
+#         cur_sum = 0
+
+#         l = 0
+#         for r in range(len(nums)):
+#             cur_sum += nums[r]
+#             count[nums[r]] +=1
+
+#             if r - l + 1 > k:
+#                 count[nums[l]] -=1
+#                 if count[nums[l]] == 0: 
+#                     count.pop(nums[l], None)
+#                 cur_sum -= nums[l]
+#                 l += 1
+
+#             if len(count) == r - l + 1 == k:
+#                 res = max(res,cur_sum)
+
+
+#         return res
+
 
 #---------------------------------------------------
 # https://www.youtube.com/watch?v=pT-lOE1on3M
 
+
+    
         res = 0
-        count = defaultdict(int)
+        prev_idx = {}
         cur_sum = 0
 
         l = 0
         for r in range(len(nums)):
             cur_sum += nums[r]
-            count[nums[r]] +=1
-
-            if r - l + 1 > k:
-                count[nums[l]] -=1
-                if count[nums[l]] == 0: count.pop(nums[l], None)
+            
+            i = prev_idx.get(nums[r],-1)
+            
+            while l <= i or  r - l + 1 > k:
                 cur_sum -= nums[l]
                 l += 1
 
-            if len(count) == r - l + 1 == k:
+            if r - l + 1 == k:
                 res = max(res,cur_sum)
-
+            prev_idx[nums[r]] = r
 
         return res
-    
-    
-    
-    
-    
-
 
     
     

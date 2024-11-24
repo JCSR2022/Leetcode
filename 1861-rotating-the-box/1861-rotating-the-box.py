@@ -60,6 +60,24 @@ class Solution:
 
 #-------------------------------------------------------------
 
+#         rows, cols = len(box),len(box[0])
+    
+#         # gravety_leftside
+#         for r in range(rows):
+#             i = cols -1
+#             for c in reversed(range(cols)):
+#                 if box[r][c] == "#":
+#                     box[r][c],box[r][i] = box[r][i],box[r][c]
+#                     i -= 1
+#                 elif box[r][c] == "*":
+#                     i = c - 1
+
+#         matriz_transpuesta = list(zip(*box)) 
+#         return [list(fila)[::-1] for fila in matriz_transpuesta]
+                    
+            
+#-------------------------------------------------------------   
+
         rows, cols = len(box),len(box[0])
     
         # gravety_leftside
@@ -71,15 +89,8 @@ class Solution:
                     i -= 1
                 elif box[r][c] == "*":
                     i = c - 1
-                    
 
-        matriz_transpuesta = list(zip(*box))
-  
-        return [list(fila)[::-1] for fila in matriz_transpuesta]
-                    
-            
-                
-                
+        return [list(fila)[::-1] for fila in list(zip(*box)) ]                
 
 
         

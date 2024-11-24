@@ -78,10 +78,10 @@ class Solution:
             
 #-------------------------------------------------------------   
 
-        rows, cols = len(box),len(box[0])
+        cols = len(box[0])
     
         # gravety_leftside
-        for r in range(rows):
+        for r in range(len(box)):
             i = cols -1
             for c in reversed(range(cols)):
                 if box[r][c] == "#":

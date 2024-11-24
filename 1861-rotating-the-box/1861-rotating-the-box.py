@@ -39,26 +39,47 @@ class Solution:
 
 #----------------------------------------------------------------------------
 
-        m, n = len(box), len(box[0])
+
+#         def gravety_leftside(row):
+#             i = n - 1
+#             for c in range(n-1,-1,-1):
+#                 if box[row][c] == "#":
+#                     box[row][c] = box[row][i]
+#                     box[row][i] = "#"
+#                     i += 1
+#                 elif box[row][c] == "*":
+#                     i += c+1    
         
-        # Process each row to simulate gravity
-        for row in box:
-            empty_slot = n - 1  # Start from the rightmost column
+#         m = len(box)
+#         n = len(box[0])
+
+#         gravety_leftside(0)
+        
+#         return box
+                
+
+#-------------------------------------------------------------
+
+        rows, cols = len(box),len(box[0])
+    
+        # gravety_leftside
+        for r in range(rows):
+            i = cols -1
+            for c in reversed(range(cols)):
+                if box[r][c] == "#":
+                    box[r][c],box[r][i] = box[r][i],box[r][c]
+                    i -= 1
+                elif box[r][c] == "*":
+                    i = c - 1
+                    
+
+        matriz_transpuesta = list(zip(*box))
+  
+        return [list(fila)[::-1] for fila in matriz_transpuesta]
+                    
             
-            for col in range(n - 1, -1, -1):  # Traverse the row from right to left
-                if row[col] == '#':  # Stone
-                    row[col], row[empty_slot] = row[empty_slot], row[col]
-                    empty_slot -= 1
-                elif row[col] == '*':  # Obstacle
-                    empty_slot = col - 1
-        
-        # Rotate the box clockwise
-        rotated_box = [[None] * m for _ in range(n)]  # Create a rotated matrix
-        for i in range(m):
-            for j in range(n):
-                rotated_box[j][m - 1 - i] = box[i][j]
-        
-        return rotated_box
+                
+                
 
 
         

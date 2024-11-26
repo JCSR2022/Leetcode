@@ -10,20 +10,38 @@ class Solution:
 #                 adjance_list[org] += [dest]
     
 #         print(adjance_list)
-        
-        
-        teams = set(range(n))
-        for _,weak in edges:
+#no need
+#-------------------------------------------------------------------------
+#me!!
+#         teams = set(range(n))
+#         for _,weak in edges:
  
-            if weak in teams:
-                teams.remove(weak) 
+#             if weak in teams:
+#                 teams.remove(weak) 
                 
         
-        if len(teams) == 1:
-            return list(teams)[0]
-        else:
-            return -1
+#         if len(teams) == 1:
+#             return list(teams)[0]
+#         else:
+#             return -1
         
-    
-    
+#---------------------------------------------------------------------
+
+        isUndefeated = [True] * n
+        
+        for winner, loser in edges:
+            isUndefeated[loser] = False
+            
+        champion = -1
+        championCount = 0
+        
+        for team in range(n):
+            if isUndefeated[team]:
+                champion = team
+                championCount += 1
+                
+        if championCount == 1:
+            return champion
+            
+        return -1
         

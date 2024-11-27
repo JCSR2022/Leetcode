@@ -243,28 +243,23 @@ class Solution:
         def updateDistances(current):
             newDist = distances[current] + 1
 
-            for neighbor in graph[current]:
+            for neighbor in inv_graph[current]:
                 if distances[neighbor] <= newDist:
                     continue
 
                 distances[neighbor] = newDist
                 updateDistances(neighbor)
 
-
-    
         distances = [n - 1 - i for i in range(n)]
-        #graph = [[i+1]  for i in range(n-1)]
-        
-        graph = [[] for _ in range(n)]
-        for i in range(n-1):
-            graph[i + 1].append(i)
-            
-        print(graph)
+        inv_graph = [[]]+[[i]  for i in range(n-1)]
+
         answer = []        
-        for source, target in queries:
-            graph[target].append(source)
-            distances[source] = min(distances[source], distances[target] + 1)
-            updateDistances(source)
+        for u,v in queries:
+            inv_graph[v].append(u)
+        
+            distances[u] = min(distances[u], distances[v] + 1)
+ 
+            updateDistances(u)
     
             answer.append(distances[0])
         

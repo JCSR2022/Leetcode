@@ -50,47 +50,71 @@ class Solution:
 # make adjance list, actualize with queries and for each find short path 
         
         
-        def BFS_short_path(adjacen_list):
-            #BFS find short path form node 0 to node n-1
+#         def BFS_short_path(adjacen_list):
+#             #BFS find short path form node 0 to node n-1
             
-            min_dist = float("inf")
-            city = 0
-            q = deque([(city, 0)]) 
-            visited =set( )
+#             min_dist = float("inf")
+#             city = 0
+#             q = deque([(city, 0)]) 
+#             visited =set( )
+            
+#             while q:
+#                 city,dist = q.popleft() 
+#                 visited.add(city)
+#                 print(q,city,dist,visited,min_dist)
+                
+#                 if city == n-1:
+#                     min_dist = min(min_dist,dist)
+#                     continue
+                
+#                 for next_city in adjacen_list[city]:
+#                     if next_city not in visited:
+#                         q.append((next_city,dist+1))
+            
+#             return min_dist        
+        
+        
+#         adjacen_list = {i:[i+1]  for i in range(n-1)}
+#         adjacen_list[n-1] = []
+#         ans = []
+#         for u,v in queries:
+#             adjacen_list[u].append(v)
+#             print(adjacen_list)
+#             ans.append(BFS_short_path(adjacen_list))
+        
+        
+#         return ans
+        
+#good
+#----------------------------------------
+     #Improve   
+
+        def short_path():
+            q = deque()
+            q.append((0,0))
+            visited = set()
             
             while q:
-                city,dist = q.popleft() 
+                city,dist = q.popleft()
                 visited.add(city)
-                #print(q,city,dist,visited,min_dist)
-                
                 
                 if city == n-1:
-                    min_dist = min(min_dist,dist)
-                    continue
-                
-                for next_city in adjacen_list[city]:
+                    return dist
+            
+                for next_city in adj_list[city]:
                     if next_city not in visited:
                         q.append((next_city,dist+1))
             
-            return min_dist        
-        
-        
-        adjacen_list = {i:[i+1]  for i in range(n-1)}
-        adjacen_list[n-1] = []
+
+        adj_list = [[i+1] for i in range(n)]
         ans = []
         for u,v in queries:
-            adjacen_list[u].append(v)
-            #print(adjacen_list)
-            ans.append(BFS_short_path(adjacen_list))
+            adj_list[u].append(v)
+            ans.append(short_path())
         
-        
+ 
         return ans
-        
-        
-        
-        
-        
-        
+
         
         
 

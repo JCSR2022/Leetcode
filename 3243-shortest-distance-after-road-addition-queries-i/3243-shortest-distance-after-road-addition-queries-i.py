@@ -174,11 +174,11 @@ class Solution:
             heap = [(0,0)]  
             distances = [float('inf')] * n
             distances[0] = 0
-            visited  = set()
+            #visited  = set()
             
             while heap:
                 curr_dist, curr_node = heappop(heap)
-                visited.add(curr_node)
+                #visited.add(curr_node)
                 
                 if curr_node == n-1:
                     return curr_dist
@@ -189,11 +189,11 @@ class Solution:
                 
                 # Explore neighbors
                 for neighbor in graph[curr_node]:
-                    if neighbor not in visited:
-                        new_dist = curr_dist + 1
-                        if new_dist < distances[neighbor]:
-                            distances[neighbor] = new_dist
-                            heappush(heap, (new_dist, neighbor))
+                    #if neighbor not in visited:
+                    new_dist = curr_dist + 1
+                    if new_dist < distances[neighbor]:
+                        distances[neighbor] = new_dist
+                        heappush(heap, (new_dist, neighbor))
 
                         
         # Initialize graph as adjacency list

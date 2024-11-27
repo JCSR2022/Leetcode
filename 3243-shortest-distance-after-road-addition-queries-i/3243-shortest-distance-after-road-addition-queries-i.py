@@ -198,11 +198,7 @@ class Solution:
                         
         # Initialize graph as adjacency list
         graph = [[i+1]  for i in range(n-1)]
-        graph.append([])
-        
-        #distances from node 0 to end
-        distances = [ n-i-1 for i in range(n) ]
-        
+
         result = []
         for u, v in queries:
             # Add the new road

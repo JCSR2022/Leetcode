@@ -1,7 +1,38 @@
 from collections import deque
 
+
 class Solution:
+
+    def updateDistances(self, graph, current, distances):
+        newDist = distances[current] + 1
+        
+        for neighbor in graph[current]:
+            if distances[neighbor] <= newDist:
+                continue
+                
+            distances[neighbor] = newDist
+            self.updateDistances(graph, neighbor, distances)
+    
     def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
+        distances = [n - 1 - i for i in range(n)]
+        
+        graph = [[] for _ in range(n)]
+        for i in range(n-1):
+            graph[i + 1].append(i)
+        
+        answer = []
+        
+        for source, target in queries:
+            graph[target].append(source)
+            distances[source] = min(distances[source], distances[target] + 1)
+            self.updateDistances(graph, source, distances)
+            
+            answer.append(distances[0])
+        
+        return answer    
+    
+#--------------------------------------------------------------    
+    # def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
         #brute force:
         # make arr distances, with min distance to reach each city
         # For each query modify distances , dist[vi] = min(dist[vi],dist[ui]+1)
@@ -167,45 +198,45 @@ class Solution:
 #--------------------------------------------------------------
 
 
-       # Dijkstra's algorithm modify:
+#        # Dijkstra's algorithm modify:
     
-        def dijkstra() -> int:
+#         def dijkstra() -> int:
    
-            heap = [(0,0)]  
-            distances = [float('inf')] * n
-            distances[0] = 0
-            #visited  = set()
+#             heap = [(0,0)]  
+#             distances = [float('inf')] * n
+#             distances[0] = 0
+#             #visited  = set()
             
-            while heap:
-                curr_dist, curr_node = heappop(heap)
-                #visited.add(curr_node)
+#             while heap:
+#                 curr_dist, curr_node = heappop(heap)
+#                 #visited.add(curr_node)
                 
-                if curr_node == n-1:
-                    return curr_dist
+#                 if curr_node == n-1:
+#                     return curr_dist
                 
-                # Skip if we find a longer distance in heap
-                if curr_dist > distances[curr_node]:
-                    continue
+#                 # Skip if we find a longer distance in heap
+#                 if curr_dist > distances[curr_node]:
+#                     continue
                 
-                # Explore neighbors
-                for neighbor in graph[curr_node]:
-                    #if neighbor not in visited:
-                    new_dist = curr_dist + 1
-                    if new_dist < distances[neighbor]:
-                        distances[neighbor] = new_dist
-                        heappush(heap, (new_dist, neighbor))
+#                 # Explore neighbors
+#                 for neighbor in graph[curr_node]:
+#                     #if neighbor not in visited:
+#                     new_dist = curr_dist + 1
+#                     if new_dist < distances[neighbor]:
+#                         distances[neighbor] = new_dist
+#                         heappush(heap, (new_dist, neighbor))
 
                         
-        # Initialize graph as adjacency list
-        graph = [[i+1]  for i in range(n-1)]
+#         # Initialize graph as adjacency list
+#         graph = [[i+1]  for i in range(n-1)]
 
-        result = []
-        for u, v in queries:
-            # Add the new road
-            graph[u].append(v)
-            result.append(dijkstra())
+#         result = []
+#         for u, v in queries:
+#             # Add the new road
+#             graph[u].append(v)
+#             result.append(dijkstra())
             
    
-        return result
+#         return result
 
 

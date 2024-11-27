@@ -1,38 +1,38 @@
-from collections import deque
+#from collections import deque
 
 
 class Solution:
 
-    def updateDistances(self, graph, current, distances):
-        newDist = distances[current] + 1
+#     def updateDistances(self, graph, current, distances):
+#         newDist = distances[current] + 1
         
-        for neighbor in graph[current]:
-            if distances[neighbor] <= newDist:
-                continue
+#         for neighbor in graph[current]:
+#             if distances[neighbor] <= newDist:
+#                 continue
                 
-            distances[neighbor] = newDist
-            self.updateDistances(graph, neighbor, distances)
+#             distances[neighbor] = newDist
+#             self.updateDistances(graph, neighbor, distances)
     
-    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        distances = [n - 1 - i for i in range(n)]
+#     def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
+#         distances = [n - 1 - i for i in range(n)]
         
-        graph = [[] for _ in range(n)]
-        for i in range(n-1):
-            graph[i + 1].append(i)
+#         graph = [[] for _ in range(n)]
+#         for i in range(n-1):
+#             graph[i + 1].append(i)
         
-        answer = []
+#         answer = []
         
-        for source, target in queries:
-            graph[target].append(source)
-            distances[source] = min(distances[source], distances[target] + 1)
-            self.updateDistances(graph, source, distances)
+#         for source, target in queries:
+#             graph[target].append(source)
+#             distances[source] = min(distances[source], distances[target] + 1)
+#             self.updateDistances(graph, source, distances)
             
-            answer.append(distances[0])
+#             answer.append(distances[0])
         
-        return answer    
+#         return answer    
     
 #--------------------------------------------------------------    
-    # def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
+    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
         #brute force:
         # make arr distances, with min distance to reach each city
         # For each query modify distances , dist[vi] = min(dist[vi],dist[ui]+1)
@@ -143,7 +143,6 @@ class Solution:
 #             adj_list[u].append(v)
 #             ans.append(short_path())
         
- 
 #         return ans
 
         
@@ -236,7 +235,37 @@ class Solution:
 #             graph[u].append(v)
 #             result.append(dijkstra())
             
-   
 #         return result
 
+#-----------------------------------------------------------------------------
 
+
+        def updateDistances(current):
+            newDist = distances[current] + 1
+
+            for neighbor in graph[current]:
+                if distances[neighbor] <= newDist:
+                    continue
+
+                distances[neighbor] = newDist
+                updateDistances(neighbor)
+
+
+    
+        distances = [n - 1 - i for i in range(n)]
+        #graph = [[i+1]  for i in range(n-1)]
+        
+        graph = [[] for _ in range(n)]
+        for i in range(n-1):
+            graph[i + 1].append(i)
+            
+        print(graph)
+        answer = []        
+        for source, target in queries:
+            graph[target].append(source)
+            distances[source] = min(distances[source], distances[target] + 1)
+            updateDistances(source)
+    
+            answer.append(distances[0])
+        
+        return answer  

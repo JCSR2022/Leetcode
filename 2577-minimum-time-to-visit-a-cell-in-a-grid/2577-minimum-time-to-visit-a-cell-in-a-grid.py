@@ -155,10 +155,11 @@ class Solution:
         visited = set()
         min_heap = []
         heapq.heappush(min_heap,(0,0,0)) #time,r,c 
+        visited.add((0,0))
         
         while min_heap:
             t,r,c =  heappop(min_heap)
-            visited.add((r,c))
+            
             
             if (r,c) == (rows-1,columns-1):
                 return t

@@ -137,7 +137,7 @@ class Solution:
             return -1
         
         
-        def posibleMoves(i,j):
+        def neighbors(i,j):
             moves = []
             #up:
             if i > 0: moves.append((i-1,j))
@@ -160,15 +160,13 @@ class Solution:
         while min_heap:
             t,r,c =  heappop(min_heap)
             
-            
             if (r,c) == (rows-1,columns-1):
                 return t
             
-            neighbors = posibleMoves(r,c)
-            
-            for nr,nc in neighbors:
+            for nr,nc in neighbors(r,c):
                 if (nr,nc) not in visited: 
                     visited.add((nr,nc))
+                    
                     add_wait  = 0 
                     if abs(grid[nr][nc] - t) % 2 == 0:
                         add_wait  = 1

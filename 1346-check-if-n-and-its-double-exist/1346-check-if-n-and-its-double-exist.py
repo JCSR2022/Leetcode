@@ -44,11 +44,11 @@ class Solution:
                     return True
             return False
         
-        ceros = [x for x in arr if x == 0]
-        if len(ceros) > 1:
-            return True
+        # ceros = [x for x in arr if x == 0]
+        # if len(ceros) > 1:
+        #     return True
 
-        positive = [x for x in arr if x > 0]
+        positive = [x for x in arr if x >= 0]
         negative = [-x for x in arr if x < 0]    
         
         #print(negative,positive)

@@ -54,14 +54,56 @@ class Solution:
         
 #---------------------------------------------------------------
 
-        seen = set()
-        for num in arr:
-            # Check if the current number's double or half (if even) is in the set
-            if 2 * num in seen or (num % 2 == 0 and num // 2 in seen):
-                return True
-            # Add the current number to the set
-            seen.add(num)
-        return False
+#         seen = set()
+#         for num in arr:
+#             # Check if the current number's double or half (if even) is in the set
+#             if 2 * num in seen or (num % 2 == 0 and num // 2 in seen):
+#                 return True
+#             # Add the current number to the set
+#             seen.add(num)
+#         return False
     
 
+#--------------------------------------------------------------------    
+
+
+
+        def binarySearchInv(target, left, right):
+            #print(target,left,right, arr[left:right+1])
+       
+            while left <= right:
+                mid = left + (right - left) // 2
+                #print(f"Checking range [{left}, {right}], mid: {mid}, value at mid: {arr[mid]}")
+                if arr[mid] == target:
+                    return True  # Target found
+
+                elif arr[mid] > target:
+                    left = mid + 1  # Search in the right half
+
+                else:
+                    right = mid - 1  # Search in the left half
+
+            return False  # Target not found
+                
         
+        if len([x for x in arr if x == 0]) > 1:
+            return True
+        
+        
+        arr.sort(reverse=True)
+        n = 0
+        for i in range(len(arr)-1):
+            if arr[i] > 0:
+                if arr[i]%2 == 0:
+                    n = arr[i]//2
+           
+            else:
+                n = arr[i]*2
+                
+            if binarySearchInv(n,i+1,len(arr)-1):
+                return True
+           
+        
+        return False
+        
+    

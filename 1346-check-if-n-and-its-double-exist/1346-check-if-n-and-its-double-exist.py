@@ -17,45 +17,51 @@ class Solution:
 # sort and binary search, nlog(n)
 
 
-        def binarySearch(arr, target, left, right):
-            #print(target, left, right)
+#         def binarySearch(arr, target, left, right):
+#             #print(target, left, right)
        
-            while left <= right:
-                mid = left + (right - left) // 2
-                #print(f"Checking range [{left}, {right}], mid: {mid}, value at mid: {arr[mid]}")
+#             while left <= right:
+#                 mid = left + (right - left) // 2
+#                 #print(f"Checking range [{left}, {right}], mid: {mid}, value at mid: {arr[mid]}")
 
-                if arr[mid] == target:
-                    return True  # Target found
+#                 if arr[mid] == target:
+#                     return True  # Target found
 
-                elif arr[mid] < target:
-                    left = mid + 1  # Search in the right half
+#                 elif arr[mid] < target:
+#                     left = mid + 1  # Search in the right half
 
-                else:
-                    right = mid - 1  # Search in the left half
+#                 else:
+#                     right = mid - 1  # Search in the left half
 
-            return False  # Target not found
+#             return False  # Target not found
                 
           
-        def find_doble(my_arr):
-            my_arr.sort()
-            #print(my_arr)
-            for i in range(len(my_arr)-1):
-                if binarySearch(my_arr,my_arr[i]*2,i+1,len(my_arr)-1):
-                    return True
-            return False
+#         def find_doble(my_arr):
+#             my_arr.sort()
+#             #print(my_arr)
+#             for i in range(len(my_arr)-1):
+#                 if binarySearch(my_arr,my_arr[i]*2,i+1,len(my_arr)-1):
+#                     return True
+#             return False
         
-        # ceros = [x for x in arr if x == 0]
-        # if len(ceros) > 1:
-        #     return True
 
-        positive = [x for x in arr if x >= 0]
-        negative = [-x for x in arr if x < 0]    
+#         positive = [x for x in arr if x >= 0]
+#         negative = [-x for x in arr if x < 0]    
         
-        #print(negative,positive)
-        return find_doble(positive) or find_doble(negative)
+     
+#         return find_doble(positive) or find_doble(negative)
             
         
-    
+#---------------------------------------------------------------
+
+        seen = set()
+        for num in arr:
+            # Check if the current number's double or half (if even) is in the set
+            if 2 * num in seen or (num % 2 == 0 and num // 2 in seen):
+                return True
+            # Add the current number to the set
+            seen.add(num)
+        return False
     
 
         

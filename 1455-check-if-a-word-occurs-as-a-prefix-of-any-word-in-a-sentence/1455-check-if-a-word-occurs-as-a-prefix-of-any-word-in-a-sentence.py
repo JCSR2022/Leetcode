@@ -1,16 +1,16 @@
 class Solution:
     def isPrefixOfWord(self, sentence: str, searchWord: str) -> int:
        
-        list_sentence = sentence.split()
+#        list_sentence = sentence.split()
         
-        ans = -1
+#         ans = -1
         
-        for i,word in enumerate(list_sentence):
-            if word.startswith(searchWord):
-                ans = i+1
-                break
+#         for i,word in enumerate(list_sentence):
+#             if word.startswith(searchWord):
+#                 ans = i+1
+#                 break
                 
-        return ans
+#         return ans
 
 #---------------------------------------------
         cont_w = 1

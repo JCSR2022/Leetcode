@@ -48,7 +48,7 @@ class Solution:
         
         p2 = 0
         for p1 in str1:
-            if str2[p2] in [ p1, hash_table[(ord(p1)-97)]]:
+            if str2[p2] == p1 or str2[p2] ==  hash_table[(ord(p1)-97)]:
                 p2 += 1
                 if p2 == len(str2):
                     return True

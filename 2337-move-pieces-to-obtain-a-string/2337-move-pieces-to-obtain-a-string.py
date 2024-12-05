@@ -90,8 +90,8 @@ class Solution:
 
 
         n=len(start)
-        start +='x'
-        target +='x'
+        start +='_'
+        target +='_'
         i , j = 0 , 0
         while i<n or j<n:
             while i<n and start[i]=='_': i+=1

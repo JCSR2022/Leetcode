@@ -1,42 +1,74 @@
 class MyCalendarTwo:
 
     def __init__(self):
-        self.time = [-1,float("inf")]
-        self.count_act = [0,0]
-        
-    def book(self, start: int, end: int) -> bool:
-
-        #insert new act:
-        if start not in self.time:
-            L = bisect_left(self.time,start)
-            self.time.insert(L,start)
-            self.count_act.insert(L,1)
-        else:
-            L = self.time.index(start)
-            self.count_act[L] +=1
-
-        if end not in self.time:
-            R = bisect_left(self.time,end)
-            self.time.insert(R,end)
-            self.count_act.insert(R,-1)
-        else:
-            R = self.time.index(end)
-            self.count_act[R] -=1
+        self.calendar_books = defaultdict(int) 
         
     
-        #check valid insertion, correct is not valid
-        cont = 0
-        for act in [self.count_act[i] for i in range(R+1)]:
-            cont +=act
-            if cont > 2:
-                self.count_act[L] -=1
-                self.count_act[R] +=1
+    def book(self, startTime: int, endTime: int) -> bool:
+        self.calendar_books[startTime] += 1
+        self.calendar_books[endTime] -= 1
+        max_booking = 0
+        for time in sorted(self.calendar_books.keys()):
+            max_booking += self.calendar_books[time]
+            
+            if max_booking > 2:
+                self.calendar_books[startTime] -= 1
+                self.calendar_books[endTime] += 1
                 return False
             
         return True
-        
-            
+
 
 # Your MyCalendarTwo object will be instantiated and called as such:
 # obj = MyCalendarTwo()
-# param_1 = obj.book(start,end)
+# param_1 = obj.book(startTime,endTime)
+
+
+
+#--------------------------------------------------------------
+
+# def book(self, startTime: int, endTime: int) -> bool:
+#         #print()
+#         cont_start = 0
+#         cont_end = 0
+#         for sched_start,sched_end in self.calendar:
+#             #print(self.calendar,(startTime, endTime),(sched_start,sched_end),sched_start <= startTime < sched_end,sched_start < endTime <= sched_end, sched_start <= startTime < sched_end  or sched_start < endTime <= sched_end,cont_start,cont_end )
+#             if sched_start <= startTime < sched_end:
+#                 cont_start += 1
+                
+#             if sched_start < endTime <= sched_end:
+#                 cont_end += 1  
+                
+#             if sched_start < startTime and endTime > sched_end:
+#                 cont_start += 1
+#                 cont_end += 1    
+                
+#             if cont_start == 2 or cont_end ==2 :
+#                 return False
+            
+            
+        
+#         self.calendar.add((startTime, endTime))
+#         return True    
+
+#--------------------------------------------------------
+
+
+#         if not self.calendar:
+#             self.calendar.append( (0,startTime,endTime) )
+#             return True
+    
+#         #print(self.calendar)
+        
+
+#         for i,(count_overlaps,sched_start,sched_end) in enumerate(self.calendar):
+#             if max(sched_start,startTime) < min(sched_end, endTime):
+#                 if count_overlaps == 2:
+#                     return False
+#                 else:
+#                     self.calendar[i] = (count_overlaps+1,sched_start,sched_end)
+#                     return True
+           
+#         self.calendar.append( (0,startTime,endTime) )
+#         return True    
+

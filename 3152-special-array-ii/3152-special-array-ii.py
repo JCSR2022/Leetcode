@@ -22,13 +22,14 @@ class Solution:
             if nums[i-1]%2 == nums[i]%2:
                 prefix[i] += 1  
 
-        #print(prefix)        
+        #ans = [True]*len(queries)
+        ans = []
+        #for i,(from_i, to_i) in enumerate(queries):
+        for from_i, to_i in queries:
+            ans.append(prefix[from_i] == prefix[to_i])
                 
-        ans = [True]*len(queries)
-        for i,(from_i, to_i) in enumerate(queries):
-            #print(i,prefix[from_i],prefix[to_i],prefix[from_i] != prefix[to_i])
-            if prefix[from_i] != prefix[to_i]:
-                ans[i] = False
+            #if prefix[from_i] != prefix[to_i]:
+            #   ans[i] = False
     
                                 
         return ans  

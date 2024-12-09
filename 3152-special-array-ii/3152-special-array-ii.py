@@ -14,7 +14,7 @@ class Solution:
 #         return ans
     
     #--------------------------------------------
-    #usign prefix
+    #using prefix
     
         prefix = [0]*len(nums)
         for i in range(1,len(nums)):
@@ -22,16 +22,14 @@ class Solution:
             if nums[i-1]%2 == nums[i]%2:
                 prefix[i] += 1  
 
-        #ans = [True]*len(queries)
-        ans = []
-        #for i,(from_i, to_i) in enumerate(queries):
-        for from_i, to_i in queries:
-            ans.append(prefix[from_i] == prefix[to_i])
-                
-            #if prefix[from_i] != prefix[to_i]:
-            #   ans[i] = False
-    
-                                
+        # ans = []
+        # for from_i, to_i in queries:
+        #     ans.append(prefix[from_i] == prefix[to_i])   
+            
+        ans = [True]*len(queries)
+        for i,(from_i, to_i) in enumerate(queries):
+            ans[i] = prefix[from_i] == prefix[to_i]            
+            
         return ans  
     
     

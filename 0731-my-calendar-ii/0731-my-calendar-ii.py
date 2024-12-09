@@ -1,27 +1,65 @@
 class MyCalendarTwo:
 
     def __init__(self):
-        self.calendar_books = defaultdict(int) 
-        
+        self.calendar_times = []
+        self.calendar_books = []
     
     def book(self, startTime: int, endTime: int) -> bool:
-        self.calendar_books[startTime] += 1
-        self.calendar_books[endTime] -= 1
-        max_booking = 0
-        for time in sorted(self.calendar_books.keys()):
-            max_booking += self.calendar_books[time]
+        #line swep sol:
+        
+        #insert start
+        if startTime not in self.calendar_times:
+            pos_start = bisect.bisect_right(self.calendar_times, startTime)
+            self.calendar_times.insert(pos_start,startTime)
+            self.calendar_books.insert(pos_start,1)
+        else:
+            pos_start = self.calendar_times.index(startTime)
+            self.calendar_books[pos_start] +=1
+    
+        #insert end
+        if endTime not in self.calendar_times:
+            pos_end = bisect.bisect_right(self.calendar_times, endTime)
+            self.calendar_times.insert(pos_end,endTime)
+            self.calendar_books.insert(pos_end,-1)
+        else:
+            pos_end = self.calendar_times.index(endTime)
+            self.calendar_books[pos_end] -=1    
             
+        max_booking = 0
+        for book in self.calendar_books:
+            max_booking += book
             if max_booking > 2:
-                self.calendar_books[startTime] -= 1
-                self.calendar_books[endTime] += 1
+                self.calendar_books[pos_start] -= 1
+                self.calendar_books[pos_end] += 1
                 return False
             
         return True
+
+            
 
 
 # Your MyCalendarTwo object will be instantiated and called as such:
 # obj = MyCalendarTwo()
 # param_1 = obj.book(startTime,endTime)
+
+
+#-------------------------------------------------------------
+    # def __init__(self):
+    #     self.calendar_books = defaultdict(int) 
+    
+#     def book(self, startTime: int, endTime: int) -> bool:
+#         self.calendar_books[startTime] += 1
+#         self.calendar_books[endTime] -= 1
+#         max_booking = 0
+#         for time in sorted(self.calendar_books.keys()):
+#             max_booking += self.calendar_books[time]
+            
+#             if max_booking > 2:
+#                 self.calendar_books[startTime] -= 1
+#                 self.calendar_books[endTime] += 1
+#                 return False
+            
+#         return True
 
 
 

@@ -4,6 +4,7 @@ class Solution:
         
         gifts_heap = [-x for x in gifts]
         heapq.heapify(gifts_heap)
+        
 
         for _ in range(k):
             num = -1 * heapq.heappop(gifts_heap)

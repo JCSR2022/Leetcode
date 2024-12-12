@@ -7,8 +7,8 @@ class Solution:
         
 
         for _ in range(k):
-            #num = -1 * heapq.heappop(gifts_heap)
-            heapq.heappush(gifts_heap, -1*math.floor(math.sqrt(-1 * heapq.heappop(gifts_heap))))
+            num = -1 * heapq.heappop(gifts_heap)
+            heapq.heappush(gifts_heap, -1*math.floor(math.sqrt(num)))
 
             
         return sum([-1*x for x in gifts_heap])

@@ -53,19 +53,32 @@ class Solution:
 #-----------------------------------------------------
 
 
-            
-        l, r = nums[0] - 2, nums[0] + 2
-        lo, ans = -1, 0
-        for hi, x in enumerate(nums):
-            if l <= x <= r:
-                l, r = max(l, x - 2), min(r, x + 2)
-            else:
-                l, r = x - 2, x + 2
-                lo = hi - 1
-                while l <= nums[lo] <= r:
-                    l, r = max(l, nums[lo] - 2), min(r, nums[lo] + 2)
-                    lo -= 1    
-            ans += hi - lo
-        return ans 
+#ni se que hace esto            
+#         l, r = nums[0] - 2, nums[0] + 2
+#         lo, ans = -1, 0
+#         for hi, x in enumerate(nums):
+#             if l <= x <= r:
+#                 l, r = max(l, x - 2), min(r, x + 2)
+#             else:
+#                 l, r = x - 2, x + 2
+#                 lo = hi - 1
+#                 while l <= nums[lo] <= r:
+#                     l, r = max(l, nums[lo] - 2), min(r, nums[lo] + 2)
+#                     lo -= 1    
+#             ans += hi - lo
+#         return ans 
             
         
+#---------------------------------------------
+
+        i = res = 0
+        d = dict()
+        for j, num in enumerate(nums):
+            t = d.copy()
+            for k, v in t.items():
+                if abs(k - num) > 2:
+                    i = max(i, v + 1)
+                    d.pop(k)
+            d[num] = j
+            res += j - i + 1
+        return res

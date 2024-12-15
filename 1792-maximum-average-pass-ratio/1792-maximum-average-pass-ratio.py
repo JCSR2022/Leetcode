@@ -55,22 +55,33 @@ class Solution:
 
     #Faster version:
 
-        heap = [(passi/totali - (passi+1)/(totali+1),i) for i,(passi,totali) in enumerate(classes) ]
-        heapq.heapify(heap)
+#         heap = [(passi/totali - (passi+1)/(totali+1),i) for i,(passi,totali) in enumerate(classes) ]
+#         heapq.heapify(heap)
     
-        for i in range(extraStudents):
+#         for i in range(extraStudents):
             
-            _,index =  heapq.heappop(heap)
+#             _,index =  heapq.heappop(heap)
             
-            classes[index][0] +=1
-            classes[index][1] +=1
+#             classes[index][0] +=1
+#             classes[index][1] +=1
             
-            heapq.heappush(heap,( classes[index][0]/classes[index][1]- (classes[index][0]+1)/(classes[index][1]+1),index))
+#             heapq.heappush(heap,( classes[index][0]/classes[index][1]- (classes[index][0]+1)/(classes[index][1]+1),index))
             
         
-        return sum([act_pass/total for act_pass,total in classes])/len(classes)       
+#         return sum([act_pass/total for act_pass,total in classes])/len(classes)       
         
 
+        n = len(classes)
+        impacts = [(p/t - ((p+1)/(t+1)), p, t) for p,t in classes]
+        heapq.heapify(impacts)
 
+        for _ in range(extraStudents):
+            impact, passes, total = heapq.heappop(impacts)
+            passes +=1
+            total +=1
+            heapq.heappush(impacts, (passes/total - ((passes+1)/(total+1)), passes, total))
+
+        percents = [p/t for _,p,t in impacts]
+        return mean(percents)
 
 

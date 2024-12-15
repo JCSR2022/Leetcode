@@ -58,7 +58,7 @@ class Solution:
         heap = [(passi/totali - (passi+1)/(totali+1),i) for i,(passi,totali) in enumerate(classes) ]
         heapq.heapify(heap)
     
-        while extraStudents > 0:
+        for i in range(extraStudents):
             
             _,index =  heapq.heappop(heap)
             
@@ -67,7 +67,6 @@ class Solution:
             
             heapq.heappush(heap,( classes[index][0]/classes[index][1]- (classes[index][0]+1)/(classes[index][1]+1),index))
             
-            extraStudents -= 1
         
         return sum([act_pass/total for act_pass,total in classes])/len(classes)       
         

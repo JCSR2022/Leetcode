@@ -29,32 +29,47 @@ class Solution:
 #-----------------------------------------------------------------------------
 
 
-        def find_ratio_increment(index):
-            actual_ratio = classes[index][0]/classes[index][1]
-            new_ratio = (classes[index][0]+1)/(classes[index][1]+1)
-            #print(actual_ratio,new_ratio)
-            return new_ratio-actual_ratio
+#         def find_ratio_increment(index):
+#             actual_ratio = classes[index][0]/classes[index][1]
+#             new_ratio = (classes[index][0]+1)/(classes[index][1]+1)
+#             #print(actual_ratio,new_ratio)
+#             return new_ratio-actual_ratio
         
-        heap = [(-find_ratio_increment(i),i) for i in range(len(classes)) ]
+#         heap = [(-find_ratio_increment(i),i) for i in range(len(classes)) ]
+#         heapq.heapify(heap)
+    
+#         while extraStudents > 0:
+            
+#             _,index =  heapq.heappop(heap)
+            
+#             classes[index][0] +=1
+#             classes[index][1] +=1
+            
+#             heapq.heappush(heap,(-find_ratio_increment(index),index))
+            
+#             extraStudents -= 1
+            
+        
+#         return sum([act_pass/total for act_pass,total in classes])/len(classes)
+        
+
+    #Faster version:
+
+        heap = [(passi/totali - (passi+1)/(totali+1),i) for i,(passi,totali) in enumerate(classes) ]
         heapq.heapify(heap)
     
         while extraStudents > 0:
-            
             
             _,index =  heapq.heappop(heap)
             
             classes[index][0] +=1
             classes[index][1] +=1
             
-            heapq.heappush(heap,(-find_ratio_increment(index),index))
+            heapq.heappush(heap,( classes[index][0]/classes[index][1]- (classes[index][0]+1)/(classes[index][1]+1),index))
             
             extraStudents -= 1
-            
         
-        return sum([act_pass/total for act_pass,total in classes])/len(classes)
-        
-        
-        
+        return sum([act_pass/total for act_pass,total in classes])/len(classes)       
         
 
 

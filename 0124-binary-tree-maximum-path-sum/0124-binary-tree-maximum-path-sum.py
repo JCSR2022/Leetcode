@@ -13,17 +13,17 @@ class Solution:
         
 #-----------------------------------------------------------------
 
-        ans = float("-inf")
+        ans = [float("-inf")]
     
         def dfs_find_max(node):
             
-            nonlocal ans
+            #nonlocal ans
             
             if node:
             
                 left =  max(dfs_find_max(node.left),0)
                 right = max(dfs_find_max(node.right),0)
-                ans = max(ans, node.val+left+right )
+                ans[0] = max(ans[0], node.val+left+right )
             
                 return max(left,right,0) + node.val
                 
@@ -33,7 +33,7 @@ class Solution:
         
         dfs_find_max(root)
         
-        return ans
+        return ans[0]
             
             
         

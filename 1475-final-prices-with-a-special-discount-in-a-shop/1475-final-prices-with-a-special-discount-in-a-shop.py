@@ -1,6 +1,6 @@
 class Solution:
     def finalPrices(self, prices: List[int]) -> List[int]:
-        #brute force:
+        #brute force: O(n**2)
         
 #         ans = []
 #         for i,price_i in enumerate(prices):
@@ -32,17 +32,17 @@ class Solution:
 
 
 
-        stack = [prices[-1]]
+#--------------------------------------------------
 
-        for i in range(len(prices) - 2, -1, -1):
-            while stack and prices[i] < stack[-1]:
-                stack.pop()
 
-            tmp = prices[i]
-            if stack:
-                prices[i] -= stack[-1]
 
-            stack.append(tmp)
-
-        return prices
+        result = prices.copy()
+        stack = []
+        for i, p in enumerate(prices):
+            while stack and p <= stack[-1][0]:
+                _, j = stack.pop()
+                result[j] -= p
             
+            stack.append((p, i))
+
+        return result

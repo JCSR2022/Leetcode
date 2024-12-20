@@ -36,13 +36,56 @@ class Solution:
 
 
 
-        result = prices.copy()
-        stack = []
-        for i, p in enumerate(prices):
-            while stack and p <= stack[-1][0]:
-                _, j = stack.pop()
-                result[j] -= p
+#         result = prices.copy()
+#         stack = []
+#         for i, p in enumerate(prices):
+#             while stack and p <= stack[-1][0]:
+#                 _, j = stack.pop()
+#                 result[j] -= p
             
-            stack.append((p, i))
+#             stack.append((p, i))
 
-        return result
+#         return result
+
+
+#---------------------------------------------
+
+
+        discount = [0]*len(prices)
+        stack = []
+        
+        for i in range(len(prices)-1,-1,-1):
+            while stack and stack[-1] > prices[i]:
+                stack.pop()
+                
+            if stack:
+                discount[i] = stack[-1]
+                
+            stack.append(prices[i])
+            
+        
+        return [ p-d for p,d in zip(prices,discount) ]
+            
+        
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

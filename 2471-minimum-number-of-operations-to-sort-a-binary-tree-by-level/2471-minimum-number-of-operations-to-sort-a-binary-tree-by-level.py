@@ -10,39 +10,56 @@ class Solution:
         #aproach:
         #BFS on levels, for each arr level calculate changes to sort
         
+#         def min_swaps_to_sort(arr):
+#             n = len(arr)
+#             # Step 1: Pair each element with its index
+#             pairs = [(value, index) for index, value in enumerate(arr)]
+
+#             # Step 2: Sort pairs by value
+#             pairs.sort(key=lambda x: x[0])
+
+#             # Step 3: Initialize visited array
+#             visited = [False] * n
+#             swaps = 0
+
+#             # Step 4: Traverse each element
+#             for i in range(n):
+#                 # If already visited or in correct position, skip
+#                 if visited[i] or pairs[i][1] == i:
+#                     continue
+
+#                 # Explore the cycle
+#                 cycle_size = 0
+#                 current = i
+#                 while not visited[current]:
+#                     visited[current] = True
+#                     next_index = pairs[current][1]
+#                     current = next_index
+#                     cycle_size += 1
+
+#                 # Add swaps for this cycle
+#                 if cycle_size > 1:
+#                     swaps += (cycle_size - 1)
+
+#             return swaps
+
         def min_swaps_to_sort(arr):
-            n = len(arr)
-            # Step 1: Pair each element with its index
-            pairs = [(value, index) for index, value in enumerate(arr)]
-
-            # Step 2: Sort pairs by value
-            pairs.sort(key=lambda x: x[0])
-
-            # Step 3: Initialize visited array
-            visited = [False] * n
             swaps = 0
-
-            # Step 4: Traverse each element
-            for i in range(n):
-                # If already visited or in correct position, skip
-                if visited[i] or pairs[i][1] == i:
-                    continue
-
-                # Explore the cycle
-                cycle_size = 0
-                current = i
-                while not visited[current]:
-                    visited[current] = True
-                    next_index = pairs[current][1]
-                    current = next_index
-                    cycle_size += 1
-
-                # Add swaps for this cycle
-                if cycle_size > 1:
-                    swaps += (cycle_size - 1)
-
+            arr_sort = sorted(arr)
+            hash_indx = {n:i for i,n in enumerate(arr)}
+            
+            for i in range(len(arr)):
+                if arr[i] != arr_sort[i]:
+                    swaps +=1
+                    
+                    j = hash_indx[arr_sort[i]]
+                    arr[i] , arr[j] = arr[j], arr[i]
+                    hash_indx[arr[i]] = i
+                    hash_indx[arr[j]] = j
             return swaps
-        
+                    
+    
+            
         def bfs():
             
             q = [root]

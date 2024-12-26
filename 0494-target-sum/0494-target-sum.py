@@ -54,20 +54,40 @@ class Solution:
 #https://www.youtube.com/watch?v=dwMOrl85Xes
 #dp solution
 
-        dp = [defaultdict(int) for _ in range(len(nums)+1)]
-        #dp[ elements of nums, sum of elements]
+#         dp = [defaultdict(int) for _ in range(len(nums)+1)]
+#         #dp[ elements of nums, sum of elements]
         
-        dp[0][0]  =1 #  1 way to sum to zero with 0 elements
+#         dp[0][0]  =1 #  1 way to sum to zero with 0 elements
+        
+#         for i in range(len(nums)):
+#             for cur_sum, count in dp[i].items():
+#                 dp[i+1][cur_sum + nums[i]] += count
+#                 dp[i+1][cur_sum - nums[i]] += count
+        
+#         # for i,level in enumerate(dp):
+#         #     print(i,{k: level[k] for k in sorted(level)}    )
+        
+        
+#         #dp[len(nums)][target] number of ways sum target with all nums
+        
+#         return dp[len(nums)][target]
+    
+    
+#---------------------------------------------------------------
+#memory improve
+
+        dp = defaultdict(int) 
+    
+        dp[0]  =1 
         
         for i in range(len(nums)):
-            for cur_sum, count in dp[i].items():
-                dp[i+1][cur_sum + nums[i]] += count
-                dp[i+1][cur_sum - nums[i]] += count
+            new_dp = defaultdict(int) 
+            for cur_sum, count in dp.items():
+                new_dp[cur_sum + nums[i]] += count
+                new_dp[cur_sum - nums[i]] += count
+            dp = new_dp
+                
         
-        # for i,level in enumerate(dp):
-        #     print(i,{k: level[k] for k in sorted(level)}    )
-        
-        
-        #dp[len(nums)][target] number of ways sum target with all nums
-        
-        return dp[len(nums)][target]
+        return dp[target]
+    
+    

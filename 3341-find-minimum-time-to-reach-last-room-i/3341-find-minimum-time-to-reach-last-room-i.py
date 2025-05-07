@@ -84,7 +84,7 @@ class Solution:
         heap = [(0,0,0)]
         dp = {(0,0):0}
         while heap:
-            print(heap,dp)
+            #print(heap,dp)
             time,i,j = heapq.heappop(heap)
 
             if (i,j) in dp and dp[(i,j)] < time:

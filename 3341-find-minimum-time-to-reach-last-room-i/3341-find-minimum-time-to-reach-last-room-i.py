@@ -87,8 +87,8 @@ class Solution:
             #print(heap,dp)
             time,i,j = heapq.heappop(heap)
 
-            if (i,j) in dp and dp[(i,j)] < time:
-                continue 
+            # if (i,j) in dp and dp[(i,j)] < time:
+            #     continue 
 
             if i == n-1 and j == m-1:
                 return max(moveTime[i][j]+1,time)

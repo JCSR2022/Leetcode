@@ -94,13 +94,12 @@ class Solution:
                 return max(moveTime[i][j]+1,time)
             
             adjacent_rooms = [ (x,y) for x,y in  [(i,j+1),(i,j-1),(i+1,j),(i-1,j)]
-                      if x >= 0  and x < n and y >= 0 and y < m  ]
+                      if x >= 0  and x < n and y >= 0 and y < m and (x,y) not in dp ]
             
             for adj_i,adj_j in adjacent_rooms:
                 new_t = max(moveTime[adj_i][adj_j], time) +1
+                dp[(adj_i,adj_j)] = new_t
+                heapq.heappush(heap,(new_t,adj_i,adj_j))
 
-                if (adj_i,adj_j) not in dp:
-                    dp[(adj_i,adj_j)] = new_t
-                    heapq.heappush(heap,(new_t,adj_i,adj_j))
 
 

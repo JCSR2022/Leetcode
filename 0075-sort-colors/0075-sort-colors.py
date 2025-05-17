@@ -4,33 +4,64 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         
+
+
+        #bubblesort n**2
+
+        N = len(nums)
+
+        shift = True
+        while shift:
+            shift = False
+            for i in range(N-1):
+                if nums[i]>nums[i+1]:
+                    nums[i], nums[i+1] = nums[i+1],nums[i]
+                    shift = True
+        return nums
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         
-        # counting sort 
-        freq=[0]*3
-        for x in nums: freq[x]+=1
-        count=0
-        for x in range(3):
-            nums[count:count+freq[x]] = [x]*freq[x]
-            count+= freq[x]
+        # # counting sort (it is the same as HasMap sol)
+        # freq=[0]*3
+        # for x in nums: freq[x]+=1
+        # count=0
+        # for x in range(3):
+        #     nums[count:count+freq[x]] = [x]*freq[x]
+        #     count+= freq[x]
             
             
         
-        # Dutch national flag problem (red, white, blue)
-#         red, white, blue = 0, 1, 2
-#         l, m, r = 0, 0, len(nums) - 1  # pointers to partition
+        # # Dutch national flag problem (red, white, blue)
+        # red, white, blue = 0, 1, 2
+        # l_red, m_white, r_blue = 0, 0, len(nums) - 1  # pointers to partition
         
-#         while m <= r:
-#             print(l,m,r,nums)
-#             if nums[m] == red:
-#                 nums[l], nums[m] = nums[m], nums[l]
-#                 l += 1
-#                 m += 1
-#             elif nums[m] == white:
-#                 m += 1
-#             else:  # nums[m] == blue
-#                 nums[m], nums[r] = nums[r], nums[m]
-#                 r -= 1
+        # while  m_white <=  r_blue:
+        #     print(l_red, m_white, r_blue,nums)
+        #     if nums[m_white] == red:
+        #         nums[l_red], nums[m_white] = nums[m_white], nums[l_red]
+        #         l_red += 1
+        #         m_white += 1
+        #     elif nums[m_white] == white:
+        #         m_white += 1
+        #     else:  # nums[m] == blue
+        #         nums[m_white], nums[ r_blue] = nums[r_blue], nums[m_white]
+        #         r -= 1
         
         
         

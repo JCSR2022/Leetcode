@@ -5,20 +5,33 @@ class Solution:
         """
         
 
+        #just for fun 2*O(n)
 
-        #bubblesort n**2
+        hash_nums = Counter(nums)
+        
+        nums[:] = [0]*hash_nums[0]+[1]*hash_nums[1]+[2]*hash_nums[2]
 
-        N = len(nums)
 
-        shift = True
-        while shift:
-            shift = False
-            for i in range(N-1):
-                if nums[i]>nums[i+1]:
-                    nums[i], nums[i+1] = nums[i+1],nums[i]
-                    shift = True
-        return nums
-                
+        
+
+        
+
+
+
+
+
+
+        #bubblesort n**2, iknow it is the less eficient!!
+        # N = len(nums)
+        # shift = True
+        # while shift:
+        #     shift = False
+        #     for i in range(N-1):
+        #         if nums[i]>nums[i+1]:
+        #             nums[i], nums[i+1] = nums[i+1],nums[i]
+        #             shift = True
+        # return nums
+    #----------------------------------------------------------------
 
 
 

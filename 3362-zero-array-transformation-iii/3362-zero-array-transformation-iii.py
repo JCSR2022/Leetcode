@@ -21,8 +21,10 @@ class Solution:
             #use necesary queries always take max right on potential queries
             curr_q_use = 0
             while heap_potential and n > len(heap_q_in_use): 
-                heapq.heappush(heap_q_in_use, -heapq.heappop(heap_potential))
-                curr_q_use +=1 
+                most_right = -heapq.heappop(heap_potential)
+                if most_right >= i:
+                    heapq.heappush(heap_q_in_use, most_right )
+                    curr_q_use +=1 
             #print("heap_q_in_use:",heap_q_in_use)    
             
             if n > len(heap_q_in_use):

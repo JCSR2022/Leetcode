@@ -1,44 +1,79 @@
 class Solution:
     def maxRemoval(self, nums: List[int], queries: List[List[int]]) -> int:
 
-
         Q = len(queries)
-        q_sort = sorted(queries, key=lambda x: (x[0], -(x[1] - x[0])))
+        queries.sort(key=lambda x: (x[0], -(x[1] - x[0])))  # prioriza inicio bajo, rango largo
+
         q = 0
+        in_use = []
+        potential = []
+        used_count = 0
 
-        heap_q_in_use  = []
-        heap_potential = []
-        count_q =  0
+        for i, need in enumerate(nums):
+            # Agrega queries que comienzan en o antes de i
+            while q < Q and queries[q][0] <= i:
+                heapq.heappush(potential, -queries[q][1])  # max heap por final
+                q += 1
 
-        for i,n in enumerate(nums):
-            #print("i,n:",i,n)
-            #save queries can use begining in i
-            while q < Q and q_sort[q][0] <= i:
-                  heapq.heappush(heap_potential ,-q_sort[q][1])
-                  q += 1
-            #print("heap_potential:",heap_potential )
+            used_this_round = 0
+            # Usa queries para cubrir posición i hasta que haya suficientes activas
+            while len(in_use) < need and potential:
+                end = -heapq.heappop(potential)
+                if end >= i:
+                    heapq.heappush(in_use, end)
+                    used_this_round += 1
 
-            #use necesary queries always take max right on potential queries
-            curr_q_use = 0
-            while heap_potential and n > len(heap_q_in_use): 
-                most_right = -heapq.heappop(heap_potential)
-                if most_right >= i:
-                    heapq.heappush(heap_q_in_use, most_right )
-                    curr_q_use +=1 
-            #print("heap_q_in_use:",heap_q_in_use)    
+            if len(in_use) < need:
+                return -1  # no hay suficientes queries para cubrir
+
+            used_count += used_this_round
+
+            # Limpia queries que ya no cubren más
+            while in_use and in_use[0] <= i:
+                heapq.heappop(in_use)
+
+        return Q - used_count
+
+
+
+#-----------------------------------------------------------------------------------
+        # Q = len(queries)
+        # q_sort = sorted(queries, key=lambda x: (x[0], -(x[1] - x[0])))
+        # q = 0
+
+        # heap_q_in_use  = []
+        # heap_potential = []
+        # count_q =  0
+
+        # for i,n in enumerate(nums):
+        #     #print("i,n:",i,n)
+        #     #save queries can use begining in i
+        #     while q < Q and q_sort[q][0] <= i:
+        #           heapq.heappush(heap_potential ,-q_sort[q][1])
+        #           q += 1
+        #     #print("heap_potential:",heap_potential )
+
+        #     #use necesary queries always take max right on potential queries
+        #     curr_q_use = 0
+        #     while heap_potential and n > len(heap_q_in_use): 
+        #         most_right = -heapq.heappop(heap_potential)
+        #         if most_right >= i:
+        #             heapq.heappush(heap_q_in_use, most_right )
+        #             curr_q_use +=1 
+        #     #print("heap_q_in_use:",heap_q_in_use)    
             
-            if n > len(heap_q_in_use):
-                return -1
-            else:
-                #update max quantity of queries to use
-                count_q += curr_q_use
+        #     if n > len(heap_q_in_use):
+        #         return -1
+        #     else:
+        #         #update max quantity of queries to use
+        #         count_q += curr_q_use
 
-                #remove queries no longer valids
-                while heap_q_in_use and heap_q_in_use[0] <= i:
-                    heapq.heappop(heap_q_in_use)
+        #         #remove queries no longer valids
+        #         while heap_q_in_use and heap_q_in_use[0] <= i:
+        #             heapq.heappop(heap_q_in_use)
 
 
-        return Q-count_q
+        # return Q-count_q
 
 
 

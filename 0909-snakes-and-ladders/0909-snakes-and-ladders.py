@@ -149,15 +149,28 @@ class Solution:
 
         while queue:
             pos, moves = queue.popleft()
+
+            next_pos_set = set()
+            normal_pos = set()
             for i in range(1, 7):
                 next_pos = pos + i
+
                 if next_pos > n * n:
                     break
+                
                 r, c = get_position(next_pos)
                 if board[r][c] != -1:
-                    next_pos = board[r][c]
-                if next_pos == n * n:
+                    next_pos_set.add(board[r][c])
+                else:
+                    normal_pos.add(next_pos)
+
+                if next_pos == n*n or (next_pos_set and n*n in next_pos_set ):
                     return moves + 1
+
+            if normal_pos:
+                next_pos_set.add(max(normal_pos))
+            
+            for next_pos in next_pos_set:
                 if next_pos not in visited:
                     visited.add(next_pos)
                     queue.append((next_pos, moves + 1))

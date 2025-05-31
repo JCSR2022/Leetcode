@@ -86,8 +86,52 @@ class Solution:
 
 
 
-#por mil!!!!!!!!!!!!!!!!!!!1
+#por mil!!!!!!!!!!!!!!!!!!!
 #muerete imbecil
+#no sirves para una maldita mierda!!!!!!!!!!!!!!!!!
+#------------------------------------------------------
+
+        
+
+        # n = len(board)
+
+        # def get_position(s):
+        #     """tablero Boustrophedon."""
+        #     quot, rem = divmod(s - 1, n)
+        #     row = n - 1 - quot
+        #     col = rem if (n - 1 - row) % 2 == 0 else n - 1 - rem
+        #     return row, col
+
+        # heap = []
+        # heapq.heappush(heap, (0,1)) #(número de movimientos,posición)
+        # visited = set()
+
+        # while heap:
+        #     print(heap)
+        #     moves, pos  = heapq.heappop(heap)
+
+        #     if pos in visited:
+        #         continue
+        #     visited.add(pos)
+
+        #     for i in range(1, 7):
+        #         next_pos = pos + i
+        #         if next_pos > n * n:
+        #             break
+        #         r, c = get_position(next_pos)
+        #         if board[r][c] != -1:
+        #             next_pos = board[r][c]
+        #         if next_pos == n * n:
+        #             return moves + 1
+        #         if next_pos not in visited:
+        #             heapq.heappush(heap, (moves + 1,next_pos))
+          
+        # return -1
+
+
+
+#por cien mil!!!!!!!!!!!!!!!!!!!
+#muerete imbecil, ya acabca con tu miserable vida pedazo de mierda!!!
 #no sirves para una maldita mierda!!!!!!!!!!!!!!!!!
 #------------------------------------------------------
 
@@ -95,7 +139,6 @@ class Solution:
         n = len(board)
 
         def get_position(s):
-            """Convierte un número lineal s a coordenadas (r, c) en el tablero Boustrophedon."""
             quot, rem = divmod(s - 1, n)
             row = n - 1 - quot
             col = rem if (n - 1 - row) % 2 == 0 else n - 1 - rem
@@ -109,7 +152,7 @@ class Solution:
             for i in range(1, 7):
                 next_pos = pos + i
                 if next_pos > n * n:
-                    continue
+                    break
                 r, c = get_position(next_pos)
                 if board[r][c] != -1:
                     next_pos = board[r][c]
@@ -124,14 +167,38 @@ class Solution:
 
 
 
+#---------------------------------------------------------------
 
 
 
+        # n = len(board)
 
+        # def get_position(s):
+        #     """Convierte un número lineal s a coordenadas (r, c) en el tablero Boustrophedon."""
+        #     quot, rem = divmod(s - 1, n)
+        #     row = n - 1 - quot
+        #     col = rem if (n - 1 - row) % 2 == 0 else n - 1 - rem
+        #     return row, col
 
+        # visited = set()
+        # queue = deque([(1, 0)])  # (posición, número de movimientos)
 
-
-
+        # while queue:
+        #     pos, moves = queue.popleft()
+        #     for i in range(1, 7):
+        #         next_pos = pos + i
+        #         if next_pos > n * n:
+        #             continue
+        #         r, c = get_position(next_pos)
+        #         if board[r][c] != -1:
+        #             next_pos = board[r][c]
+        #         if next_pos == n * n:
+        #             return moves + 1
+        #         if next_pos not in visited:
+        #             visited.add(next_pos)
+        #             queue.append((next_pos, moves + 1))
+        
+        # return -1
 
 
 #-----------------------------------------------------------

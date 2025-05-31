@@ -42,55 +42,84 @@ class Solution:
 #no sirves para una maldita mierda!!!!!!!!!!!!!!!!!
 #------------------------------------------------------
             
+        # n = len(board)
+        # revese_board = board[::-1]
+        # special_position = [0]*n**2
+        # for i in range(n**2):
+        #     if revese_board[i//n][i%n] > 0:
+        #         special_position[i] = revese_board[i//n][i%n]
+        #     else:
+        #         special_position[i] = i+1
+        # special_position = [0]+special_position+[0]
+
+        # def bfs():
+            
+        #     heap = []
+        #     heapq.heappush(heap, (0,1))
+
+        #     while heap:
+        #         print(heap)
+        #         moves,position = heapq.heappop(heap)
+
+        #         if position >= n**2:
+        #             return moves
+
+        #         if moves > n**2:
+        #             return -1
+
+        #         next_pos_set =set()
+        #         normal = set()
+        #         for i in range(1,7):
+        #             next_pos = min(position + i, n**2+1) 
+        #             if special_position[next_pos] == next_pos:
+        #                 normal.add(next_pos)    
+        #             else:
+        #                 next_pos_set.add(special_position[next_pos])
+        #         if normal:
+        #             next_pos_set.add(max(normal))
+            
+        #         for next_position in next_pos_set:
+        #             heapq.heappush(heap, (moves+1 ,next_position))
+
+            
+        # return bfs()
+
+
+
+#por mil!!!!!!!!!!!!!!!!!!!1
+#muerete imbecil
+#no sirves para una maldita mierda!!!!!!!!!!!!!!!!!
+#------------------------------------------------------
+
+
         n = len(board)
-        revese_board = board[::-1]
-        special_position = [0]*n**2
-        for i in range(n**2):
-            if revese_board[i//n][i%n] > 0:
-                special_position[i] = revese_board[i//n][i%n]
-            else:
-                special_position[i] = i+1
-        special_position = [0]+special_position
 
+        def get_position(s):
+            """Convierte un número lineal s a coordenadas (r, c) en el tablero Boustrophedon."""
+            quot, rem = divmod(s - 1, n)
+            row = n - 1 - quot
+            col = rem if (n - 1 - row) % 2 == 0 else n - 1 - rem
+            return row, col
 
+        visited = set()
+        queue = deque([(1, 0)])  # (posición, número de movimientos)
 
-        def bfs():
-            
-            heap = []
-            heapq.heappush(heap, (0,1))
-
-            while heap:
-                moves,position = heapq.heappop(heap)
-
-                if position == n**2:
-                    return moves
-
-                if moves > n**2:
-                    return -1
-
-                next_pos_set =set()
-                normal = set()
-                for i in range(1,7):
-                    next_pos = min(position + i, n**2) 
-                    if special_position[next_pos] == next_pos:
-                        normal.add(next_pos)    
-                    else:
-                        next_pos_set.add(special_position[next_pos])
-                if normal:
-                    next_pos_set.add(max(normal))
-            
-                for next_position in next_pos_set:
-                    heapq.heappush(heap, (moves+1 ,next_position))
-
-            
-        return bfs()
-
-
-
-
-
-
+        while queue:
+            pos, moves = queue.popleft()
+            for i in range(1, 7):
+                next_pos = pos + i
+                if next_pos > n * n:
+                    continue
+                r, c = get_position(next_pos)
+                if board[r][c] != -1:
+                    next_pos = board[r][c]
+                if next_pos == n * n:
+                    return moves + 1
+                if next_pos not in visited:
+                    visited.add(next_pos)
+                    queue.append((next_pos, moves + 1))
         
+        return -1
 
 
 
@@ -105,14 +134,8 @@ class Solution:
 
 
 
+#-----------------------------------------------------------
 
-
-
-
-
-
-
-        #-------------------------------------------------------
         # length = len(board)
 
         # def intToPos(square):

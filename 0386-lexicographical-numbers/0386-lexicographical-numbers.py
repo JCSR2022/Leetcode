@@ -1,45 +1,26 @@
 class Solution:
     def lexicalOrder(self, n: int) -> List[int]:
         
-        #1, 10, 11, 12, 13
-        #2, 20, 21,..
-        #3, 30
+        #jun 07 2025
 
+        # ans = []
+        # def recursive(i:str):
+        #     if int(i) <= n:
+        #         ans.append(int(i))
+        #         for j in ['0','1','2','3','4','5','6','7','8','9']:
+        #             cur_num = int(i+j) 
+        #             recursive(i+j)
+        # for i in ['1','2','3','4','5','6','7','8','9']:
+        #     recursive(i)
+        # return ans     
 
-
-        ans = []
-        def recursive(i:str):
-            if int(i) <= n:
-                ans.append(int(i))
-                for j in ['0','1','2','3','4','5','6','7','8','9']:
-                    cur_num = int(i+j) 
-                    recursive(i+j)
-
-        for i in ['1','2','3','4','5','6','7','8','9']:
-            recursive(i)
-        return ans     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#--------------------------------------------------
 
 
              
-#         ans = [ str(x) for x in range(1,n+1)]
-#         ans.sort()
-#         return [int(x) for x in ans]
+        ans = [ str(x) for x in range(1,n+1)]
+        ans.sort()
+        return [int(x) for x in ans]
     
     
     #---------------------------------------------------

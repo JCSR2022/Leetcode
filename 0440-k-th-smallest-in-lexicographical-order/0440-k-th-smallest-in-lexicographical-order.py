@@ -1,57 +1,57 @@
-#ni siquiera vo pertender que entiendo lo que hivieron, No mamen
-
 class Solution:
-    def findKthNumber(self, n, k):
-        current_prefix = 1
-        k -= 1  # Decrement k to handle zero-based indexing
+    def findKthNumber(self, n: int, k: int) -> int:
         
-        while k > 0:
-            count = self.countNumbersWithPrefix(current_prefix, n)
-            if k >= count:
-                current_prefix += 1  # Move to the next prefix
-                k -= count
+        #build lexigrapical until k, O(n) Time problem n = 10**9
+
+        # p = 0
+        # def recurrency(num):
+        #     nonlocal p
+        #     #print(p,num)
+        #     if p == k-1:
+        #         return num
+
+        #     for i in [0,1,2,3,4,5,6,7,8,9]:
+        #         new_num = num*10+i 
+        #         if new_num <= n:
+        #             p += 1
+        #             ans = recurrency(new_num)
+        #             if ans:
+        #                 return ans
+
+        #     if num < 9 :
+        #         p += 1
+        #         return recurrency(num+1)
+
+        # return recurrency(1)
+
+#Time Limit Exceeded 
+#-------------------------------------------------------------
+        #https://www.youtube.com/watch?v=wRubz1zhVqk
+
+        cur  = 1
+        i = 1
+
+        def count(cur):
+            res = 0
+            nei = cur + 1
+            while cur <= n:
+                res += min(nei,n+1) - cur
+                cur *= 10
+                nei *= 10
+            return res
+
+        while i < k:                
+            steps = count(cur)
+            if i + steps <=k:
+                cur = cur + 1
+                i += steps
             else:
-                current_prefix *= 10  # Go deeper in the current prefix
-                k -= 1
-        
-        return current_prefix
+                cur *= 10
+                i += 1
 
-    def countNumbersWithPrefix(self, prefix, n):
-        first_number = prefix
-        next_number = prefix + 1
-        total_count = 0
-
-        while first_number <= n:
-            total_count += min(n + 1, next_number) - first_number
-            first_number *= 10
-            next_number *= 10
-
-        return total_count
-
-
-
-# class Solution:
-#     def findKthNumber(self, n: int, k: int) -> int:
-        
-#         cont = [0]
-#         record = []
-#         def recursive(value):
-#             cont[0] +=1
+        return cur
             
-#             if cont[0] == k:
-#                 record.append(value)
-#                 return
-            
-#             if cont[0] > k:
-#                 return
-            
-#             if (value * 10) <= n:
-#                 recursive(value * 10)
-#             if value + 1 <= n and int(str(value)[-1]) < 9:
-#                 recursive(value + 1)
-                
-#         recursive(1)
-        
-#         #print(ans)
 
-#         return  record [0]
+
+
+        

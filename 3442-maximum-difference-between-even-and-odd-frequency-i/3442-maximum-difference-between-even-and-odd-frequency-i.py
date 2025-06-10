@@ -26,11 +26,12 @@ class Solution:
 
         odd_frec = 0
         even_frec = float("inf")
-        for frec in s_frec_arr:
+        for frec in [ f for f in s_frec_arr if f > 0] :
             if frec%2 == 0:
                 even_frec =min(even_frec,frec)
             else:
                 odd_frec = max(odd_frec,frec)
+
         print(odd_frec, even_frec)
         return odd_frec - even_frec
 

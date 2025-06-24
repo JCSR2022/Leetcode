@@ -1,31 +1,40 @@
 class Solution:
     def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
 
-
-
-        #Aproach: 2*O(n)+klog(k)
+        #Aproach: O(n)+klog(k)
         N = len(nums)
         ans = set()
 
-        #Left_right
-        cur_k = 0
         for i in range(N):
             if nums[i] == key:
-                cur_k = k+1
-            if  cur_k > 0:
-                cur_k -=1
-                ans.add(i)
-           
-        #right_left
-        cur_k = 0
-        for i in range(N-1,-1,-1):
-            if nums[i] == key:
-                cur_k = k+1
-            if  cur_k > 0:
-                cur_k -=1
-                ans.add(i)
-        
+                for j in range(max(i-k,0),min(i+k+1,N)): 
+                    ans.add(j)
         return sorted(list(ans))
+
+#----------------------------------------------------------------
+        # #Aproach: 2*O(n)+klog(k)
+        # N = len(nums)
+        # ans = set()
+
+        # #Left_right
+        # cur_k = 0
+        # for i in range(N):
+        #     if nums[i] == key:
+        #         cur_k = k+1
+        #     if  cur_k > 0:
+        #         cur_k -=1
+        #         ans.add(i)
+           
+        # #right_left
+        # cur_k = 0
+        # for i in range(N-1,-1,-1):
+        #     if nums[i] == key:
+        #         cur_k = k+1
+        #     if  cur_k > 0:
+        #         cur_k -=1
+        #         ans.add(i)
+        
+        # return sorted(list(ans))
 
 
 #---------------------------------------------------------------

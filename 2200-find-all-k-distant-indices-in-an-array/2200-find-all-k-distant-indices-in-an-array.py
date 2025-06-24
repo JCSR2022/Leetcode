@@ -2,14 +2,16 @@ class Solution:
     def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
 
         #Aproach: O(n)+klog(k)
-        N = len(nums)
-        ans = set()
+        # N = len(nums)
+        # ans = []
 
-        for i in range(N):
-            if nums[i] == key:
-                for j in range(max(i-k,0),min(i+k+1,N)): 
-                    ans.add(j)
-        return sorted(list(ans))
+        # for i in range(N):
+        #     if nums[i] == key:
+        #         for j in range(max(i-k,0),min(i+k+1,N)): 
+        #             if j not in ans:
+        #                 ans.append(j)
+        # return ans
+        #Time Limit Exceeded  jajajajaja
 
 #----------------------------------------------------------------
         # #Aproach: 2*O(n)+klog(k)
@@ -39,28 +41,28 @@ class Solution:
 
 #---------------------------------------------------------------
         # #Aproach: 3*O(n)
-        # N = len(nums)
-        # flags = [0]*N
+        N = len(nums)
+        flags = [0]*N
 
-        # #Left_right
-        # cur_k = 0
-        # for i in range(N):
-        #     if nums[i] == key:
-        #         cur_k = k+1
-        #     if  cur_k > 0:
-        #         cur_k -=1
-        #         flags[i] = 1
+        #Left_right
+        cur_k = 0
+        for i in range(N):
+            if nums[i] == key:
+                cur_k = k+1
+            if  cur_k > 0:
+                cur_k -=1
+                flags[i] = 1
            
-        # #right_left
-        # cur_k = 0
-        # for i in range(N-1,-1,-1):
-        #     if nums[i] == key:
-        #         cur_k = k+1
-        #     if  cur_k > 0:
-        #         cur_k -=1
-        #         flags[i] = 1
+        #right_left
+        cur_k = 0
+        for i in range(N-1,-1,-1):
+            if nums[i] == key:
+                cur_k = k+1
+            if  cur_k > 0:
+                cur_k -=1
+                flags[i] = 1
         
-        # return [ i for i,f in enumerate(flags) if f]
+        return [ i for i,f in enumerate(flags) if f]
 
 
         

@@ -1,6 +1,25 @@
 class Solution:
     def numSubseq(self, nums: List[int], target: int) -> int:
 
+        MOD = 10**9+7
+        N = len(nums)
+        nums.sort()
+
+        l = 0
+        r = N-1
+        ans = 0
+        while l<=r:
+            if nums[l]+nums[r] <= target:
+                size = r-l
+                ans = (ans + pow(2,size,MOD))%MOD
+                l +=1
+            else:
+                r -=1
+        
+        return ans
+
+
+#----------------------------------------------------------------------
         #brute force
         # ans = 0
         # N = len(nums)
@@ -28,7 +47,7 @@ class Solution:
         #         print(i,curr)
 
         # return ans
-#of curse Time Limit Exceeded
+#of course Time Limit Exceeded
 #----------------------------------------------------------------------
         #aproach 2
 
@@ -54,25 +73,49 @@ class Solution:
         Each valid pair contributes 2^(window size) subsequences
         Sum counts and return modulo result
         """
-        mod = 10**9 + 7
-        nums.sort()
-        n = len(nums)
+        # mod = 10**9 + 7
+        # nums.sort()
+        # #print(nums)
 
-        power = [1] * n
-        for i in range(1, n):
-            power[i] = (power[i - 1] * 2) % mod
+        # n = len(nums)
+        
+        # powers = {}
+        # def power(i):
+        #     if i in powers:
+        #         return powers[i]
+        #     powers[i] = pow(2, i, mod)
+        #     return powers[i]
+        # # @lru_cache(maxsize=None)
+        # # def power(i):
+        # #     return pow(2, i, mod)
 
-        left, right = 0, n - 1
-        result = 0
+        # left, right = 0, n - 1
+        # result = 0
+        # while left <= right:
+        #     #print(nums[left:right+1], power(right - left) if nums[left] + nums[right] <= target else "no valid",result)
+        #     if nums[left] + nums[right] <= target:
+        #         result = (result + power(right - left)) % mod
 
-        while left <= right:
-            if nums[left] + nums[right] <= target:
-                result = (result + power[right - left]) % mod
-                left += 1
-            else:
-                right -= 1
+        #         # #if want to visualize ans-----------
+        #         # print(nums[left:right+1], power(right - left))
+        #         # curr_n = right - left 
+        #         # cur_ans = [] 
+        #         # if curr_n > 1:
+        #         #     for i in range(2**curr_n):
+        #         #         mask = bin(i)[2:].zfill(curr_n)
+        #         #         curr = [x for x,mask in zip(nums[left+1:right+1],mask) if mask == "1" ]
+        #         #         cur_ans.append([nums[left]]+curr)
+        #         #     cur_ans.sort(key=lambda x: (len(x), x))
+        #         #     print(cur_ans)
+        #         # else:
+        #         #     print([nums[left]])
+        #         # #-----------------------------------
 
-        return result
+        #         left += 1
+        #     else:
+        #         right -= 1
+
+        # return result
 
 
 

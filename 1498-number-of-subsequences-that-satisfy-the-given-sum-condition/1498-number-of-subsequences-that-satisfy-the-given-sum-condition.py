@@ -48,12 +48,12 @@ class Solution:
 
 #hoy no
 #---------------------------------------
-"""
-Sort array to control min/max
-Use left/right pointers to find valid pairs
-Each valid pair contributes 2^(window size) subsequences
-Sum counts and return modulo result
-"""
+        """
+        Sort array to control min/max
+        Use left/right pointers to find valid pairs
+        Each valid pair contributes 2^(window size) subsequences
+        Sum counts and return modulo result
+        """
         mod = 10**9 + 7
         nums.sort()
         n = len(nums)

@@ -16,9 +16,14 @@ class Solution:
         
         #no need to sort
         
-        hash_nums = Counter(nums)
-        max_count = 0 
-        for n in hash_nums:
-            if n+1 in hash_nums :
-                max_count = max(max_count,hash_nums[n]+hash_nums[n+1])
-        return max_count
+        # hash_nums = Counter(nums)
+        # max_count = 0 
+        # for n in hash_nums:
+        #     if n+1 in hash_nums :
+        #         max_count = max(max_count,hash_nums[n]+hash_nums[n+1])
+        # return max_count
+
+        c = {}
+        for num in nums:
+            c[num] = c.get(num, 0) + 1
+        return max([c[x] + c[x+1] for x in c if x+1 in c] + [0])

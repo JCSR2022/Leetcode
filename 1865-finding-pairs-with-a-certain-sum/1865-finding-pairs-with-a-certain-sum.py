@@ -15,8 +15,12 @@ class FindSumPairs:
     def add(self, index: int, val: int) -> None:
             self.val_nums2[self.nums2[index]] -=1
             self.nums2[index] += val
-            self.val_nums2[self.nums2[index]] +=1
+            if self.nums2[index] in self.val_nums2:
+                self.val_nums2[self.nums2[index]] +=1
+            else:
+                self.val_nums2[self.nums2[index]] = 1
 
+                
     def count(self, tot: int) -> int:
         ans = 0
         for n1 in self.nums1:

@@ -1,6 +1,49 @@
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
 
+        #aproach , find the max window with the max value??
+
+        max_size = 1
+        max_value = 0
+        for n in nums:
+            if n > max_value:
+                max_value = n 
+                curr_size = 1
+                max_size = 1
+            elif n == max_value:
+                curr_size +=1
+                max_size =max(max_size,curr_size) 
+            else:
+                curr_size = 0
+            
+
+        return max_size 
+
+
+
+
+        return 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------------------------------------------
 #brute force O(n**2):
 #         result = 0
 #         max_and = 0
@@ -45,20 +88,19 @@ class Solution:
                 
 #         return ans
                 
+#-------------------------------------------------------------    
+        # # Time O(2*n) 
+        # ans = 0
+        # cont = 0
+        # max_num = max(nums)
         
-
-        ans = 0
-        cont = 0
-        max_num = max(nums)
-        
-        for num in nums:
-            if num == max_num:
-                cont += 1
-                ans = max(ans,cont)
-            else:
-                cont = 0
-        
-        return ans
+        # for num in nums:
+        #     if num == max_num:
+        #         cont += 1
+        #         ans = max(ans,cont)
+        #     else:
+        #         cont = 0
+        # return ans
                 
         
         

@@ -1,3 +1,49 @@
+
+class SegTree:
+    
+    def __init__(self,arr):
+        
+        self.size = len(arr)
+        self.arr = arr
+        self.seg_tree = [-1] * (4 * self.size) 
+        self.construct_segment_tree(0,0,self.size-1)
+        
+    def construct_segment_tree(self,i, l_idx, r_idx):
+        if l_idx == r_idx:
+            self.seg_tree[i] = self.arr[l_idx]
+            return self.seg_tree[i]
+        
+        mid = (l_idx + r_idx) // 2
+        left_max = self.construct_segment_tree(2 * i + 1, l_idx, mid)
+        right_max = self.construct_segment_tree(2 * i + 2, mid + 1, r_idx)
+        self.seg_tree[i] = max(left_max, right_max)
+        return self.seg_tree[i]
+    
+    def find_left_max_idx(self,i,l_idx,r_idx,num):
+        
+        if  self.seg_tree[i] < num:
+            return -1
+        
+        if l_idx == r_idx: 
+            self.seg_tree[i] = -1
+            self.arr[l_idx] =-1
+            return l_idx 
+        
+        
+        mid = (l_idx + r_idx) // 2
+        left = self.find_left_max_idx(2*i+1, l_idx, mid,num)
+        if left >= 0:
+            self.seg_tree[i] = max(self.seg_tree[2*i+1],self.seg_tree[2*i+2])  
+            return left
+        
+        right =self.find_left_max_idx(2*i+2, mid+1, r_idx,num)
+        if right >= 0:
+            self.seg_tree[i] = max(self.seg_tree[2*i+1],self.seg_tree[2*i+2]) 
+            return right
+        
+        return -1
+
+
 class Solution:
     def numOfUnplacedFruits(self, fruits: List[int], baskets: List[int]) -> int:
         
@@ -71,66 +117,17 @@ class Solution:
 
 #Time Limit Exceeded the same,
 #--------------------------------------------------------------------
+        #using SegTree!!!
 
-        sect_mx = []
-        m = len(baskets)
-        a = int(math.sqrt(m))  # size of one array
-
-        cnt = 0
-        mx = 0
-        for i in range(m):
-            if cnt == a:
-                # creating sector of size a
-                sect_mx.append(mx)
-                mx = baskets[i]
-                cnt = 1
-            else:
-                cnt += 1
-                mx = max(mx, baskets[i])
-
-        # last sector
-        sect_mx.append(mx)
-
-        remain = 0
-
-        # start allocating
+        mySegTree = SegTree(baskets)
+        ans = 0
         for fruit in fruits:
-            k = 0
-            set_flag = 1
+            if mySegTree.find_left_max_idx(0,0,mySegTree.size-1, fruit) < 0:
+                ans += 1
 
-            for j in range(0, m, a):
-                if sect_mx[k] < fruit:
-                    # skip this segment
-                    k += 1
-                    continue
-
-                # find place to allocate
-                for r in range(j, min(j + a, m)):
-                    if baskets[r] >= fruit:
-                        set_flag = 0
-                        baskets[r] = 0
-                        break
-
-                # if fruit is allocated in a sector
-                if set_flag == 0:
-                    sect_mx[k] = 0  # find new mx
-                    # update new sector mx
-                    for r in range(j, min(j + a, m)):
-                        sect_mx[k] = max(baskets[r], sect_mx[k])
-                    break
-
-            remain += set_flag
-
-        return remain
+        return ans
 
 
-
-
-
-
-
-
-        
 
 
 

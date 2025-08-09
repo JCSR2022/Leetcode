@@ -1,8 +1,58 @@
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
+
         
-        if bin(n)[0] == '-':
-            return False
+
+        return bin(n)[2:].count("1") == 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # if bin(n)[0] == '-':
+        #     return False
         
         
         # suma = 0
@@ -15,7 +65,7 @@ class Solution:
         
         
         
-        return bin(n).count('1') == 1 
+     #   return bin(n).count('1') == 1 
         
     
         

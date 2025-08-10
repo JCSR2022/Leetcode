@@ -7,7 +7,7 @@ class Solution:
         i = 0
         power2Num = 1
         dig_count = set()
-        while power2Num < 10**10:
+        while power2Num < 10**9:
             curr_count = [0]*10
             for digit in str(power2Num):
                 curr_count[int(digit)] +=1

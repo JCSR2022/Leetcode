@@ -1,7 +1,37 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         
-        
+    #again , only can do brute force 2**N
+        N = len(nums)
+        my_mem = {}
+        def dfs(curr_sum,i):
+            if i == N:
+                if  curr_sum == target:
+                    return 1
+                else:
+                    return 0
+
+            if (curr_sum,i) in my_mem:
+                return my_mem[(curr_sum,i)]
+            
+            #Add
+            op1 = dfs(curr_sum+nums[i],i+1)
+
+            #sub
+            op2 = dfs(curr_sum-nums[i],i+1)
+
+
+            my_mem[(curr_sum,i)] =  op1+op2
+            return my_mem[(curr_sum,i)]
+
+        return dfs(0,0)
+
+
+
+
+
+
+#-----------------------------------------------------------------
         #brute force, try all options:
 
 #         ans = 0
@@ -76,18 +106,18 @@ class Solution:
 #---------------------------------------------------------------
 #memory improve
 
-        dp = defaultdict(int) 
+        # dp = defaultdict(int) 
     
-        dp[0]  =1 
+        # dp[0]  =1 
         
-        for i in range(len(nums)):
-            new_dp = defaultdict(int) 
-            for cur_sum, count in dp.items():
-                new_dp[cur_sum + nums[i]] += count
-                new_dp[cur_sum - nums[i]] += count
-            dp = new_dp
+        # for i in range(len(nums)):
+        #     new_dp = defaultdict(int) 
+        #     for cur_sum, count in dp.items():
+        #         new_dp[cur_sum + nums[i]] += count
+        #         new_dp[cur_sum - nums[i]] += count
+        #     dp = new_dp
                 
         
-        return dp[target]
+        # return dp[target]
     
     

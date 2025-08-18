@@ -1,16 +1,62 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
 
-        
-        min_coins = [amount + 1] * (amount + 1)
-        min_coins[0] = 0
+        #https://www.youtube.com/watch?v=ZI17bgz07EE
 
-        for i in range(1, amount + 1):
-            for c in coins:
-                if i - c >= 0:
-                    min_coins[i] = min(min_coins[i], 1 + min_coins[i - c])
+        """
+        col are amount can be achive, row is type of coin used  
+        example coins = [1,2,5], amount = 11:
+        dp[:][0] indicate that to get an amount of 0 , whe need o coins
+        dp[0][:] indicate there is no way to get any amount with 0 coins
+        [0, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        """
+
+        def print_dp(dp):
+            for row in dp:
+                print(row)
+            print()
         
-        return min_coins[-1] if min_coins[-1] != amount + 1 else -1
+
+        dp = [ [0]*(amount+1) for _ in range(len(coins)+1)]
+        for i in range(1,amount+1):
+            dp[0][i] = float("inf")
+
+
+        for i in range(1,len(dp)):
+            for j in range(1,len(dp[0])):
+                #print(i,j)
+                #exclude: use value same col one row before
+                exclude = dp[i-1][j]
+                #Use: use coin find previos value without use it
+                use = float("inf")
+                if j-coins[i-1] >= 0:
+                    use = 1 + dp[i][j-coins[i-1]]
+                dp[i][j] = min(exclude,use)
+             
+                #print_dp(dp)
+    
+        ans = dp[-1][-1]
+        return  ans if ans < float("inf") else -1 
+
+
+
+
+#-----------------------------------------------------------------------------------------
+        # #niits
+        # #http://www.youtube.com/channel/UC9RMNwYTL3SXCP6ShLWVFww?sub_confirmation=1
+
+        # min_coins = [amount + 1] * (amount + 1)
+        # min_coins[0] = 0
+
+        # for i in range(1, amount + 1):
+        #     for c in coins:
+        #         if i - c >= 0:
+        #             min_coins[i] = min(min_coins[i], 1 + min_coins[i - c])
+        
+        # return min_coins[-1] if min_coins[-1] != amount + 1 else -1
 
 
 #-------------------------------------------------------------------

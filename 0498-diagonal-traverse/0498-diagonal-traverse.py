@@ -7,8 +7,9 @@ class Solution:
         i = 0
         j = 0
         up = True
-        while i < m-1 or j < n-1  :
-            
+        #while i < m-1 or j < n-1  :
+        while i < m and j < n :   
+
             ans.append(mat[i][j])
             #print(i,j,up,ans)
             if up:
@@ -38,7 +39,8 @@ class Solution:
                     j += 1
                     up =True
             #print("    next:",i,j)
-        ans.append(mat[i][j])
+
+        #ans.append(mat[i][j])
 
         return ans
 

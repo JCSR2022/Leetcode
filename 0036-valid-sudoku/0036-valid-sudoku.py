@@ -1,14 +1,20 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
     
+        #change to nums
 
-       
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] != '.':
+                    board[i][j] = int(board[i][j])
+                else:
+                    board[i][j] = 0
 
         #validate rows
         for i  in range(9):
             num_in_row =  set() 
             for j in range(9):
-                if board[i][j] != ".":
+                if board[i][j] != 0:
                     if board[i][j] in num_in_row:
                         #print("row:",(i,j),board[i][j], num_in_row)
                         return False
@@ -18,7 +24,7 @@ class Solution:
         for j in range(9):
             num_in_col = set()
             for i in range(9):
-                if board[i][j] != ".":
+                if board[i][j] != 0:
                     if board[i][j] in num_in_col:
                         #print("col:",(i,j),board[i][j], num_in_col)
                         return False
@@ -29,7 +35,7 @@ class Solution:
             num_in_square = set()
             for idx in range(i,i+3):
                 for jdx in range(j,j+3):
-                    if  board[idx][jdx] != ".":
+                    if  board[idx][jdx] != 0:
                         if board[idx][jdx] in num_in_square:
                             #print("square:",(idx,jdx),board[idx][jdx], num_in_square)
                             return False

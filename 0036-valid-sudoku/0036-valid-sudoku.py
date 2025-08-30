@@ -1,38 +1,74 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
     
-        #validate row, col and 3x4 squares..
 
-        size = 9
+       
 
         #validate rows
-        for row in board:
-            num_in_row = [ num for num in row if num != "." ]
-            #print(num_in_row,len(set(num_in_row)) != len(num_in_row))
-            if len(set(num_in_row)) != len(num_in_row):
-                return False
-        
-        #print()
+        for i  in range(9):
+            num_in_row =  set() 
+            for j in range(9):
+                if board[i][j] != ".":
+                    if board[i][j] in num_in_row:
+                        #print("row:",(i,j),board[i][j], num_in_row)
+                        return False
+                    num_in_row.add(board[i][j] )
+
         #validate cols
-        for j in range(size):
-            num_in_col = [ board[i][j] for i in range(size) if board[i][j] != "."]
-            #print(num_in_col,len(set(num_in_col)) != len(num_in_col))
-            if len(set(num_in_col)) != len(num_in_col):
-                return False
-        
-        #print()
+        for j in range(9):
+            num_in_col = set()
+            for i in range(9):
+                if board[i][j] != ".":
+                    if board[i][j] in num_in_col:
+                        #print("col:",(i,j),board[i][j], num_in_col)
+                        return False
+                    num_in_col.add(board[i][j] )
+
         #validate squares
         for i,j in [(0,0),(0,3),(0,6),(3,0),(3,3),(3,6),(6,0),(6,3),(6,6)]:
-            num_in_square = []
+            num_in_square = set()
             for idx in range(i,i+3):
                 for jdx in range(j,j+3):
-                    if  board[idx][jdx] != "." :
-                        num_in_square.append(board[idx][jdx])
-            #print(num_in_square,len(set(num_in_square)) != len(num_in_square))
-            if len(set(num_in_square)) != len(num_in_square):
-                return False
+                    if  board[idx][jdx] != ".":
+                        if board[idx][jdx] in num_in_square:
+                            #print("square:",(idx,jdx),board[idx][jdx], num_in_square)
+                            return False
+                        num_in_square.add(board[idx][jdx])
 
         return True
+ #---------------------------------------------------------------   
+        # #validate row, col and 3x4 squares..
+
+        # size = 9
+
+        # #validate rows
+        # for row in board:
+        #     num_in_row = [ num for num in row if num != "." ]
+        #     #print(num_in_row,len(set(num_in_row)) != len(num_in_row))
+        #     if len(set(num_in_row)) != len(num_in_row):
+        #         return False
+        
+        # #print()
+        # #validate cols
+        # for j in range(size):
+        #     num_in_col = [ board[i][j] for i in range(size) if board[i][j] != "."]
+        #     #print(num_in_col,len(set(num_in_col)) != len(num_in_col))
+        #     if len(set(num_in_col)) != len(num_in_col):
+        #         return False
+        
+        # #print()
+        # #validate squares
+        # for i,j in [(0,0),(0,3),(0,6),(3,0),(3,3),(3,6),(6,0),(6,3),(6,6)]:
+        #     num_in_square = []
+        #     for idx in range(i,i+3):
+        #         for jdx in range(j,j+3):
+        #             if  board[idx][jdx] != "." :
+        #                 num_in_square.append(board[idx][jdx])
+        #     #print(num_in_square,len(set(num_in_square)) != len(num_in_square))
+        #     if len(set(num_in_square)) != len(num_in_square):
+        #         return False
+
+        # return True
 
 
 

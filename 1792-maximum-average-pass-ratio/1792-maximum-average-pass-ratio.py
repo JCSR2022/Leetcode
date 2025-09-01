@@ -1,5 +1,69 @@
 class Solution:
     def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
+ 
+ 
+            #aproax: put all calssess in a heap , use extra Students to increase lowest rate
+
+            digits = 100000
+
+            heap = [] #( mean, index on classes)
+
+            for i,curr_class in enumerate(classes):
+                diff_pass_ratio = (curr_class[0]+1)/(curr_class[1]+1) - curr_class[0]/curr_class[1]  
+                heapq.heappush(heap, ( -int(diff_pass_ratio*digits)   , i )  )
+
+
+            while extraStudents > 0:
+                extraStudents -= 1
+
+                diff_pass_ratio,i = heapq.heappop(heap)
+                curr_class = classes[i]
+    
+                curr_class[0] += 1 
+                curr_class[1] += 1 
+                diff_pass_ratio = (curr_class[0]+1)/(curr_class[1]+1) - curr_class[0]/curr_class[1]
+
+                heapq.heappush(heap, (-int(diff_pass_ratio*digits), i )  )
+
+            return sum(  passi/total  for passi, total in  classes )/len(classes)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
         # aproach:
         # 1. calculate actual %
         # 2 use a heap, add extra estudent always to min heap
@@ -55,33 +119,20 @@ class Solution:
 
     #Faster version:
 
-#         heap = [(passi/totali - (passi+1)/(totali+1),i) for i,(passi,totali) in enumerate(classes) ]
-#         heapq.heapify(heap)
+        # heap = [(passi/totali - (passi+1)/(totali+1),i) for i,(passi,totali) in enumerate(classes) ]
+        # heapq.heapify(heap)
     
-#         for i in range(extraStudents):
+        # for i in range(extraStudents):
             
-#             _,index =  heapq.heappop(heap)
+        #     _,index =  heapq.heappop(heap)
             
-#             classes[index][0] +=1
-#             classes[index][1] +=1
+        #     classes[index][0] +=1
+        #     classes[index][1] +=1
             
-#             heapq.heappush(heap,( classes[index][0]/classes[index][1]- (classes[index][0]+1)/(classes[index][1]+1),index))
+        #     heapq.heappush(heap,( classes[index][0]/classes[index][1]- (classes[index][0]+1)/(classes[index][1]+1),index))
             
         
-#         return sum([act_pass/total for act_pass,total in classes])/len(classes)       
+        # return sum([act_pass/total for act_pass,total in classes])/len(classes)       
         
-
-        n = len(classes)
-        impacts = [(p/t - ((p+1)/(t+1)), p, t) for p,t in classes]
-        heapq.heapify(impacts)
-
-        for _ in range(extraStudents):
-            impact, passes, total = heapq.heappop(impacts)
-            passes +=1
-            total +=1
-            heapq.heappush(impacts, (passes/total - ((passes+1)/(total+1)), passes, total))
-
-        percents = [p/t for _,p,t in impacts]
-        return mean(percents)
 
 

@@ -4,7 +4,7 @@ class Solution:
  
             #aproax: put all calssess in a heap , use extra Students to increase lowest rate
 
-            digits = 100000
+            digits = 100000000
 
             heap = [] #( mean, index on classes)
 

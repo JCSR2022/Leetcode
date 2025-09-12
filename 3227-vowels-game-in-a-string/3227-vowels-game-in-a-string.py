@@ -11,8 +11,10 @@ class Solution:
         #       no leeters only vowel  a,return True,
         #       no leeters only vowel  xxxxaxxxx ("der" example 1),return True,
 
-        count = sum( 1 for letter in s if letter in "aeiou" )
+        # count = sum( 1 for letter in s if letter in "aeiou" )
         
-        return not count == 0 
+        # return not count == 0 
 
+
+        return s.count("a") + s.count("e") + s.count("i") + s.count("o") + s.count("u") > 0
 

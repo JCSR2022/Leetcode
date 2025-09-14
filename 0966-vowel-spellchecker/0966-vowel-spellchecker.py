@@ -56,8 +56,8 @@ class Solution:
             if onlyConsonant(word) not in wordlist_conso:
                 wordlist_conso[onlyConsonant(word)] = word
 
-        print(wordlist_lower)
-        print(wordlist_conso)
+        #print(wordlist_lower)
+        #print(wordlist_conso)
 
 
         ans = []

@@ -15,14 +15,14 @@ class Solution:
                     l = mid + 1
                 else:
                     r = mid
-            return l if l < n else -1
+            return l if l < m else - 1
 
         potions.sort()
-
+      
         ans = [0]*n
         for i,spell in enumerate(spells):          
             curr_cnt = bisect( math.ceil(success/spell) )
-            if curr_cnt > 0:
+            if curr_cnt >= 0:
                 ans[i] = m-curr_cnt
 
         return ans

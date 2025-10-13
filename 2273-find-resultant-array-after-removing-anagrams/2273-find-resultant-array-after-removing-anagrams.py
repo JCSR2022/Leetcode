@@ -5,7 +5,14 @@ class Solution:
         ans = []
         curr_hash = {}
         for w in words:
-            w_hash = Counter(w)
+
+            w_hash = {}
+            for ch in w:
+                if ch in w_hash:
+                    w_hash[ch] +=1
+                else:
+                    w_hash[ch] = 1
+                    
             if curr_hash != w_hash:
                 ans.append(w)
                 curr_hash = w_hash

@@ -1,6 +1,70 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         
+        size = len(nums)
+
+        left = [1] * (size+1)
+        for i in range(size):
+            left[i+1] = left[i]*nums[i] 
+        #print(left)
+
+        right = [1] * (size+1)
+        for i in range(size-1,0,-1):
+            right[i] =  right[i+1] *nums[i]
+        #print(right)
+        
+        ans = [1] * size
+        for i in range(size):
+            #print(i,(i,left[i]) , (i+1,right[i+1]))
+            ans[i] = left[i] * right[i+1]   
+        
+        return ans
+            
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         # La forma mas facil seria multiplicar todo y despues 
         # dividir por nums[i] pero no es valida

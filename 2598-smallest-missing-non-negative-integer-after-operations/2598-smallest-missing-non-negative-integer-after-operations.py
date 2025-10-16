@@ -3,15 +3,19 @@ class Solution:
         
         #sol O(n), to be precise 2*n
 
+        dict_div_nums = {}
+        for n in nums:
+            curr_div = n%value 
+            if curr_div not in dict_div_nums:
+                dict_div_nums[curr_div] = 1
+            else:
+                dict_div_nums[curr_div] += 1
 
-        arr = [n%value for n in nums]
-        dict_div_nums = Counter(arr)
 
         for i in range(len(nums)):
-            if i%value in dict_div_nums:
+            curr_div = i%value
+            if curr_div in dict_div_nums and dict_div_nums[curr_div] != 0 :
                 dict_div_nums[i%value] -=1
-                if  dict_div_nums[i%value] == 0:
-                    del dict_div_nums[i%value]
             else:
                 return i
 

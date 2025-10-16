@@ -26,18 +26,31 @@ class Solution:
 #Vayase a la verga!! claro que es mas rapido pendejo ajajajaajaj
 
 
-        DP = [0] * value
+        # DP = [0] * value
 
-        for n in nums:
-            DP[n % value] += 1
+        # for n in nums:
+        #     DP[n % value] += 1
         
+        # seed = 0
+        # rounds = min(DP)
+        
+        # #This approach is faster than the one below.
+        # for i in range(value):
+        #     if DP[i] - rounds == 0:
+        #         return (rounds * value) + i
 
-        seed = 0
 
-        rounds = min(DP)
+#--------------------------------------------------------        
 
-        #This approach is faster than the one below.
+        #final  version
+        
+        dict_div_nums = {k:0 for k in range(value)}
+        for n in nums:
+                dict_div_nums[n%value] += 1
+
+
+        rounds = min(dict_div_nums.values())
+
         for i in range(value):
-            if DP[i] - rounds == 0:
+            if dict_div_nums[i] - rounds == 0:
                 return (rounds * value) + i
-

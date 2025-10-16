@@ -15,7 +15,7 @@ class Solution:
         for i in range(len(nums)):
             curr_div = i%value
             if curr_div in dict_div_nums and dict_div_nums[curr_div] != 0 :
-                dict_div_nums[i%value] -=1
+                dict_div_nums[curr_div] -=1
             else:
                 return i
 

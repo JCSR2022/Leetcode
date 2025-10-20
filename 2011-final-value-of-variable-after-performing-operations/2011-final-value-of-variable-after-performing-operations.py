@@ -10,10 +10,14 @@ class Solution:
 
         #this is faster!!!!??? with 2 if?
 
-        ans = 0
-        for o in operations:
-            if '+' in o:
-                ans = ans + 1
-            elif '-' in o:
-                ans = ans - 1
-        return ans
+        # ans = 0
+        # for o in operations:
+        #     if '+' in o:
+        #         ans = ans + 1
+        #     elif '-' in o:
+        #         ans = ans - 1
+        # return ans
+
+#--------------------------------------------
+    op_val = {"++X": 1, "X++": 1, "--X": -1, "X--": -1}
+    return sum(op_val[op] for op in operations)

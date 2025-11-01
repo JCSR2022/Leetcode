@@ -12,19 +12,15 @@ class Solution:
         curr_node = new_head
 
         while True:
-
             if head.val not in nums:
-                new_node = ListNode()
-                curr_node.next = new_node
+                curr_node.next = head
                 curr_node = curr_node.next
-                curr_node.val = head.val
-                
+
             if head.next:
                 head = head.next
+                curr_node.next = None
             else:
-                break
-
-        return new_head.next
+                return new_head.next
         
 
 

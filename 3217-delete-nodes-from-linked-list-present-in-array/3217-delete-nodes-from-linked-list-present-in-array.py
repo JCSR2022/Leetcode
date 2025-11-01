@@ -18,8 +18,8 @@ class Solution:
 
             if head.next:
                 head = head.next
-                curr_node.next = None
             else:
+                curr_node.next = None
                 return new_head.next
         
 

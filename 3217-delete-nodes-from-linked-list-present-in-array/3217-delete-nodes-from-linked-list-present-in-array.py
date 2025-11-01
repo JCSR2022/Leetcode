@@ -6,6 +6,57 @@
 class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
         
+
+        nums =set(nums)
+        new_head = ListNode()
+        curr_node = new_head
+ 
+        while True:
+
+            if head.val not in nums:
+                curr_node.next = head
+                curr_node = curr_node.next
+     
+            if head.next:
+                head = head.next
+            else:
+                break
+
+        return new_head.next
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         #create dummyhead use as head
         #dfs remove nodes if  in list
         
@@ -29,14 +80,16 @@ class Solution:
 #         return dummy.next
 
 
-        dummy = node = ListNode(next = head)
-        set_nums = set(nums)
-        while node.next:
-            if node.next.val in set_nums:
-                node.next = node.next.next
-            else:
-                node = node.next
-        return dummy.next     
+# #----------------------------------------------------
+
+#         dummy = node = ListNode(next = head)
+#         set_nums = set(nums)
+#         while node.next:
+#             if node.next.val in set_nums:
+#                 node.next = node.next.next
+#             else:
+#                 node = node.next
+#         return dummy.next     
 
 
 

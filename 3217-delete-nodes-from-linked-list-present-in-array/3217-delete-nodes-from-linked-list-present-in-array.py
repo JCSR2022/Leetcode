@@ -10,13 +10,15 @@ class Solution:
         nums =set(nums)
         new_head = ListNode()
         curr_node = new_head
- 
+
         while True:
 
             if head.val not in nums:
-                curr_node.next = head
+                new_node = ListNode()
+                curr_node.next = new_node
                 curr_node = curr_node.next
-     
+                curr_node.val = head.val
+                
             if head.next:
                 head = head.next
             else:

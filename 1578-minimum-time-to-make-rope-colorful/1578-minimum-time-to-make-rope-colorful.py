@@ -5,15 +5,15 @@ class Solution:
             heap = []
             for i in range(1,len(colors)):
                 if colors[i] == colors[i-1]:
-                    if len(heap) == 0:
-                        heapq.heappush(heap, neededTime[i-1])
-                    heapq.heappush(heap, neededTime[i])
+                    heapq.heappush(heap, neededTime[i-1])
                 else:
-                    if len(heap) != 0:
+                    if heap:
+                        heapq.heappush(heap, neededTime[i-1])
                         while len(heap) > 1:
                             ans += heapq.heappop(heap)
                         heapq.heappop(heap)
 
+            heapq.heappush(heap, neededTime[-1])
             while len(heap) > 1:
                 ans += heapq.heappop(heap)
                 

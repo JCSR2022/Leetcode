@@ -64,8 +64,23 @@ class Solution:
 
 #noooo, toda la logica esta mal!!!!!!
 #--------------------------------------------------------
-        def f(n):
-            if n<=1: return n
-            k=int(log2(n))
-            return (1<<(k+1))-1-f(n^(1<<k))
-        return f(n)
+#vayanse a al M@##$^#$^#$^
+
+        # def f(n):
+        #     if n<=1: 
+        #         return n
+            
+        #     k=int(log2(n))
+        #     return (1<<(k+1))-1-f(n^(1<<k))
+        # return f(n)
+
+#---------------------------------------------------------------------
+
+        ans=0
+        while n:
+            ans=-ans-(n^(n-1))
+            n&=n-1
+        return abs(ans)    
+
+
+

@@ -3,26 +3,32 @@ class Solution:
 
         #lest check if this is fast enough:
 
-        if k == 0:
-            return True
+        # if k == 0:
+        #     return True
 
-        s_nums = "".join([str(n) for n in nums]).strip("0")
+        # s_nums = "".join([str(n) for n in nums]).strip("0")
 
-        if "11" in s_nums:
-            return False
+        # if "11" in s_nums:
+        #     return False
         
-        for gap in s_nums.split('1'):
-            if gap and len(gap) < k:
-                return False
-        return True 
-
-
-        # cnt = k
-        # for i in range(len(nums)):
-        #     if nums[i] == 1 and cnt < k:
+        # for gap in s_nums.split('1'):
+        #     if gap and len(gap) < k:
         #         return False
-        #     else:
-        #         if 
+        # return True 
+
+#it work  but dont like
+#-------------------------------------------------------
+        #better
+
+        indexes = [ i for i in range(len(nums)) if nums[i] ==1 ]
+        #print(indexes)
+        for i in range(1,len(indexes)):
+            #print(indexes[i],indexes[i-1],indexes[i]-indexes[i-1] -1)
+            if indexes[i]-indexes[i-1] -1 < k:
+                return False
+        return True
+
+
 
 
         

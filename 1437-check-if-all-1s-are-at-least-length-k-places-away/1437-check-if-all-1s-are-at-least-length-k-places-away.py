@@ -3,6 +3,9 @@ class Solution:
 
         #lest check if this is fast enough:
 
+        if k == 0:
+            return True
+
         s_nums = "".join([str(n) for n in nums]).strip("0")
 
         if "11" in s_nums:

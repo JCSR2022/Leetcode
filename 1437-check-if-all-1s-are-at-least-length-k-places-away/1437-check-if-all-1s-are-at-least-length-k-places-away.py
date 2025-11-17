@@ -20,15 +20,23 @@ class Solution:
 #-------------------------------------------------------
         #better
 
-        indexes = [ i for i in range(len(nums)) if nums[i] ==1 ]
-        #print(indexes)
-        for i in range(1,len(indexes)):
-            #print(indexes[i],indexes[i-1],indexes[i]-indexes[i-1] -1)
-            if indexes[i]-indexes[i-1] -1 < k:
-                return False
-        return True
+        # indexes = [ i for i in range(len(nums)) if nums[i] ==1 ]
+        # for i in range(1,len(indexes)):
+        #     if indexes[i]-indexes[i-1] -1 < k:
+        #         return False
+        # return True
 
+#-------------------------------------------------------
+        
+        #my best:
 
+        prev = -k-1
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                if i-prev-1 < k:
+                    return False
+                prev = i
 
+        return True 
 
         

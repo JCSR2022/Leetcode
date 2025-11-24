@@ -49,20 +49,33 @@ class Solution:
 
 #-------------------------------------------------         
 
-        f = [0,float("-inf"),float("-inf")]
+        # f = [0,float("-inf"),float("-inf")]
 
-        for num in nums :
-            g = f[:]
-            rem = num % 3
-            for r in range(3):
-                old_sum = f[r]
-                if old_sum == float("-inf"):
-                    continue
-                new_r =(r + rem)%3
-                new_sum = old_sum + num
-                g[new_r]=max(g[new_r],new_sum)
-            f = g
-        return f[0] 
+        # for num in nums :
+        #     g = f[:]
+        #     rem = num % 3
+        #     for r in range(3):
+        #         old_sum = f[r]
+        #         if old_sum == float("-inf"):
+        #             continue
+        #         new_r =(r + rem)%3
+        #         new_sum = old_sum + num
+        #         g[new_r]=max(g[new_r],new_sum)
+        #     f = g
+        # return f[0] 
         
 
+#Esta era la otra forma,         
+        a = [x for x in nums if x % 3 == 0]
+        b = sorted([x for x in nums if x % 3 == 1], reverse=True)
+        c = sorted([x for x in nums if x % 3 == 2], reverse=True)
+
+        ans = 0
+        lb, lc = len(b), len(c)
+        for cntb in [lb - 2, lb - 1, lb]:
+            if cntb >= 0:
+                for cntc in [lc - 2, lc - 1, lc]:
+                    if cntc >= 0 and (cntb - cntc) % 3 == 0:
+                        ans = max(ans, sum(b[:cntb]) + sum(c[:cntc]))
+        return ans + sum(a)
         

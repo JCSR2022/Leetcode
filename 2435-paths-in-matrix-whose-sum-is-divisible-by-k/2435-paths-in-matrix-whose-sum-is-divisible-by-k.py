@@ -23,9 +23,9 @@ class Solution:
             path1 = 0
             path2 = 0
             if i < m-1:
-                path1 = dfs(i+1,j,curr_sum+grid[i][j])
+                path1 = dfs(i+1,j,(curr_sum+grid[i][j])%k)
             if j < n-1:
-                path2 = dfs(i,j+1,curr_sum+grid[i][j])
+                path2 = dfs(i,j+1,(curr_sum+grid[i][j])%k)
             
             my_memory[(i,j,curr_sum)] = (path1+path2)%Mod
 

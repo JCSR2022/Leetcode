@@ -2,24 +2,40 @@ class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
 
 
-        size = len(nums)  
-        prefix = [0]*size
-        prefix[0] = nums[0]
-        for i in range(1,size):
-            prefix[i] = prefix[i-1]+nums[i]
-        
+        prefix = defaultdict(int)
+        prefix[0] = 1
         count = 0
-        for n in prefix:
-            if n == k:
-                count +=1 
+        cur = 0
+        for n in nums:
+            cur += n
+            pre_need = cur - k
+            if pre_need in prefix:
+                count += prefix[pre_need]
 
-        for i in range(size):
-            for j in range(i+1,size):
-                curr =  prefix[j] - prefix[i]
-                if curr == k:
-                    count +=1 
-
+            prefix[cur] +=1
+            
         return count
+
+#--------------------------------------------------------------------
+        # size = len(nums)  
+        # prefix = [0]*size
+        # prefix[0] = nums[0]
+        # for i in range(1,size):
+        #     prefix[i] = prefix[i-1]+nums[i]
+        
+        # count = 0
+        # for n in prefix:
+        #     if n == k:
+        #         count +=1 
+
+        # for i in range(size):
+        #     for j in range(i+1,size):
+        #         curr =  prefix[j] - prefix[i]
+        #         if curr == k:
+        #             count +=1 
+
+        # return count
+#Time Limit Exceeded
 
 #-------------------------------------------------------------------
         # size = len(nums)

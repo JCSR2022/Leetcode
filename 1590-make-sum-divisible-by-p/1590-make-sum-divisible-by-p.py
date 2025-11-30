@@ -1,6 +1,42 @@
 class Solution:
     def minSubarray(self, nums: List[int], p: int) -> int:
         
+        size = len(nums)
+        target = sum(nums)%p
+
+        if target == 0:
+            return 0
+
+        prefix = [0]*size
+        prefix[0] = nums[0]
+        for i in range(1,size):
+            prefix[i] = nums[i]+prefix[i-1]
+        
+        min_len = float("inf")
+        for l in range(size):
+            for r in range(l+1,size):
+                if (prefix[r]-prefix[l])%p == target:
+                    min_len = min(min_len,r-l)
+
+     
+
+        return min_len if min_len < float("inf") else -1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #------------------------------------------------------------------------------
         
         #brute force
         # calculate sum(arr)
@@ -19,26 +55,26 @@ class Solution:
                 
 #         return -1
 
-
-
-        rem = sum(nums) % p
-        if rem == 0:
-            return 0
-        length = len(nums)
-        h = {0: -1}    # dictionary where 
-                       # 1. key = remainder of running sum at each index, and
-                       # 2. value = index
-        run = [0]    # array to keep track of running sum
-        for i, num in enumerate(nums):
-            run.append(run[-1] + num)
-            curr = run[-1] % p
-            if curr >= rem:
-                if curr - rem in h:    # this portion of the array nums contributes to 'rem'; i.e. gross remainder
-                    length = min(length, i - h[curr - rem])
-            else:
-                if p - rem + curr in h:    # again, this portion contributes to 'rem'
-                    length = min(length, i - h[p - rem + curr])
-            h[curr] = i    # update every time to keep track of the latest occurrence of a particular remainder
-        if length == len(nums):
-            return -1
-        return length
+#------------------------------------------------------------------------------------------------
+        # #today not even try , tK Swap24
+        # rem = sum(nums) % p
+        # if rem == 0:
+        #     return 0
+        # length = len(nums)
+        # h = {0: -1}    # dictionary where 
+        #                # 1. key = remainder of running sum at each index, and
+        #                # 2. value = index
+        # run = [0]    # array to keep track of running sum
+        # for i, num in enumerate(nums):
+        #     run.append(run[-1] + num)
+        #     curr = run[-1] % p
+        #     if curr >= rem:
+        #         if curr - rem in h:    # this portion of the array nums contributes to 'rem'; i.e. gross remainder
+        #             length = min(length, i - h[curr - rem])
+        #     else:
+        #         if p - rem + curr in h:    # again, this portion contributes to 'rem'
+        #             length = min(length, i - h[p - rem + curr])
+        #     h[curr] = i    # update every time to keep track of the latest occurrence of a particular remainder
+        # if length == len(nums):
+        #     return -1
+        # return length

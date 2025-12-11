@@ -12,29 +12,56 @@ class Solution:
 
         #make 2 dicts x:ys and y:xs
 
-        x_arr = defaultdict(list)
-        y_arr = defaultdict(list)
+        # x_arr = defaultdict(list)
+        # y_arr = defaultdict(list)
 
-        for x,y in buildings:
-            x_arr[x].append(y)
-            y_arr[y].append(x)
+        
+        # for x,y in buildings:
+        #     x_arr[x].append(y)
+        #     y_arr[y].append(x)
+        # print(dict(x_arr))
+        # print(dict(y_arr))
 
-        ys_to_review = set()
-        for x,ys in x_arr.items():
-            if len(ys) > 2:
-                ys.sort()
-                ys_to_review = ys_to_review|set(ys[1:-1])
+
+        # ys_to_review = set()
+        # for x,ys in x_arr.items():
+        #     if len(ys) > 2:
+        #         ys.sort()
+        #         ys_to_review = ys_to_review|set(ys[1:-1])
+        # print(ys_to_review)
+        # ans = 0
+        # for ys in ys_to_review:
+        #     curr_ys = len(y_arr[ys])
+        #     if curr_ys > 2:
+        #         ans += curr_ys-2
+
+        # return ans 
+
+#vete a la mierda, toda la logica esta mal!!!!
+#--------------------------------------------------------
+
+
+
+        rmax = [0] * (n + 1)
+        rmin = [n + 1] * (n + 1)
+        cmax = [0] * (n + 1)
+        cmin = [n + 1] * (n + 1)
+
+        # Track extreme buildings for each row and column
+        for x, y in buildings:
+            rmax[y] = max(rmax[y], x)
+            rmin[y] = min(rmin[y], x)
+            cmax[x] = max(cmax[x], y)
+            cmin[x] = min(cmin[x], y)
 
         ans = 0
-        for ys in ys_to_review:
-            curr_ys = len(y_arr[ys])
-            if curr_ys > 2:
-                ans += curr_ys-2
 
-        return ans 
+        # A building is covered only if it's strictly inside both extremes
+        for x, y in buildings:
+            if rmin[y] < x < rmax[y] and cmin[x] < y < cmax[x]:
+                ans += 1
 
-
-
+        return ans
             
 
 

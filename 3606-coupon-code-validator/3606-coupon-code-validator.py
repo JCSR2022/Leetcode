@@ -3,16 +3,22 @@ class Solution:
         
         # def is_valid_code(s: str) -> bool:
         #     return bool(re.fullmatch(r'\w+', s))
-        def is_valid_code(s: str) -> bool:
-            #string.ascii_letters
-            if len(s) == 0: return False
-            
-            valids ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
-            for ch in s:
-                if ch not in valids:
-                    return False
-            return True
+ 
 
+        # def is_valid_code(s: str) -> bool:
+        #     #string.ascii_letters
+        #     if len(s) == 0: return False
+        #     valids ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+        #     for ch in s:
+        #         if ch not in valids:
+        #             return False
+        #     return True
+
+
+        def is_valid_code(s: str) -> bool:
+            if not s:
+                return False
+            return all(ch.isalnum() or ch == '_' for ch in s)
 
         def is_valid_business(s:str) ->bool:
             return s in {"electronics", "grocery", "pharmacy", "restaurant"}

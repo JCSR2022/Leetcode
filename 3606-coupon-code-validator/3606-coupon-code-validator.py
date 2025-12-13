@@ -1,8 +1,18 @@
 class Solution:
     def validateCoupons(self, code: List[str], businessLine: List[str], isActive: List[bool]) -> List[str]:
         
+        # def is_valid_code(s: str) -> bool:
+        #     return bool(re.fullmatch(r'\w+', s))
         def is_valid_code(s: str) -> bool:
-            return bool(re.fullmatch(r'\w+', s))
+            #string.ascii_letters
+            if len(s) == 0: return False
+            
+            valids ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+            for ch in s:
+                if ch not in valids:
+                    return False
+            return True
+
 
         def is_valid_business(s:str) ->bool:
             return s in {"electronics", "grocery", "pharmacy", "restaurant"}

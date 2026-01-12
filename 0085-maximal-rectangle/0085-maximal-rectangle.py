@@ -1,5 +1,151 @@
 class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#----------------------------------------------------------------
+#cuando vas a  aceptar que eres un malidto inutil incapaz y que nunca lograras nada en la vida??????
+
+        #aproach O(n) , where n = 3*row*col
+        # make new matrix save size of posible rectangule, 
+        # fina max x*y of (x,y) size return max  
+
+
+        # n = len(matrix)
+        # m = len(matrix[0])
+
+        # rect_sizes = [[ (0,0) if matrix[i][j] else (1,1) for j in range(m) ] for i in range(n)]
+
+        # for i in range(n):
+        #     for k in range(m):
+        #         if matrix[i][j] == 1:
+        #             rect_sizes[i][j] = (1,1)
+        #         if i > 0 and j > 0:
+        #             if matrix[i-1][j-1] == 1 and matrix[i][j-1] == 1 and matrix[i][j-1] ==1:
+        #                 rect_sizes[i][j] =  ( rect_sizes[i-1][j-1][0]+1,rect_sizes[i-1][j-1][1]+1)
+        #             elif  matrix[i][j-1] == 1:
+        #                 rect_sizes[i][j] =  ( rect_sizes[i-1][j-1][0]+1,rect_sizes[i-1][j-1][1]+1)
+
+
+
+        # #---------------------
+        # def print_matrix(matrix):
+        #     for row in matrix:
+        #         print(row)
+
+        # print_matrix(matrix)
+
+
+        # n = len(matrix)
+        # m = len(matrix[0])
+        # rect_sizes = [[ {(0,0)} if matrix[i][j]=='0' else {(1,1)} for j in range(m) ] for i in range(n)]
+
+        # for i in range(1,n):
+        # rect_sizes[i][0] = {(list(rect_sizes[i-1][0])[0][0]+1,1)}
+        # for j in range(1,m):
+        # rect_sizes[0][j] = {(1,list(rect_sizes[0][j-1])[0][0])}
+
+        # print_matrix(rect_sizes)
+
+
+
+        # for row in rect_sizes:
+        #     print(row)
+
+        # for i in range(1,n):
+        #     for j in range(1,m):
+        #       if matrix[i][j] == '1':
+            
+
+
+
+        #       if i > 0 and j > 0 :
+        #         for possible in rect_sizes[i-1][j]:
+        #           rect_sizes[i][j].add((possible[0]+1,possible[1]))
+        #         for possible in rect_sizes[i][j-1]:
+        #           rect_sizes[i][j].add((possible[0],possible[1]+1))
+        #         for possible in rect_sizes[i-1][j-1]:
+        #           rect_sizes[i][j].add((possible[0]+1,possible[1]+1))
+                
+        #       elif i > 0:
+        #         for possible in rect_sizes[i-1][j]:
+        #           rect_sizes[i][j].add((possible[0]+1,possible[1]))
+        #       elif j > 0:
+        #         for possible in rect_sizes[i][j-1]:
+        #           rect_sizes[i][j].add((possible[0],possible[1]+1))
+
+            
+                
+        # for row in rect_sizes:
+        #     print(row)
+#------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         # the most brute force of all: (n*m)**2
         

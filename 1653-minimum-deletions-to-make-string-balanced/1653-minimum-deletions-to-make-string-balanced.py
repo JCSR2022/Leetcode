@@ -16,12 +16,10 @@ class Solution:
             
             if s[l] == 'b': count_b +=1
             if s[r] == 'a': count_a +=1
-            
+    
             sum_ab[l] += count_b
             sum_ab[r] += count_a
-            
             #print(l,r,s[l],s[r],count_b,count_a)
-        
         #print(sum_ab)
             
         return min(sum_ab)-1

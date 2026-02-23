@@ -13,7 +13,9 @@ class Solution:
 
         code_size = 2**k
         
-        codes = set( int(s[i:k+i],2) for  i in range(len(s)-k))
+        codes = set( int(s[i:k+i],2) for  i in range(len(s)-k+1))
+
+        #print(codes)
 
         return  len(codes) == code_size
 

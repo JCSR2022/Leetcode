@@ -11,16 +11,16 @@ class Solution:
 #Time Limit Exceeded
 #----------------------------------------------------------------------
 
+        # code_size = 2**k
+        
+        # codes = set( int(s[i:k+i],2) for  i in range(len(s)-k+1))
+
+        # #print(codes)
+
+        # return  len(codes) == code_size
+
         code_size = 2**k
         
-        codes = set( int(s[i:k+i],2) for  i in range(len(s)-k+1))
-
-        #print(codes)
+        codes = set( s[i:k+i]  for i in range(len(s)-k+1))
 
         return  len(codes) == code_size
-
-# myset = set() 
-# for i in range(0,len(letters)-k):
-#   myset.add(int(letters[i:k+i],2))
-#   print(i,letters[i:k+i],int(letters[i:k+i],2))
-# print(myset)

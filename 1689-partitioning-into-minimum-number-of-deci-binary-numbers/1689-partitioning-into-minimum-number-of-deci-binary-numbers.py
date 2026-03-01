@@ -8,7 +8,7 @@ class Solution:
         #         return 9
         # return int(ans)
         
-
+        digits = set([ch for ch in n])
         for d in "987654321":
-            if d in n:
+            if d in digits:
                 return int(d)

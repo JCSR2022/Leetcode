@@ -6,8 +6,7 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
 
-        ans = [ [0 for _ in range(n-k+1) ] for _ in range(m-k+1)] 
-
+    
         def find_arr(i,j):
             arr = set()
             for x in range(i,i+k):
@@ -24,10 +23,12 @@ class Solution:
                 min_abs = min(min_abs,abs(arr[i]-arr[i+1]))
             return min_abs
 
+
+        ans = [ [0 for _ in range(n-k+1) ] for _ in range(m-k+1)] 
         for i in range(m-k+1):
             for j in range(n-k+1):
                 ans[i][j] = min_absolute(find_arr(i,j))
-                arr = find_arr(i,j)
+                #arr = find_arr(i,j)
                 #print(arr , min_absolute(arr))
 
         return ans

@@ -1,47 +1,65 @@
 class Solution:
     def canPartitionGrid(self, grid: List[List[int]]) -> bool:
 
+        #last upgrade
 
 
+        #cols = [ sum(col) for col in zip(*grid)]
+        #rows = [ sum(row) for row in grid]
+        def isHalfPresent(arr,half):
+            prefix = 0
+            for elem_list in arr:
+                prefix += sum(elem_list)
+                if prefix == half:
+                    return True
+                if prefix > half:
+                    return False
 
-
-        #aproach  O(n*m +n+m)
-
-        m = len(grid)
-        n = len(grid[0])
-
-        rows = [0]*m
-        cols = [0]*n
-        total = 0
-
-        for i in range(m):
-            for j in range(n):
-                rows[i] += grid[i][j]
-                cols[j] += grid[i][j]
-                total += grid[i][j]
-
+        total = sum([ grid[i][j] for i in range(len(grid)) for j in range(len(grid[0]))])
         if total%2 != 0:
             return False
+
         half = total//2
+        return isHalfPresent(grid,half) or isHalfPresent(zip(*grid),half)
 
-        #work on rows
-        prefix = 0
-        for row in rows:
-            prefix += row
-            if prefix == half:
-                return True
-            if prefix > half:
-                break
+#-------------------------------------------------------------------------------------
+        #aproach  O(n*m +n+m)
 
-        prefix = 0
-        for col in cols:
-            prefix += col
-            if prefix == half:
-                return True
-            if prefix > half:
-                break
+        # m = len(grid)
+        # n = len(grid[0])
 
-        return False
+        # rows = [0]*m
+        # cols = [0]*n
+        # total = 0
+
+        # for i in range(m):
+        #     for j in range(n):
+        #         rows[i] += grid[i][j]
+        #         cols[j] += grid[i][j]
+        #         total += grid[i][j]
+
+        # if total%2 != 0:
+        #     return False
+        # half = total//2
+
+        # #work on rows
+        # prefix = 0
+        # for row in rows:
+        #     prefix += row
+        #     if prefix == half:
+        #         return True
+        #     if prefix > half:
+        #         break
+
+        # prefix = 0
+        # for col in cols:
+        #     prefix += col
+        #     if prefix == half:
+        #         return True
+        #     if prefix > half:
+        #         break
+
+        # return False
 
 
 #--------------------------------------------------------

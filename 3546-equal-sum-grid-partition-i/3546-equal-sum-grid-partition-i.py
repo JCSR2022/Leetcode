@@ -3,9 +3,6 @@ class Solution:
 
         #last upgrade
 
-
-        #cols = [ sum(col) for col in zip(*grid)]
-        #rows = [ sum(row) for row in grid]
         def isHalfPresent(arr,half):
             prefix = 0
             for elem_list in arr:
@@ -15,7 +12,7 @@ class Solution:
                 if prefix > half:
                     return False
 
-        total = sum([ grid[i][j] for i in range(len(grid)) for j in range(len(grid[0]))])
+        total = sum(grid[i][j] for i in range(len(grid)) for j in range(len(grid[0])))
         if total%2 != 0:
             return False
 
@@ -37,6 +34,10 @@ class Solution:
         #         rows[i] += grid[i][j]
         #         cols[j] += grid[i][j]
         #         total += grid[i][j]
+
+        
+        #cols = [ sum(col) for col in zip(*grid)]
+        #rows = [ sum(row) for row in grid]
 
         # if total%2 != 0:
         #     return False

@@ -1,35 +1,37 @@
-#class Solution:
-#    def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
-
-from typing import List
-
 class Solution:
     def minimumTotalDistance(self, robot: List[int], factory: List[List[int]]) -> int:
-        robot.sort()
-        factory.sort(key=lambda x: x[0])
         
-        memo = {}
 
-        def helper(currRobot, currFact, usedCapacity):
-            if currRobot == len(robot):
-                return 0
-            if currFact == len(factory):
-                return float('inf')
+        #brute force:
 
-            key = (currRobot, currFact, usedCapacity)
-            if key in memo:
-                return memo[key]
+        factories = []
+        for p,l in factory:
+            factories += [p]*l
+        free_fact = [True]*len(factories)
 
-            # Option 1: Skip to the next factory
-            minDist = helper(currRobot, currFact + 1, 0)
+        memo_dfs = {}
+        def dfs(r,dist):
+            if (r,dist) in memo_dfs:
+                return memo_dfs[(r,dist)]
 
-            # Option 2: Use current factory if capacity allows
-            position, capacity = factory[currFact]
-            if usedCapacity < capacity:
-                dist = abs(robot[currRobot] - position)
-                minDist = min(minDist, dist + helper(currRobot + 1, currFact, usedCapacity + 1))
+            if r < len(robot):
+                curr_min = float("inf")
+                for i,fact_disp in enumerate(free_fact):
+                    if fact_disp:
+                        free_fact[i] = False
+                        curr_dist = abs(robot[r]-factories[i])
+                        curr_min = min(curr_min, dfs(r+1,dist+curr_dist))
+                        free_fact[i] = True
 
-            memo[key] = minDist
-            return minDist
+                memo_dfs[(r,dist)] = curr_min
+                return memo_dfs[(r,dist)] 
 
-        return helper(0, 0, 0)
+            if r == len(robot):
+                memo_dfs[(r,dist)] = dist
+                return memo_dfs[(r,dist)]
+
+        return dfs(0,0)
+
+
+#Time Limit Exceeded
+#---------------------------------------------------------------

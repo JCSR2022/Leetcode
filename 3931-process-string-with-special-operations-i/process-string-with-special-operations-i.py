@@ -21,27 +21,49 @@ class Solution:
 
 
 
-        def append_char(ch):
-            return lambda arr: arr + [ch]
+        # def append_char(ch):
+        #     return lambda arr: arr + [ch]
 
-        def remove(arr):
-            return arr[:-1]
+        # def remove(arr):
+        #     return arr[:-1]
 
-        def duplicate(arr):
-            return arr + arr
+        # def duplicate(arr):
+        #     return arr + arr
 
-        def reverse(arr):
-            return arr[::-1]
+        # def reverse(arr):
+        #     return arr[::-1]
 
-        # Build dispatch table
-        hash_func = {ch: append_char(ch) for ch in string.ascii_lowercase}
+        # # Build dispatch table
+        # hash_func = {ch: append_char(ch) for ch in string.ascii_lowercase}
 
-        hash_func['*'] = remove
-        hash_func['#'] = duplicate
-        hash_func['%'] = reverse
+        # hash_func['*'] = remove
+        # hash_func['#'] = duplicate
+        # hash_func['%'] = reverse
+
+
+        # ans = []
+        # for ch in s:
+        #     ans = hash_func[ch](ans)
+        # return "".join(ans)
+
+
+#-----------------------------------------------------------------------------------------
+
+
+
+        ops = {
+            '*': lambda arr: arr[:-1],
+            '#': lambda arr: arr + arr,
+            '%': lambda arr: arr[::-1],
+        }
+
+        for ch in string.ascii_lowercase:
+            ops[ch] = lambda arr, c=ch: arr + [c]   # capture ch
 
 
         ans = []
+
         for ch in s:
-            ans = hash_func[ch](ans)
+            ans = ops[ch](ans)
+
         return "".join(ans)

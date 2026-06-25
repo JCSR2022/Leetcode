@@ -3,16 +3,16 @@ class Solution:
 
         #brute force  1000**2
 
-        ans = 0
-        size = len(nums)
-        for i in range(size):
-            cnt_target = 0
-            for cnt,j in enumerate(range(i,size)):
-                if nums[j] == target: cnt_target += 1
-                if cnt_target > (cnt+1)//2: ans += 1
+        # ans = 0
+        # size = len(nums)
+        # for i in range(size):
+        #     cnt_target = 0
+        #     for cnt,j in enumerate(range(i,size)):
+        #         if nums[j] == target: cnt_target += 1
+        #         if cnt_target > (cnt+1)//2: ans += 1
 
 
-        return ans
+        # return ans
 
 
 
@@ -20,3 +20,20 @@ class Solution:
         #    0          0           1       0       1
         #    0          1           2       1       2
         #    0          2           3       2       2
+#----------------------------------------------------------------------
+
+
+
+
+        ans = 0
+        size = len(nums)
+        for i in range(size):
+            cnt_target = 0
+            for j in range(i,size):
+                if nums[j] == target: cnt_target += 1
+                if cnt_target > (j-i+1)//2: ans += 1
+
+
+        return ans
+
+

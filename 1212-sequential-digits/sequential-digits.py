@@ -15,17 +15,12 @@ class Solution:
         #6          6789
         #7 not valid 
 
-
-        def create(inc_val,size):
-            return sum([ (inc_val+i)*10**(size-i-1) for i in range(size) ])
-
         size = len(str(low))
         ans = []
         while True:
             inc_val = 1
             while inc_val + size <= 10:
-                curr_ans =  create(inc_val,size)
-                print(curr_ans)
+                curr_ans =  sum([ (inc_val+i)*10**(size-i-1) for i in range(size) ])
                 if curr_ans > high:  
                     return ans
                 if curr_ans >= low:

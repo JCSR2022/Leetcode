@@ -10,12 +10,15 @@ class Solution:
         minPrefix = [nums[-1]]
         for i in range(size-2,-1,-1):
             minPrefix.append(min(minPrefix[-1],nums[i]))
-        minPrefix[:] = minPrefix[::-1]
 
-        ans = [ c_max-c_min for c_max,c_min in zip(maxPrefix,minPrefix)   ]
-        
+        #minPrefix[:] = minPrefix[::-1]
+        # ans = [ c_max-c_min for c_max,c_min in zip(maxPrefix,minPrefix)   ]        
+        # for i in range(size):
+        #     if ans[i] <= k:
+        #         return i
+
         for i in range(size):
-            if ans[i] <= k:
+            if maxPrefix[i] - minPrefix[size-i-1] <= k:
                 return i
 
         return -1

@@ -16,10 +16,17 @@ class Solution:
         
 #------------------------------------------------------
 
-        value = [ 26-i for i in range(27)]
+        # value = [ 26-i for i in range(27)]
+        # ans = 0
+        # for i,ch in enumerate(s):
+        #     ans += value[ord(ch)-97] * (i+1)
+        # return ans
+
+
+#---------------------------------------------------
 
         ans = 0
         for i,ch in enumerate(s):
-            ans += value[ord(ch)-97] * (i+1)
-
-        return ans
+            ans+= (123 - ord(ch)) * (i+1)
+            
+        return ans    
